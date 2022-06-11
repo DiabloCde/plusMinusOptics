@@ -1,0 +1,12 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\PlusMinus.BLL\PlusMinus.BLL.csproj" />
+    <ProjectReference Include="..\PlusMinus.Core\PlusMinus.Core.csproj" />
+  </ItemGroup>
+
+</Project>
