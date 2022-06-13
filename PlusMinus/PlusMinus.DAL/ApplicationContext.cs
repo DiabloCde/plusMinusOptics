@@ -37,6 +37,15 @@ namespace PlusMinus.DAL
 
         }
 
+        public ApplicationContext()
+        {
+
+        }
+
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+        }
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<OrderProduct>()
