@@ -9,24 +9,26 @@
 </head>
 <body>
     <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
-            <div class="container">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">PlusMinus</a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                    <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
+        <nav class="menu">
+            <ul>
+                <li><img src=""></li>
+            </ul>
+            <ul>
+                <li>
+                    <a href="~/">012 345 67 89</a>
+                    <img src="">
+                    <img src="">
+                </li>
+            </ul>
+        </nav>
+        <nav class="menu-down">
+            <ul>
+                <li>Контактні лінзи</li>
+                <li>Сонцезахисні окуляри</li>
+                <li>Оправи</li>
+                <li>Аксесуари</li>
+                <li>Засоби для догляду</li>
+            </ul>
         </nav>
     </header>
     <div class="container">
@@ -37,7 +39,31 @@
 
     <footer class="border-top footer text-muted">
         <div class="container">
-            &copy; 2022 - PlusMinus - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+            <div class="container-left">
+                <div class="container-left-up">
+                    <b>Гаряча лінія</b>
+                    <p>0800 12 34 56</p>
+                </div>
+                <div class="container-left-down">
+                    <b>Слідкуйте за нами</b>
+                    <p>
+                        <img src="~/img/facebook.png" alt="">
+                        <img src="~/img/instagram.png" alt="">
+                        <img src="~/img/youtube.png" alt="">
+                    </p>
+                </div>
+            </div>
+            <div class="container-middle">
+                <b>Допомога</b>
+                <p>FAQ</p>
+                <p>Як зробити замовлення</p>
+                <p>Оптичний блог</p>
+            </div>
+            <div class="container-right">
+                <b>Особистий кабінет</b>
+                <p>Вхід</p>
+                <p>Реєстрація</p>
+            </div>
         </div>
     </footer>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>

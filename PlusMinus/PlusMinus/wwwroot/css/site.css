@@ -1,5 +1,8 @@
 ﻿/* Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification
 for details on configuring this project to bundle and minify static web assets. */
+*{
+    font-family: "Century Gothic", sans-serif;
+}
 
 a.navbar-brand {
   white-space: normal;
@@ -38,6 +41,7 @@ html {
 .border-top {
   border-top: 1px solid #e5e5e5;
 }
+
 .border-bottom {
   border-bottom: 1px solid #e5e5e5;
 }
@@ -63,9 +67,105 @@ body {
   margin-bottom: 60px;
 }
 .footer {
-  position: absolute;
-  bottom: 0;
-  width: 100%;
-  white-space: nowrap;
-  line-height: 60px; /* Vertically center the text there */
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    white-space: nowrap;
+    line-height: 30px; /* Vertically center the text there */
+    background-color: #D5D7D1;
+    text-decoration: none;
+    padding-top: 20px;
+}
+
+header
+{
+    
+}
+
+header a
+{
+    color: #fff;
+    text-decoration: none;
+}
+
+header a:hover
+{
+    cursor: pointer;
+    color: #fff;
+    text-decoration: none;
+}
+
+header .menu
+{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 100vw;
+    background-color: #30587b;
+    color: #fff;
+    padding: 20px;
+    /* margin-bottom: 20px; */
+}
+
+header .menu-down
+{
+    justify-content: space-around;
+    align-items: center;
+    width: 100vw;
+    height: 60px;
+    background-color: #458eae;
+    color: #fff;
+    padding-top: 20px;
+}
+
+header .menu ul li
+{
+    display: inline;
+}
+
+header .menu-down ul li
+{
+    display: inline;
+    margin-left: 5%;
+    margin-right: 5%;
+    margin-top: 5%;
+}
+
+footer .container
+{
+    display: flex;
+    justify-content: space-between;
+    width: 100vw;
+    color: #22231d;
+    padding: 20px;
+    text-align: center;
+}
+footer .container b
+{
+    text-decoration: underline;
+}
+
+footer .container .container-left
+{
+    width: 32vw;
+    border-right: 1px solid #22231d;
+}
+
+footer .container .container-middle
+{
+    width: 32vw;
+    border-right: 1px solid #22231d;
+    margin: auto;
+}
+
+footer .container .container-right
+{
+    width: 32vw;
+    /* border-left: ; */
+}
+
+footer ul li
+{
+    list-style: none;
+    margin: 0;
 }
