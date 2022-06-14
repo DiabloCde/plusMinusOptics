@@ -11,9 +11,13 @@ namespace PlusMinus.DAL.Interfaces
     public interface IProductRepository<T> where T: Product
     {
         List<T> GetProducts(Expression<Func<T, bool>> filter);
+
         T GetProductByID(int productId);
+
         void InsertProduct(T product);
+
         void DeleteProduct(int productId);
+
         void UpdateProduct(T product);
     }
 }

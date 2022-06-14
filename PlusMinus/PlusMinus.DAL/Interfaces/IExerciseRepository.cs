@@ -11,9 +11,13 @@ namespace PlusMinus.DAL.Interfaces
     public interface IExerciseRepository
     {
         List<Exercise> GetExercises(Expression<Func<Exercise, bool>> filter);
+
         Exercise GetExerciseByID(int exerciseId);
+
         void InsertExercise(Exercise exercise);
+
         void DeleteExercise(int exerciseId);
+
         void UpdateExercise(Exercise exercise);
     }
 }
