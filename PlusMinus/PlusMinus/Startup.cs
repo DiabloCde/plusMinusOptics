@@ -1,18 +1,15 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using PlusMinus.BLL.Interfaces;
+using PlusMinus.BLL.Services;
 using PlusMinus.Core.Models;
 using PlusMinus.DAL;
 using PlusMinus.DAL.Interfaces;
 using PlusMinus.DAL.Repositories;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace PlusMinus
 {
@@ -32,10 +29,13 @@ namespace PlusMinus
             services.AddDbContext<ApplicationContext>(options => 
                 options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
             services.AddDefaultIdentity<User>().AddEntityFrameworkStores<ApplicationContext>();
+
             services.AddScoped<IExerciseRepository, ExerciseRepository>();
             services.AddScoped<IOrderRepository, OrderRepository>();
             services.AddScoped<IUserRepository, UserRepository>();
             services.AddScoped(typeof(IProductRepository<>), typeof(ProductRepository<>));
+
+            services.AddScoped<IOrderService, OrderService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
