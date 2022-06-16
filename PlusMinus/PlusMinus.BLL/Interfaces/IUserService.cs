@@ -1,14 +1,8 @@
 ﻿using PlusMinus.Core.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Linq.Expressions;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace PlusMinus.DAL.Interfaces
+namespace PlusMinus.BLL.Interfaces
 {
-    public interface IUserRepository
+    public interface IUserService
     {
         void AddExerciseToTimetable(Timetable timetable);
 

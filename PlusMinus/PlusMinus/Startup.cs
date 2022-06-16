@@ -1,6 +1,5 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -11,10 +10,6 @@ using PlusMinus.Core.Models;
 using PlusMinus.DAL;
 using PlusMinus.DAL.Interfaces;
 using PlusMinus.DAL.Repositories;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace PlusMinus
 {
@@ -40,7 +35,9 @@ namespace PlusMinus
             services.AddScoped<IUserRepository, UserRepository>();
             services.AddScoped(typeof(IProductRepository<>), typeof(ProductRepository<>));
 
+            services.AddScoped<IOrderService, OrderService>();
             services.AddScoped(typeof(IProductService<>), typeof(ProductService<>));
+            services.AddScoped<IUserService, UserService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

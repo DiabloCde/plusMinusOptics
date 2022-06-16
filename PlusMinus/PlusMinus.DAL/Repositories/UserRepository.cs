@@ -48,61 +48,6 @@ namespace PlusMinus.DAL.Repositories
             }
         }
 
-        public void DeleteUser(int userId)
-        {
-            try
-            {
-                User user = this._context.AppUsers.Find(userId);
-                this._context.AppUsers.Remove(user);
-                this._context.SaveChanges();
-            }
-            catch (Exception)
-            {
-                throw;
-            }
-        }
-
-        public User GetUserByID(int userId)
-        {
-            try
-            {
-                return this._context.AppUsers.Find(userId);
-            }
-            catch (Exception)
-            {
-                throw;
-            }
-        }
-
-        public List<User> GetUsers(Expression<Func<User, bool>> filter)
-        {
-            try
-            {
-                return this._context.AppUsers
-                    .Include(t => t.Timetables)
-                    .Include(t => t.Orders)
-                    .Where(filter)
-                    .ToList();
-            }
-            catch (Exception)
-            {
-                throw;
-            }
-        }
-
-        public void InsertUser(User user)
-        {
-            try
-            {
-                this._context.AppUsers.Add(user);
-                this._context.SaveChanges();
-            }
-            catch (Exception)
-            {
-                throw;
-            }
-        }
-
         public void UpdateExerciseInTimetable(Timetable timetable)
         {
             try
@@ -111,19 +56,6 @@ namespace PlusMinus.DAL.Repositories
                     .Single(x => x.ExerciseId == timetable.ExerciseId
                     && x.UserId == timetable.UserId);
                 time.Time = timetable.Time;
-                this._context.SaveChanges();
-            }
-            catch (Exception)
-            {
-                throw;
-            }
-        }
-
-        public void UpdateUser(User user)
-        {
-            try
-            {
-                this._context.Entry(user).State = EntityState.Modified;
                 this._context.SaveChanges();
             }
             catch (Exception)
