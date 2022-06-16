@@ -52,8 +52,8 @@ namespace PlusMinus.DAL.Repositories
         {
             try
             {
-                User user = this._context.Users.Find(userId);
-                this._context.Users.Remove(user);
+                User user = this._context.AppUsers.Find(userId);
+                this._context.AppUsers.Remove(user);
                 this._context.SaveChanges();
             }
             catch (Exception)
@@ -66,7 +66,7 @@ namespace PlusMinus.DAL.Repositories
         {
             try
             {
-                return this._context.Users.Find(userId);
+                return this._context.AppUsers.Find(userId);
             }
             catch (Exception)
             {
@@ -78,7 +78,7 @@ namespace PlusMinus.DAL.Repositories
         {
             try
             {
-                return this._context.Users
+                return this._context.AppUsers
                     .Include(t => t.Timetables)
                     .Include(t => t.Orders)
                     .Where(filter)
@@ -94,7 +94,7 @@ namespace PlusMinus.DAL.Repositories
         {
             try
             {
-                this._context.Users.Add(user);
+                this._context.AppUsers.Add(user);
                 this._context.SaveChanges();
             }
             catch (Exception)

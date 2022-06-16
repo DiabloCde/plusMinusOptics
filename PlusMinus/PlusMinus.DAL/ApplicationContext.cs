@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 using PlusMinus.Core.Models;
 using System;
 using System.Collections.Generic;
@@ -8,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace PlusMinus.DAL
 {
-    public class ApplicationContext : DbContext
+    public class ApplicationContext : IdentityDbContext<User>
     {
         public DbSet<Accessory> Accessories { get; set; }
 
@@ -30,7 +31,7 @@ namespace PlusMinus.DAL
 
         public DbSet<Timetable> Timetables { get; set; }
 
-        public DbSet<User> Users { get; set; }
+        public DbSet<User> AppUsers { get; set; }
 
         public ApplicationContext(DbContextOptions<ApplicationContext> options) : base(options)
         {
@@ -48,6 +49,8 @@ namespace PlusMinus.DAL
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            base.OnModelCreating(modelBuilder);
+
             modelBuilder.Entity<OrderProduct>()
                 .HasOne(p => p.Order)
                 .WithMany(b => b.OrderProducts);
