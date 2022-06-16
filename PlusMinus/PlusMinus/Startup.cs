@@ -5,6 +5,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using PlusMinus.Core.Models;
 using PlusMinus.DAL;
 using PlusMinus.DAL.Interfaces;
 using PlusMinus.DAL.Repositories;
@@ -30,6 +31,7 @@ namespace PlusMinus
             services.AddControllersWithViews();
             services.AddDbContext<ApplicationContext>(options => 
                 options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+            services.AddDefaultIdentity<User>().AddEntityFrameworkStores<ApplicationContext>();
             services.AddScoped<IExerciseRepository, ExerciseRepository>();
             services.AddScoped<IOrderRepository, OrderRepository>();
             services.AddScoped<IUserRepository, UserRepository>();
