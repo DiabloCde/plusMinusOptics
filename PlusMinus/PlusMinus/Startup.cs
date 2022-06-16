@@ -36,6 +36,7 @@ namespace PlusMinus
             services.AddScoped(typeof(IProductRepository<>), typeof(ProductRepository<>));
 
             services.AddScoped<IOrderService, OrderService>();
+            services.AddScoped(typeof(IProductService<>), typeof(ProductService<>));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
