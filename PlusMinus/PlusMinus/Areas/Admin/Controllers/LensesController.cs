@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace PlusMinus.Areas.Admin.Controllers
 {
+    [Area("Admin")]
     public class LensesController : Controller
     {
         public IActionResult Index()
