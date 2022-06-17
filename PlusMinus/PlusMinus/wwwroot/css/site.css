@@ -65,10 +65,11 @@ html {
 body {
   /* Margin bottom by footer height */
   margin-bottom: 60px;
+  background-color: #f1f4eb;
 }
 .footer {
     position: absolute;
-    bottom: 0;
+    /*bottom: 0;*/
     width: 100%;
     white-space: nowrap;
     line-height: 30px; /* Vertically center the text there */
@@ -168,4 +169,97 @@ footer ul li
 {
     list-style: none;
     margin: 0;
+}
+
+/* Login panel styles
+-------------------------------------------------- */
+
+.login-panel{
+    text-align: center;
+    width: 24vw;
+    height: 54vh;
+    margin-left: 17vw;
+    margin-top: 3vh;
+    padding-top: 3vh;
+    background-color: white;
+    border: 1px solid black;
+}
+
+.login-form{
+    margin-top: 4vh;
+    text-align: left;
+    padding-left: 3vw;
+}
+
+.login-email{
+    width: 18vw;
+    margin-bottom: 2vh;
+}
+
+.login-password{
+    width: 18vw;
+    margin-bottom: 6vh;
+}
+
+.login-enter{
+    width: 18vw;
+    background-color: #458eae;
+    border: 0px;
+    border-radius: 4px;
+    color: white;
+    padding: 0.8vh;
+    margin-bottom: 1vh;
+    font-weight: bold;
+}
+
+.login-google{
+    width: 18vw;
+    background-color: red;
+    border: 0px;
+    border-radius: 4px;
+    color: white;
+    padding: 0.8vh;
+    margin-bottom: 1vh;
+    font-weight: bold;
+}
+
+.login-reg{
+    color: red;
+    text-decoration: underline;
+    font-weight: bold;
+}
+
+/* Registration panel styles
+-------------------------------------------------- */
+
+.reg-panel{
+    text-align: center;
+    width: 24vw;
+    height: 70vh;
+    margin-left: 17vw;
+    margin-top: 3vh;
+    padding-top: 3vh;
+    background-color: white;
+    border: 1px solid black;
+}
+
+.reg-form{
+    text-align: left;
+    padding-left: 3vw;
+}
+
+.reg-input{
+    width: 18vw;
+    margin-bottom: 2vh;
+}
+
+.reg-button{
+    width: 18vw;
+    background-color: #458eae;
+    border: 0px;
+    border-radius: 4px;
+    color: white;
+    padding: 0.8vh;
+    margin-top: 1vh;
+    font-weight: bold;
 }
