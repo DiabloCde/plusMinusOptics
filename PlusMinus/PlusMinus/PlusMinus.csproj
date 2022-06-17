@@ -5,6 +5,17 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Areas\Customer\Data\**" />
+    <Compile Remove="Areas\Customer\Models\**" />
+    <Content Remove="Areas\Customer\Data\**" />
+    <Content Remove="Areas\Customer\Models\**" />
+    <EmbeddedResource Remove="Areas\Customer\Data\**" />
+    <EmbeddedResource Remove="Areas\Customer\Models\**" />
+    <None Remove="Areas\Customer\Data\**" />
+    <None Remove="Areas\Customer\Models\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="5.0.17" />
     <PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="5.0.17" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="5.0.17">
@@ -22,14 +33,6 @@
   <ItemGroup>
     <ProjectReference Include="..\PlusMinus.BLL\PlusMinus.BLL.csproj" />
     <ProjectReference Include="..\PlusMinus.Core\PlusMinus.Core.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Areas\Admin\Data\" />
-    <Folder Include="Areas\Admin\Models\" />
-    <Folder Include="Areas\Customer\Data\" />
-    <Folder Include="Areas\Customer\Models\" />
-    <Folder Include="Areas\Customer\Views\" />
   </ItemGroup>
 
 </Project>
