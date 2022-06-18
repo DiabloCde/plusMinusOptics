@@ -9,6 +9,8 @@ namespace PlusMinus.Core.Models
 {
     public class Eyecare : Product
     {
+        public int Volume { get; set; }
+
         public EyecarePurpose Purpose { get; set; }
     }
 }

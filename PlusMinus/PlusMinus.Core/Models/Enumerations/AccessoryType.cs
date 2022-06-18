@@ -11,6 +11,5 @@ namespace PlusMinus.Core.Models.Enumerations
         Case,
         LensCase,
         Chain,
-        Napkin
     }
 }

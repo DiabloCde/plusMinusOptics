@@ -10,6 +10,12 @@ namespace PlusMinus.Core.Models
     {
         public double Dioptre { get; set; }
 
+        public double BaseCurve { get; set; }
+
+        public int NumberOfUnits { get; set; }
+
+        public double Diameter { get; set; }
+
         public TimeSpan ExpirationDate { get; set; }
     }
 }

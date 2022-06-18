@@ -8,8 +8,7 @@ namespace PlusMinus.Core.Models.Enumerations
 {
     public enum EyecarePurpose
     {
-        Protective,
+        Solution,
         Health,
-        Relaxing
     }
 }

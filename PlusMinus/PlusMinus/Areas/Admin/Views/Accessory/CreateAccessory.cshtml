@@ -1,0 +1,65 @@
+﻿@using PlusMinus.ViewModels
+@using PlusMinus.Core.Models.Enumerations
+@model PlusMinus.ViewModels.AccessoryViewModel
+
+@{
+    ViewData["Title"] = "CreateAccessory";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Створити аксесуар</h1>
+
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="CreateAccessory">
+            <div asp-validation-summary="All" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Name" class="control-label"></label>
+                <input asp-for="Name" class="form-control" />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Brand" class="control-label"></label>
+                <input asp-for="Brand" class="form-control" />
+                <span asp-validation-for="Brand" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Color" class="control-label"></label>
+                <input asp-for="Color" class="form-control" />
+                <span asp-validation-for="Color" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Material" class="control-label"></label>
+                @Html.DropDownListFor(m => m.Material, new SelectList(Enum.GetValues(typeof(MaterialViewModel))), "Виберіть матеріал: ")
+                <span asp-validation-for="Material" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="AccessoryType" class="control-label"></label>
+                @Html.DropDownListFor(m => m.AccessoryType, new SelectList(Enum.GetValues(typeof(AccessoryType))), "Виберіть тип аксесуару: ")
+                <span asp-validation-for="AccessoryType" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Price" class="control-label"></label>
+                <input asp-for="Price" class="form-control" />
+                <span asp-validation-for="Price" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Amount" class="control-label"></label>
+                <input asp-for="Amount" class="form-control" />
+                <span asp-validation-for="Amount" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Повернутися до списку</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
