@@ -35,8 +35,8 @@
                 @Html.DisplayFor(modelItem => item.Status)
             </td>
             <td>
-                <a asp-action="Edit" asp-route-id="@item.OrderId">Change status</a> |
-                <a asp-action="Delete" asp-route-id="@item.OrderId">Delete</a>
+                <a asp-action="ChangeOrderStatus" asp-route-id="@item.OrderId" class="btn btn-success">Change status</a>
+                <a asp-action="DeleteOrder" asp-route-id="@item.OrderId" class="btn btn-danger">Delete</a>
             </td>
         </tr>
 }

@@ -8,7 +8,7 @@
 <h1>Оправи для окуляр</h1>
 
 <p>
-    <a asp-action="CreateFrame">Створити нову оправу</a>
+    <a asp-action="CreateFrame" class="btn btn-success">Створити нову оправу</a>
 </p>
 <table class="table">
     <thead>
@@ -62,9 +62,9 @@
                 @Html.DisplayFor(modelItem => item.Amount)
             </td>
             <td>
-                <a asp-action="EditFrame" asp-route-id=@item.ProductId>Edit</a> |
-                <a asp-action="FrameDetails" asp-route-id="@item.ProductId">Details</a> |
-                <a asp-action="DeleteFrame" asp-route-id="@item.ProductId">Delete</a>
+                <a asp-action="EditFrame" asp-route-id=@item.ProductId class="btn btn-success">Edit</a>
+                <a asp-action="FrameDetails" asp-route-id="@item.ProductId" class="btn btn-info">Details</a>
+                <a asp-action="DeleteFrame" asp-route-id="@item.ProductId" class="btn btn-danger">Delete</a>
             </td>
         </tr>
 }

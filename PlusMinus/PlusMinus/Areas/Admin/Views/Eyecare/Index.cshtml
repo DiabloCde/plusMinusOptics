@@ -8,7 +8,7 @@
 <h1>Догляд за очами</h1>
 
 <p>
-    <a asp-action="CreateEyecare">Створити новий продукт догляду</a>
+    <a asp-action="CreateEyecare" class="btn btn-success">Створити новий продукт догляду</a>
 </p>
 <table class="table">
     <thead>
@@ -56,9 +56,9 @@
                 @Html.DisplayFor(modelItem => item.Amount)
             </td>
             <td>
-                <a asp-action="EditEyecare" asp-route-id="@item.ProductId">Edit</a> |
-                <a asp-action="EyecareDetails" asp-route-id="@item.ProductId">Details</a> |
-                <a asp-action="DeleteEyecare" asp-route-id="@item.ProductId">Delete</a>
+                <a asp-action="EditEyecare" asp-route-id="@item.ProductId" class="btn btn-success">Edit</a>
+                <a asp-action="EyecareDetails" asp-route-id="@item.ProductId" class="btn btn-info">Details</a>
+                <a asp-action="DeleteEyecare" asp-route-id="@item.ProductId" class="btn btn-danger">Delete</a>
             </td>
         </tr>
 }

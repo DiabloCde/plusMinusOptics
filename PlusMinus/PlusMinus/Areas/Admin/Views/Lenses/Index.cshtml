@@ -8,25 +8,22 @@
 <h1>Index</h1>
 
 <p>
-    <a asp-action="CreateLenses">Create New</a>
+    <a asp-action="CreateLenses" class="btn btn-success">Створити нову лінзу</a>
 </p>
 <table class="table">
     <thead>
         <tr>
             <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Brand)
+            </th>
+            <th>
                 @Html.DisplayNameFor(model => model.Dioptre)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.ExpirationDate)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Name)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Image)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Brand)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Price)
@@ -41,19 +38,16 @@
 @foreach (var item in Model) {
         <tr>
             <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Brand)
+            </td>
+            <td>
                 @Html.DisplayFor(modelItem => item.Dioptre)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.ExpirationDate)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Name)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Image)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Brand)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Price)
@@ -62,9 +56,9 @@
                 @Html.DisplayFor(modelItem => item.Amount)
             </td>
             <td>
-                <a asp-action="Edit" asp-route-id="@item.ProductId">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.ProductId">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.ProductId">Delete</a>
+                <a asp-action="EditLenses" asp-route-id="@item.ProductId" class="btn btn-success">Edit</a>
+                <a asp-action="LensesDetails" asp-route-id="@item.ProductId" class="btn btn-info">Details</a>
+                <a asp-action="DeleteLenses" asp-route-id="@item.ProductId" class="btn btn-danger">Delete</a>
             </td>
         </tr>
 }

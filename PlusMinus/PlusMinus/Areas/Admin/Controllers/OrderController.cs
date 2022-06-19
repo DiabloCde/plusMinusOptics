@@ -52,5 +52,26 @@ namespace PlusMinus.Areas.Admin.Controllers
 
             return RedirectToAction("Index");
         }
+
+        [HttpGet]
+        public IActionResult DeleteOrder(int id)
+        {
+            Order order = _orderService.GetOrderByID(id);
+
+            if (order is null)
+            {
+                return NotFound();
+            }
+
+            return View(order);
+        }
+
+        [HttpPost]
+        public IActionResult DeleteOrder(Order order)
+        {
+            _orderService.DeleteOrder(order.OrderId);
+
+            return RedirectToAction("Index");
+        }
     }
 }
