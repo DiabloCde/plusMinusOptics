@@ -12,6 +12,8 @@ namespace PlusMinus.DAL.Interfaces
     {
         List<T> GetProducts(Expression<Func<T, bool>> filter);
 
+        T? FirstOrDefault(Expression<Func<T, bool>> filter);
+
         T GetProductByID(int productId);
 
         void InsertProduct(T product);

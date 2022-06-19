@@ -1,17 +1,18 @@
 ﻿@model PlusMinus.ViewModels.LensesViewModel
 
 @{
-    ViewData["Title"] = "CreateLenses";
+    ViewData["Title"] = "EditLenses";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h1>Створити лінзи</h1>
+<h1>Редагувати лінзи</h1>
 
 <hr />
 <div class="row">
     <div class="col-md-4">
-        <form asp-action="CreateLenses">
+        <form asp-action="EditLenses">
             <div asp-validation-summary="All" class="text-danger"></div>
+            <input type="hidden" asp-for="ProductId" />
             <div class="form-group">
                 <label asp-for="Name" class="control-label">Назва лінз:</label>
                 <input asp-for="Name" class="form-control" />

@@ -35,10 +35,10 @@ namespace PlusMinus.Areas.Admin.Controllers
         [HttpPost]
         public IActionResult CreateFrame(FrameViewModel frameViewModel)
         {
-            List<Frame> framesInDb = _frameService.GetProducts(f =>
+            Frame? frameInDb = _frameService.FirstOrDefault(f =>
                 f.Name.ToLower() == frameViewModel.Name.ToLower());
 
-            if (framesInDb.Count != 0)
+            if (frameInDb is not null)
             {
                 ModelState.AddModelError(frameViewModel.Name, "Frame with such name already exists.");
             }

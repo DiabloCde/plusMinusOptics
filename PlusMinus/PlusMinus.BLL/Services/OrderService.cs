@@ -92,6 +92,19 @@ namespace PlusMinus.BLL.Services
             }
         }
 
+        public Order? FirstOrDefault(Expression<Func<Order, bool>> filter)
+        {
+            try
+            {
+                return this._orderRepository.FirstOrDefault(filter);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Order with such filter was not found.");
+                throw;
+            }
+        }
+
         public Order GetOrderByID(int orderId)
         {
             if (orderId <= 0)

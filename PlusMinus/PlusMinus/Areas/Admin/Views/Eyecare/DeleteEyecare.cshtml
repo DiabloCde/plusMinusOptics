@@ -1,63 +1,57 @@
-﻿@model PlusMinus.Core.Models.Accessory
+﻿@model PlusMinus.Core.Models.Eyecare
 
 @{
-    ViewData["Title"] = "DeleteAccessory";
+    ViewData["Title"] = "DeleteEyecare";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <h1>Видалення</h1>
 
-<h3>Ви впевнені, що хочете видалити аксесуар?</h3>
+<h3>Ви впевнені, що хочете видалити товар?</h3>
 <div>
     <hr />
     <dl class="row">
         <dt class = "col-sm-2">
-            Назва аксесуару:
+            @Html.DisplayNameFor(model => model.Name)
         </dt>
         <dd class = "col-sm-10">
             @Html.DisplayFor(model => model.Name)
         </dd>
         <dt class = "col-sm-2">
-            Виробник:
+            @Html.DisplayNameFor(model => model.Brand)
         </dt>
         <dd class = "col-sm-10">
             @Html.DisplayFor(model => model.Brand)
         </dd>
         <dt class = "col-sm-2">
-            Колір:
+            @Html.DisplayNameFor(model => model.Volume)
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Color)
+            @Html.DisplayFor(model => model.Volume)
         </dd>
         <dt class = "col-sm-2">
-            Матеріал:
+            @Html.DisplayNameFor(model => model.Purpose)
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Material)
+            @Html.DisplayFor(model => model.Purpose)
         </dd>
         <dt class = "col-sm-2">
-            Тип аксесуару:
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.AccessoryType)
-        </dd>
-        <dt class = "col-sm-2">
-            Вартість:
+            @Html.DisplayNameFor(model => model.Price)
         </dt>
         <dd class = "col-sm-10">
             @Html.DisplayFor(model => model.Price)
         </dd>
         <dt class = "col-sm-2">
-            Кількість на складі:
+            @Html.DisplayNameFor(model => model.Amount)
         </dt>
         <dd class = "col-sm-10">
             @Html.DisplayFor(model => model.Amount)
         </dd>
     </dl>
     
-    <form asp-action="DeleteAccessory">
+    <form asp-action="DeleteEyecare">
         <input type="hidden" asp-for="ProductId" />
         <input type="submit" value="Delete" class="btn btn-danger" /> |
-        <a asp-action="Index">Повернутися до списку</a>
+        <a asp-action="Index">Повернення до списку</a>
     </form>
 </div>

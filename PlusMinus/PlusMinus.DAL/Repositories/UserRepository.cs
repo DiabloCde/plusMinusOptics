@@ -21,47 +21,26 @@ namespace PlusMinus.DAL.Repositories
 
         public void AddExerciseToTimetable(Timetable timetable)
         {
-            try
-            {
-                this._context.Timetables.Add(timetable);
-                this._context.SaveChanges();
-            }
-            catch(Exception)
-            {
-                throw;
-            }
+            this._context.Timetables.Add(timetable);
+            this._context.SaveChanges();
         }
 
         public void DeleteExerciseFromTimetable(Timetable timetable)
         {
-            try
-            {
-                Timetable time = this._context.Timetables
-                    .Single(x => x.ExerciseId == timetable.ExerciseId 
-                    && x.UserId == timetable.UserId);
-                this._context.Timetables.Remove(time);
-                this._context.SaveChanges();
-            }
-            catch (Exception)
-            {
-                throw;
-            }
+            Timetable time = this._context.Timetables
+                .Single(x => x.ExerciseId == timetable.ExerciseId 
+                             && x.UserId == timetable.UserId);
+            this._context.Timetables.Remove(time);
+            this._context.SaveChanges();
         }
 
         public void UpdateExerciseInTimetable(Timetable timetable)
         {
-            try
-            {
-                Timetable time = this._context.Timetables
-                    .Single(x => x.ExerciseId == timetable.ExerciseId
-                    && x.UserId == timetable.UserId);
-                time.Time = timetable.Time;
-                this._context.SaveChanges();
-            }
-            catch (Exception)
-            {
-                throw;
-            }
+            Timetable time = this._context.Timetables
+                .Single(x => x.ExerciseId == timetable.ExerciseId
+                             && x.UserId == timetable.UserId);
+            time.Time = timetable.Time;
+            this._context.SaveChanges();
         }
     }
 }

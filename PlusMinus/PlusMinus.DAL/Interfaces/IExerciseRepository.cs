@@ -12,6 +12,8 @@ namespace PlusMinus.DAL.Interfaces
     {
         List<Exercise> GetExercises(Expression<Func<Exercise, bool>> filter);
 
+        Exercise? FirstOrDefault(Expression<Func<Exercise, bool>> filter);
+
         Exercise GetExerciseByID(int exerciseId);
 
         void InsertExercise(Exercise exercise);

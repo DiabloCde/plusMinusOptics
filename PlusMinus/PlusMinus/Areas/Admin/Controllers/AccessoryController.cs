@@ -35,10 +35,10 @@ namespace PlusMinus.Areas.Admin.Controllers
         [HttpPost]
         public IActionResult CreateAccessory(AccessoryViewModel accessoryViewModel)
         {
-            List<Accessory> accessoriesInDb = _accessoryService.GetProducts(a =>
+            Accessory? accessoryInDb = _accessoryService.FirstOrDefault(a =>
                 a.Name.ToLower() == accessoryViewModel.Name.ToLower());
 
-            if (accessoriesInDb.Count != 0)
+            if (accessoryInDb is not null)
             {
                 ModelState.AddModelError(accessoryViewModel.Name, "Accessory with such name already exists.");
             }
@@ -113,9 +113,9 @@ namespace PlusMinus.Areas.Admin.Controllers
                 }
 
                 return RedirectToAction("Index");
-            }
+             }
 
-            return View();
+             return View();
         }
 
         [HttpGet]

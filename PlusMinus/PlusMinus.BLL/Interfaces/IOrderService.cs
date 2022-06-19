@@ -9,6 +9,8 @@ namespace PlusMinus.BLL.Interfaces
     {
         List<Order> GetOrders(Expression<Func<Order, bool>> filter);
 
+        Order? FirstOrDefault(Expression<Func<Order, bool>> filter);
+
         Order GetOrderByID(int orderId);
 
         void AddOrder(Order order);

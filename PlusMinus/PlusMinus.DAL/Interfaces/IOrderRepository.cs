@@ -12,6 +12,8 @@ namespace PlusMinus.DAL.Interfaces
     {
         List<Order> GetOrders(Expression<Func<Order, bool>> filter);
 
+        Order? FirstOrDefault(Expression<Func<Order, bool>> filter);
+
         Order GetOrderByID(int orderId);
 
         void InsertOrder(Order order);
