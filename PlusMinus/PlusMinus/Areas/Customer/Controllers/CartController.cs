@@ -11,7 +11,13 @@ namespace PlusMinus.Areas.Customer.Controllers
     {
         public IActionResult Index()
         {
+            // Обращение к сервису OrderService
             return View();
+        }
+
+        public IActionResult MakeOrder()
+        { 
+            return View(); 
         }
     }
 }
