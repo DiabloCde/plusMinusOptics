@@ -1,0 +1,57 @@
+<div class="cart-container">
+    <div class="cart">
+        <div class="name">
+            <h2>Кошик</h2>
+        </div>
+        <br>
+        @* @foreach (var item in cart)
+        {
+            <div class="cart-item">
+                <div class="item-img">
+                    <img src="{{ item.img }}" alt="">
+                </div>
+                <div class="item-data">
+                    <div class="item-data-up">
+                        <div class="item-name">
+                            <h2>{{ item.name }}</h2>
+                        </div>
+                    </div>
+                    <div class="item-mid">
+                        <div class="item-price">
+                            <h2>{{ item.price }}</h2>
+                        </div>
+                        <div class="item-count">
+                            <button class = "btn delete-count">-</button>
+                            <h2>{{ item.count }}</h2>
+                            <button class = "btn add-count">+</button>
+                        </div>
+                        <div class="item-total">
+                            <h2>{{ item.total }}</h2>
+                        </div>
+                    </div>
+                    <div class="item-data-down">
+                        <div class="item-delete">
+                            <button class="btn btn-danger" onclick="deleteItem({{ item.id }})">Видалити</button>
+                        </div>
+                    <div>
+                <div>
+            </div>
+        } *@
+    </div>
+    <div class="cart-info">
+        <div class="name">
+            <h2>Всього</h2>
+        </div>
+        <div class="data">
+            <p><b>Сумма товарів</b></p>
+            <p>@{{ }}</p>
+            <p><b>Сумма знижки</b></p>
+            <p>@{{ }}</p>
+            <p><b>Сумма доставки</b></p>
+            <p>@{{ }}</p>
+            <br>
+            <p><b>Всього до оплати</b></p>
+            <p><b>@{{}}</b></p>
+        </div>
+    </div>
+</div>

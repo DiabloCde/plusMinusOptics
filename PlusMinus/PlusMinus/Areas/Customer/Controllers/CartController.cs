@@ -22,6 +22,7 @@ namespace PlusMinus.Areas.Customer.Controllers
 
         public IActionResult Index()
         {
+            // Обращение к сервису OrderService
             return View();
         }
 
@@ -30,6 +31,10 @@ namespace PlusMinus.Areas.Customer.Controllers
             System.Linq.Expressions.Expression<Func<Product, bool>> expr = i => i.ProductId >= 0;
             var prods = _productService.GetProducts(expr);
             return View(prods);
+        }
+        public IActionResult MakeOrder()
+        { 
+            return View(); 
         }
     }
 }
