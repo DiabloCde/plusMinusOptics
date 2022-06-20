@@ -16,6 +16,6 @@ namespace PlusMinus.Core.Models
 
         public double Diameter { get; set; }
 
-        public TimeSpan ExpirationDate { get; set; }
+        public int ExpirationDate { get; set; }
     }
 }

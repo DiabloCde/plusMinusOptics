@@ -1,10 +1,14 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Hosting;
 using PlusMinus.BLL.Interfaces;
 using PlusMinus.Core.Models;
+using PlusMinus.Utils;
+using PlusMinus.ViewModels;
 
 namespace PlusMinus.Areas.Admin.Controllers
 {
@@ -13,9 +17,12 @@ namespace PlusMinus.Areas.Admin.Controllers
     {
         private readonly IProductService<Eyecare> _eyecareService;
 
-        public EyecareController(IProductService<Eyecare> eyecareService)
+        private readonly IWebHostEnvironment _webHostEnvironment;
+
+        public EyecareController(IProductService<Eyecare> eyecareService, IWebHostEnvironment webHostEnvironment)
         {
             _eyecareService = eyecareService;
+            _webHostEnvironment = webHostEnvironment;
         }
 
         public IActionResult Index()
@@ -32,18 +39,29 @@ namespace PlusMinus.Areas.Admin.Controllers
         }
 
         [HttpPost]
-        public IActionResult CreateEyecare(Eyecare eyecare)
+        public IActionResult CreateEyecare(EyecareViewModel eyecareViewModel)
         {
             Eyecare? eyecareInDb = _eyecareService.FirstOrDefault(f =>
-                f.Name.ToLower() == eyecare.Name.ToLower());
+                f.Name.ToLower() == eyecareViewModel.Name.ToLower());
 
             if (eyecareInDb is not null)
             {
-                ModelState.AddModelError(eyecare.Name, "Eyecare with such name already exists.");
+                ModelState.AddModelError(eyecareViewModel.Name, "Eyecare with such name already exists.");
             }
 
             if (ModelState.IsValid)
             {
+                Eyecare eyecare = new Eyecare
+                {
+                    Name = eyecareViewModel.Name,
+                    Brand = eyecareViewModel.Brand,
+                    Price = double.Parse(eyecareViewModel.Price.Replace('.', ',')),
+                    Amount = eyecareViewModel.Amount,
+                    Image = ImageUploader.CreatePath(eyecareViewModel.Image, _webHostEnvironment),
+                    Purpose = eyecareViewModel.Purpose,
+                    Volume = eyecareViewModel.Volume,
+                };
+
                 _eyecareService.AddProduct(eyecare);
                 return RedirectToAction("Index");
             }
@@ -61,15 +79,42 @@ namespace PlusMinus.Areas.Admin.Controllers
                 return NotFound();
             }
 
-            return View(eyecare);
+            EyecareViewModel eyecareViewModel = new EyecareViewModel
+            {
+                ProductId = eyecare.ProductId,
+                Name = eyecare.Name,
+                Amount = eyecare.Amount,
+                Brand = eyecare.Brand,
+                ImageUrl = eyecare.Image,
+                Price = eyecare.Price.ToString(CultureInfo.InvariantCulture),
+                Purpose = eyecare.Purpose,
+                Volume = eyecare.Volume,
+            };
+
+            return View(eyecareViewModel);
         }
 
         [HttpPost]
-        public IActionResult EditEyecare(Eyecare eyecare)
+        public IActionResult EditEyecare(EyecareViewModel eyecareViewModel)
         {
             if (ModelState.IsValid)
             {
-                _eyecareService.UpdateProduct(eyecare);
+                if (eyecareViewModel.ProductId != null)
+                {
+                    Eyecare eyecare = new Eyecare
+                    {
+                        ProductId = (int)eyecareViewModel.ProductId,
+                        Name = eyecareViewModel.Name,
+                        Brand = eyecareViewModel.Brand,
+                        Price = double.Parse(eyecareViewModel.Price.Replace('.', ',')),
+                        Amount = eyecareViewModel.Amount,
+                        Image = ImageUploader.CreatePath(eyecareViewModel.Image, _webHostEnvironment),
+                        Purpose = eyecareViewModel.Purpose,
+                        Volume = eyecareViewModel.Volume,
+                    };
+
+                    _eyecareService.UpdateProduct(eyecare);
+                }
 
                 return RedirectToAction("Index");
             }

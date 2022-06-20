@@ -1,5 +1,5 @@
 ﻿@using PlusMinus.Core.Models.Enumerations
-@model PlusMinus.Core.Models.Eyecare
+@model PlusMinus.ViewModels.EyecareViewModel
 
 @{
     ViewData["Title"] = "Редагування продукту догляду";
@@ -11,9 +11,10 @@
 <hr />
 <div class="row">
     <div class="col-md-4">
-        <form asp-action="EditEyecare">
+        <form asp-action="EditEyecare" enctype="multipart/form-data">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="ProductId" />
+            <input type="hidden" asp-for="ImageUrl" />
             <div class="form-group">
                 <label asp-for="Name" class="control-label"></label>
                 <input asp-for="Name" class="form-control" />
@@ -44,6 +45,21 @@
                 <input asp-for="Amount" class="form-control" />
                 <span asp-validation-for="Amount" class="text-danger"></span>
             </div>
+            <div class="form-group row">
+                <div class="col-4">
+                    Image
+                </div>
+                <div class="col-3">
+                    <img src="@Model.ImageUrl" width="350%" style="border-radius:5px; border:1px solid #bbb9b9" />
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="custom-file">
+                    <input asp-for="Image" class="custom-file-input" id="customFile">
+                    <label class="custom-file-label" for="customFile">Виберіть файл:</label>
+                </div>
+                <span asp-validation-for="Image" class="text-danger"></span>
+            </div>
             <div class="form-group">
                 <input type="submit" value="Зберегти" class="btn btn-success" />
             </div>
@@ -57,4 +73,10 @@
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    <script type="text/javascript">
+        $(".custom-file-input").on("change", function () {
+            var fileName = $(this).val().split("\\").pop();
+            $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
+        });
+    </script>
 }

@@ -1,10 +1,13 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Hosting;
 using PlusMinus.BLL.Interfaces;
 using PlusMinus.Core.Models;
+using PlusMinus.Utils;
 using PlusMinus.ViewModels;
 
 namespace PlusMinus.Areas.Admin.Controllers
@@ -14,9 +17,12 @@ namespace PlusMinus.Areas.Admin.Controllers
     {
         private readonly IProductService<Lenses> _lensesService;
 
-        public LensesController(IProductService<Lenses> lensesService)
+        private readonly IWebHostEnvironment _webHostEnvironment;
+
+        public LensesController(IProductService<Lenses> lensesService, IWebHostEnvironment webHostEnvironment)
         {
             _lensesService = lensesService;
+            _webHostEnvironment = webHostEnvironment;
         }
 
         public IActionResult Index()
@@ -41,13 +47,13 @@ namespace PlusMinus.Areas.Admin.Controllers
                 {
                     Name = lensesViewModel.Name,
                     Brand = lensesViewModel.Brand,
-                    Price = lensesViewModel.Price,
+                    Price = double.Parse(lensesViewModel.Price.Replace('.', ',')),
                     Amount = lensesViewModel.Amount,
-                    Image = "www.google.com",
-                    BaseCurve = lensesViewModel.BaseCurve,
-                    Diameter = lensesViewModel.Diameter,
-                    Dioptre = lensesViewModel.Dioptre,
-                    ExpirationDate = new TimeSpan(lensesViewModel.ExpirationDateValue, 0 , 0, 0),
+                    Image = ImageUploader.CreatePath(lensesViewModel.Image, _webHostEnvironment),
+                    BaseCurve = double.Parse(lensesViewModel.BaseCurve.Replace('.', ',')),
+                    Diameter = double.Parse(lensesViewModel.Diameter.Replace('.', ',')),
+                    Dioptre = double.Parse(lensesViewModel.Dioptre.Replace('.', ',')),
+                    ExpirationDate = lensesViewModel.ExpirationDateValue,
                     NumberOfUnits = lensesViewModel.NumberOfUnits,
                 };
 
@@ -70,15 +76,17 @@ namespace PlusMinus.Areas.Admin.Controllers
 
             LensesViewModel lensesViewModel = new LensesViewModel
             {
+                ProductId = lenses.ProductId,
                 Name = lenses.Name,
                 Brand = lenses.Brand,
-                Price = lenses.Price,
+                Price = lenses.Price.ToString(CultureInfo.InvariantCulture),
                 Amount = lenses.Amount,
-                BaseCurve = lenses.BaseCurve,
-                Diameter = lenses.Diameter,
-                Dioptre = lenses.Dioptre,
-                ExpirationDateValue = lenses.ExpirationDate.Days,
+                BaseCurve = lenses.BaseCurve.ToString(CultureInfo.InvariantCulture),
+                Diameter = lenses.Diameter.ToString(CultureInfo.InvariantCulture),
+                Dioptre = lenses.Dioptre.ToString(CultureInfo.InvariantCulture),
+                ExpirationDateValue = lenses.ExpirationDate,
                 NumberOfUnits = lenses.NumberOfUnits,
+                ImageUrl = lenses.Image,
             };
 
             return View(lensesViewModel);
@@ -96,13 +104,13 @@ namespace PlusMinus.Areas.Admin.Controllers
                         ProductId = (int)lensesViewModel.ProductId,
                         Name = lensesViewModel.Name,
                         Brand = lensesViewModel.Brand,
-                        Price = lensesViewModel.Price,
+                        Price = double.Parse(lensesViewModel.Price.Replace('.', ',')),
                         Amount = lensesViewModel.Amount,
-                        Image = "www.google.com",
-                        BaseCurve = lensesViewModel.BaseCurve,
-                        Diameter = lensesViewModel.Diameter,
-                        Dioptre = lensesViewModel.Dioptre,
-                        ExpirationDate = new TimeSpan(lensesViewModel.ExpirationDateValue, 0, 0, 0),
+                        Image = string.IsNullOrEmpty(lensesViewModel.ImageUrl) ? ImageUploader.CreatePath(lensesViewModel.Image, _webHostEnvironment) : lensesViewModel.ImageUrl,
+                        BaseCurve = double.Parse(lensesViewModel.BaseCurve.Replace('.', ',')),
+                        Diameter = double.Parse(lensesViewModel.Diameter.Replace('.', ',')),
+                        Dioptre = double.Parse(lensesViewModel.Dioptre.Replace('.', ',')),
+                        ExpirationDate = lensesViewModel.ExpirationDateValue,
                     };
 
                     _lensesService.UpdateProduct(lenses);

@@ -453,8 +453,8 @@ namespace PlusMinus.DAL.Migrations
                     b.Property<double>("Dioptre")
                         .HasColumnType("float");
 
-                    b.Property<TimeSpan>("ExpirationDate")
-                        .HasColumnType("time");
+                    b.Property<int>("ExpirationDate")
+                        .HasColumnType("int");
 
                     b.Property<int>("NumberOfUnits")
                         .HasColumnType("int");

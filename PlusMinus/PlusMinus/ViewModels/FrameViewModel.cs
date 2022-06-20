@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using Microsoft.AspNetCore.Http;
 using PlusMinus.Core.Models.Enumerations;
 
 namespace PlusMinus.ViewModels
@@ -13,7 +14,7 @@ namespace PlusMinus.ViewModels
         [Required]
         public string Brand { get; set; }
         
-        public double Price { get; set; }
+        public string Price { get; set; }
         
         public int Amount { get; set; }
 
@@ -24,5 +25,9 @@ namespace PlusMinus.ViewModels
 
         [Required]
         public MaterialViewModel Material { get; set; }
+
+        public IFormFile Image { get; set; }
+
+        public string ImageUrl { get; set; }
     }
 }

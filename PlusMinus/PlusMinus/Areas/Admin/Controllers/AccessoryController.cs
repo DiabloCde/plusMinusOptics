@@ -3,8 +3,10 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Hosting;
 using PlusMinus.BLL.Interfaces;
 using PlusMinus.Core.Models;
+using PlusMinus.Utils;
 using PlusMinus.ViewModels;
 
 namespace PlusMinus.Areas.Admin.Controllers
@@ -14,9 +16,12 @@ namespace PlusMinus.Areas.Admin.Controllers
     {
         private readonly IProductService<Accessory> _accessoryService;
 
-        public AccessoryController(IProductService<Accessory> accessoryService)
+        private readonly IWebHostEnvironment _webHostEnvironment;
+
+        public AccessoryController(IProductService<Accessory> accessoryService, IWebHostEnvironment webHostEnvironment)
         {
             _accessoryService = accessoryService;
+            _webHostEnvironment = webHostEnvironment;
         }
 
         public IActionResult Index()
@@ -53,7 +58,7 @@ namespace PlusMinus.Areas.Admin.Controllers
                     Amount = accessoryViewModel.Amount,
                     Color = accessoryViewModel.Color,
                     Material = Enum.GetName(typeof(MaterialViewModel), accessoryViewModel.Material),
-                    Image = "www.google.com",
+                    Image = ImageUploader.CreatePath(accessoryViewModel.Image, _webHostEnvironment),
                     AccessoryType = accessoryViewModel.AccessoryType,
                 };
 
@@ -83,6 +88,7 @@ namespace PlusMinus.Areas.Admin.Controllers
                 Amount = accessory.Amount,
                 Color = accessory.Color,
                 Material = (MaterialViewModel)Enum.Parse(typeof(MaterialViewModel), accessory.Material),
+                ImageUrl = accessory.Image,
                 AccessoryType = accessory.AccessoryType,
             };
 
@@ -103,7 +109,7 @@ namespace PlusMinus.Areas.Admin.Controllers
                         Brand = accessoryViewModel.Brand,
                         Price = accessoryViewModel.Price,
                         Amount = accessoryViewModel.Amount,
-                        Image = "www.google.com",
+                        Image = ImageUploader.CreatePath(accessoryViewModel.Image, _webHostEnvironment),
                         Color = accessoryViewModel.Color,
                         Material = Enum.GetName(typeof(MaterialViewModel), accessoryViewModel.Material),
                         AccessoryType = accessoryViewModel.AccessoryType,

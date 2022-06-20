@@ -1,10 +1,13 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Hosting;
 using PlusMinus.BLL.Interfaces;
 using PlusMinus.Core.Models;
+using PlusMinus.Utils;
 using PlusMinus.ViewModels;
 
 namespace PlusMinus.Areas.Admin.Controllers
@@ -14,9 +17,12 @@ namespace PlusMinus.Areas.Admin.Controllers
     {
         private readonly IProductService<Frame> _frameService;
 
-        public FrameController(IProductService<Frame> frameService)
+        private readonly IWebHostEnvironment _webHostEnvironment;
+
+        public FrameController(IProductService<Frame> frameService, IWebHostEnvironment webHostEnvironment)
         {
             _frameService = frameService;
+            _webHostEnvironment = webHostEnvironment;
         }
 
         public IActionResult Index()
@@ -49,10 +55,10 @@ namespace PlusMinus.Areas.Admin.Controllers
                 {
                     Name = frameViewModel.Name,
                     Brand = frameViewModel.Brand,
-                    Price = frameViewModel.Price,
+                    Price = double.Parse(frameViewModel.Price.Replace('.', ',')),
                     Amount = frameViewModel.Amount,
                     Form = frameViewModel.Form,
-                    Image = "www.google.com",
+                    Image = ImageUploader.CreatePath(frameViewModel.Image, _webHostEnvironment),
                     Color = frameViewModel.Color,
                     Material = Enum.GetName(typeof(MaterialViewModel), frameViewModel.Material),
                 };
@@ -79,11 +85,12 @@ namespace PlusMinus.Areas.Admin.Controllers
                 ProductId = frame.ProductId,
                 Name = frame.Name,
                 Brand = frame.Brand,
-                Price = frame.Price,
+                Price = frame.Price.ToString(CultureInfo.InvariantCulture),
                 Amount = frame.Amount,
                 Form = frame.Form,
                 Color = frame.Color,
                 Material = (MaterialViewModel)Enum.Parse(typeof(MaterialViewModel), frame.Material),
+                ImageUrl = frame.Image,
             };
 
             return View(frameViewModel);
@@ -101,10 +108,10 @@ namespace PlusMinus.Areas.Admin.Controllers
                         ProductId = (int)frameViewModel.ProductId,
                         Name = frameViewModel.Name,
                         Brand = frameViewModel.Brand,
-                        Price = frameViewModel.Price,
+                        Price = double.Parse(frameViewModel.Price.Replace('.', ',')),
                         Amount = frameViewModel.Amount,
                         Form = frameViewModel.Form,
-                        Image = "www.google.com",
+                        Image = string.IsNullOrEmpty(frameViewModel.ImageUrl) ? ImageUploader.CreatePath(frameViewModel.Image, _webHostEnvironment) : frameViewModel.ImageUrl,
                         Color = frameViewModel.Color,
                         Material = Enum.GetName(typeof(MaterialViewModel), frameViewModel.Material),
                     };

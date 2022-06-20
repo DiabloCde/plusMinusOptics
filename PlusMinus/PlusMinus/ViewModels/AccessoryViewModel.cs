@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using Microsoft.AspNetCore.Http;
 using PlusMinus.Core.Models.Enumerations;
 
 namespace PlusMinus.ViewModels
@@ -23,5 +24,9 @@ namespace PlusMinus.ViewModels
         public MaterialViewModel Material { get; set; }
 
         public AccessoryType AccessoryType { get; set; }
+
+        public IFormFile Image { get; set; }
+        
+        public string ImageUrl { get; set; }
     }
 }
