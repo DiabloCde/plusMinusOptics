@@ -38,9 +38,9 @@ namespace PlusMinus.DAL.Repositories
             return (T)this._context.Set<T>().Find(productId);
         }
 
-        public List<T> GetProducts(Expression<Func<T, bool>> filter)
+        public IEnumerable<T> GetProducts(Expression<Func<T, bool>> filter)
         {
-            return this._context.Set<T>().Where(filter).ToList();
+            return this._context.Set<T>().Where(filter);
         }
 
         public void InsertProduct(T product)

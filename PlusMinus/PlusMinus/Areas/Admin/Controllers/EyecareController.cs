@@ -25,9 +25,56 @@ namespace PlusMinus.Areas.Admin.Controllers
             _webHostEnvironment = webHostEnvironment;
         }
 
-        public IActionResult Index()
+        public IActionResult Index(string sortOrder)
         {
-            List<Eyecare> eyecares = _eyecareService.GetProducts(p => p.ProductId > 0);
+            IEnumerable<Eyecare> eyecares = _eyecareService.GetProducts(p => p.ProductId > 0);
+
+            ViewData["NameSortParam"] = string.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
+            ViewData["BrandSortParam"] = sortOrder == "Brand" ? "brand_desc" : "Brand";
+            ViewData["VolumeSortParam"] = sortOrder == "Volume" ? "volume_desc" : "Volume";
+            ViewData["PurposeSortParam"] = sortOrder == "Purpose" ? "purpose_desc" : "Purpose";
+            ViewData["PriceSortParam"] = sortOrder == "Price" ? "price_desc" : "Price";
+            ViewData["AmountSortParam"] = sortOrder == "Amount" ? "amount_desc" : "Amount";
+
+            switch (sortOrder)
+            {
+                case "name_desc":
+                    eyecares = eyecares.OrderByDescending(a => a.Name);
+                    break;
+                case "brand_desc":
+                    eyecares = eyecares.OrderByDescending(a => a.Brand);
+                    break;
+                case "Brand":
+                    eyecares = eyecares.OrderBy(a => a.Brand);
+                    break;
+                case "volume_desc":
+                    eyecares = eyecares.OrderByDescending(a => a.Volume);
+                    break;
+                case "Volume":
+                    eyecares = eyecares.OrderBy(a => a.Volume);
+                    break;
+                case "purpose_desc":
+                    eyecares = eyecares.OrderByDescending(a => a.Purpose);
+                    break;
+                case "Purpose":
+                    eyecares = eyecares.OrderBy(a => a.Purpose);
+                    break;
+                case "price_desc":
+                    eyecares = eyecares.OrderByDescending(a => a.Price);
+                    break;
+                case "Price":
+                    eyecares = eyecares.OrderBy(a => a.Price);
+                    break;
+                case "amount_desc":
+                    eyecares = eyecares.OrderByDescending(a => a.Amount);
+                    break;
+                case "Amount":
+                    eyecares = eyecares.OrderBy(a => a.Amount);
+                    break;
+                default:
+                    eyecares = eyecares.OrderBy(a => a.Name);
+                    break;
+            }
 
             return View(eyecares);
         }

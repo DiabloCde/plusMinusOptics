@@ -27,7 +27,7 @@
             </div>
             <div class="form-group">
                 <label asp-for="Color" class="control-label">Колір:</label>
-                <input asp-for="Color" class="form-control" />
+                @Html.DropDownListFor(m => m.Color, new SelectList(Enum.GetValues(typeof(ColorViewModel))), "Виберіть колір: ")
                 <span asp-validation-for="Color" class="text-danger"></span>
             </div>
             <div class="form-group">
@@ -51,7 +51,7 @@
                 <span asp-validation-for="Amount" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Image" class="control-label"></label>
+                <label asp-for="Image" class="control-label">Зображення:</label>
                 <div class="custom-file">
                     <input asp-for="Image" type="file" class="custom-file-input" id="customFile">
                     <label class="custom-file-label" for="customFile">Виберіть файл:</label>

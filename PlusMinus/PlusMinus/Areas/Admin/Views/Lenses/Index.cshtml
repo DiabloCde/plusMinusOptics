@@ -14,22 +14,31 @@
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.Name)
+                <a asp-action="Index" asp-route-sortOrder="@ViewData["NameSortParam"]">Назва</a>
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Brand)
+                <a asp-action="Index" asp-route-sortOrder="@ViewData["BrandSortParam"]">Виробник</a>
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Dioptre)
+                <a asp-action="Index" asp-route-sortOrder="@ViewData["DioptreSortParam"]">Потужність</a>
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.ExpirationDate)
+                <a asp-action="Index" asp-route-sortOrder="@ViewData["ExpDateSortParam"]">Термін придатності</a>
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Price)
+                <a asp-action="Index" asp-route-sortOrder="@ViewData["BaseCurveSortParam"]">Базова кривизна</a>
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Amount)
+                <a asp-action="Index" asp-route-sortOrder="@ViewData["DiameterSortParam"]">Діаметер</a>
+            </th>
+            <th>
+                <a asp-action="Index" asp-route-sortOrder="@ViewData["NumberOfUnitsSortParam"]">Кількість в упаковці</a>
+            </th>
+            <th>
+                <a asp-action="Index" asp-route-sortOrder="@ViewData["PriceSortParam"]">Вартість</a>
+            </th>
+            <th>
+                <a asp-action="Index" asp-route-sortOrder="@ViewData["AmountSortParam"]">Кількість</a>
             </th>
             <th></th>
         </tr>
@@ -48,6 +57,15 @@
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.ExpirationDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.BaseCurve)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Diameter)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NumberOfUnits)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Price)

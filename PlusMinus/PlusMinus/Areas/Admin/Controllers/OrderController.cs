@@ -18,10 +18,50 @@ namespace PlusMinus.Areas.Admin.Controllers
             _orderService = orderService;
         }
 
-        public IActionResult Index()
+        public IActionResult Index(string sortOrder)
         {
-            List<Order> orders = _orderService.GetOrders(o => o.OrderId > 0); 
-            
+            IEnumerable<Order> orders = _orderService.GetOrders(o => o.OrderId > 0);
+
+            ViewData["IdSortParam"] = string.IsNullOrEmpty(sortOrder) ? "id_desc" : "";
+            ViewData["NameSortParam"] = sortOrder == "Name" ? "name_desc" : "Name";
+            ViewData["SurnameSortParam"] = sortOrder == "Surname" ? "surname_desc" : "Surname";
+            ViewData["DateSortParam"] = sortOrder == "Date" ? "date_desc" : "Date";
+            ViewData["StatusSortParam"] = sortOrder == "Status" ? "status_desc" : "Status";
+
+            switch (sortOrder)
+            {
+                case "id_desc":
+                    orders = orders.OrderByDescending(a => a.OrderId);
+                    break;
+                case "name_desc":
+                    orders = orders.OrderByDescending(a => a.User.Name);
+                    break;
+                case "Name":
+                    orders = orders.OrderBy(a => a.User.Name);
+                    break;
+                case "surname_desc":
+                    orders = orders.OrderByDescending(a => a.User.Surname);
+                    break;
+                case "Surname":
+                    orders = orders.OrderBy(a => a.User.Surname);
+                    break;
+                case "date_desc":
+                    orders = orders.OrderByDescending(a => a.Date);
+                    break;
+                case "Date":
+                    orders = orders.OrderBy(a => a.Date);
+                    break;
+                case "status_desc":
+                    orders = orders.OrderByDescending(a => a.Status);
+                    break;
+                case "Status":
+                    orders = orders.OrderBy(a => a.Status);
+                    break;
+                default:
+                    orders = orders.OrderBy(a => a.OrderId);
+                    break;
+            }
+
             return View(orders);
         }
 

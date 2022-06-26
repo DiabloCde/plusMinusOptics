@@ -123,7 +123,7 @@ namespace PlusMinus.BLL.Services
             }
         }
 
-        public List<Order> GetOrders(Expression<Func<Order, bool>> filter)
+        public IEnumerable<Order> GetOrders(Expression<Func<Order, bool>> filter)
         {
             try
             {

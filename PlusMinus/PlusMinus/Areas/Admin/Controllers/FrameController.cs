@@ -25,10 +25,64 @@ namespace PlusMinus.Areas.Admin.Controllers
             _webHostEnvironment = webHostEnvironment;
         }
 
-        public IActionResult Index()
+        public IActionResult Index(string sortOrder)
         {
-            List<Frame> frames = _frameService.GetProducts(p => p.ProductId > 0);
-            
+            IEnumerable<Frame> frames = _frameService.GetProducts(p => p.ProductId > 0);
+
+            ViewData["NameSortParam"] = string.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
+            ViewData["BrandSortParam"] = sortOrder == "Brand" ? "brand_desc" : "Brand";
+            ViewData["ColorSortParam"] = sortOrder == "Color" ? "color_desc" : "Color";
+            ViewData["FormSortParam"] = sortOrder == "Form" ? "form_desc" : "Form";
+            ViewData["MaterialSortParam"] = sortOrder == "Material" ? "material_desc" : "Material";
+            ViewData["PriceSortParam"] = sortOrder == "Price" ? "price_desc" : "Price";
+            ViewData["AmountSortParam"] = sortOrder == "Amount" ? "amount_desc" : "Amount";
+
+            switch (sortOrder)
+            {
+                case "name_desc":
+                    frames = frames.OrderByDescending(a => a.Name);
+                    break;
+                case "brand_desc":
+                    frames = frames.OrderByDescending(a => a.Brand);
+                    break;
+                case "Brand":
+                    frames = frames.OrderBy(a => a.Brand);
+                    break;
+                case "color_desc":
+                    frames = frames.OrderByDescending(a => a.Color);
+                    break;
+                case "Color":
+                    frames = frames.OrderBy(a => a.Color);
+                    break;
+                case "material_desc":
+                    frames = frames.OrderByDescending(a => a.Material);
+                    break;
+                case "Material":
+                    frames = frames.OrderBy(a => a.Color);
+                    break;
+                case "form_desc":
+                    frames = frames.OrderByDescending(a => a.Form);
+                    break;
+                case "Form":
+                    frames = frames.OrderBy(a => a.Form);
+                    break;
+                case "price_desc":
+                    frames = frames.OrderByDescending(a => a.Price);
+                    break;
+                case "Price":
+                    frames = frames.OrderBy(a => a.Price);
+                    break;
+                case "amount_desc":
+                    frames = frames.OrderByDescending(a => a.Amount);
+                    break;
+                case "Amount":
+                    frames = frames.OrderBy(a => a.Amount);
+                    break;
+                default:
+                    frames = frames.OrderBy(a => a.Name);
+                    break;
+            }
+
             return View(frames);
         }
 
@@ -59,7 +113,7 @@ namespace PlusMinus.Areas.Admin.Controllers
                     Amount = frameViewModel.Amount,
                     Form = frameViewModel.Form,
                     Image = ImageUploader.CreatePath(frameViewModel.Image, _webHostEnvironment),
-                    Color = frameViewModel.Color,
+                    Color = Enum.GetName(typeof(ColorViewModel), frameViewModel.Color),
                     Material = Enum.GetName(typeof(MaterialViewModel), frameViewModel.Material),
                 };
 
@@ -88,7 +142,7 @@ namespace PlusMinus.Areas.Admin.Controllers
                 Price = frame.Price.ToString(CultureInfo.InvariantCulture),
                 Amount = frame.Amount,
                 Form = frame.Form,
-                Color = frame.Color,
+                Color = (ColorViewModel)Enum.Parse(typeof(ColorViewModel), frame.Color),
                 Material = (MaterialViewModel)Enum.Parse(typeof(MaterialViewModel), frame.Material),
                 ImageUrl = frame.Image,
             };
@@ -112,7 +166,7 @@ namespace PlusMinus.Areas.Admin.Controllers
                         Amount = frameViewModel.Amount,
                         Form = frameViewModel.Form,
                         Image = string.IsNullOrEmpty(frameViewModel.ImageUrl) ? ImageUploader.CreatePath(frameViewModel.Image, _webHostEnvironment) : frameViewModel.ImageUrl,
-                        Color = frameViewModel.Color,
+                        Color = Enum.GetName(typeof(ColorViewModel), frameViewModel.Color),
                         Material = Enum.GetName(typeof(MaterialViewModel), frameViewModel.Material),
                     };
 

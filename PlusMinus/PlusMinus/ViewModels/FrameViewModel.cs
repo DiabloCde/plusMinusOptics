@@ -17,13 +17,11 @@ namespace PlusMinus.ViewModels
         public string Price { get; set; }
         
         public int Amount { get; set; }
-
-        [Required]
-        public string Color { get; set; }
+        
+        public ColorViewModel Color { get; set; }
 
         public FrameForm Form { get; set; }
-
-        [Required]
+        
         public MaterialViewModel Material { get; set; }
 
         public IFormFile Image { get; set; }

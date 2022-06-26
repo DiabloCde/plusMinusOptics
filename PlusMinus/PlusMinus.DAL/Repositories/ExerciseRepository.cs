@@ -38,9 +38,9 @@ namespace PlusMinus.DAL.Repositories
             return this._context.Exercises.Find(exerciseId);
         }
 
-        public List<Exercise> GetExercises(Expression<Func<Exercise, bool>> filter)
+        public IEnumerable<Exercise> GetExercises(Expression<Func<Exercise, bool>> filter)
         {
-            return this._context.Exercises.Where(filter).ToList();
+            return this._context.Exercises.Where(filter);
         }
 
         public void InsertExercise(Exercise exercise)

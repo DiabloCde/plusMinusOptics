@@ -90,7 +90,7 @@ namespace PlusMinus.BLL.Services
             }
         }
 
-        public List<T> GetProducts(Expression<Func<T, bool>> filter)
+        public IEnumerable<T> GetProducts(Expression<Func<T, bool>> filter)
         {
             try
             {

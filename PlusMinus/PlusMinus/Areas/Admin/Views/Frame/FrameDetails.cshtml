@@ -8,53 +8,59 @@
 <h1>Деталі оправи</h1>
 
 <div>
-    <hr />
+    <hr/>
     <dl class="row">
-        <dt class = "col-sm-2">
+        <dt class="col-sm-2">
+            Зображення:
+        </dt>
+        <dd class="col-sm-10">
+            <img src="@Model.Image" style="border-radius:5px; border: 1px solid #bbb9b9; width: 128px; height:128px" />
+        </dd>
+        <dt class="col-sm-2">
             Назва оправи:
         </dt>
-        <dd class = "col-sm-10">
+        <dd class="col-sm-10">
             @Html.DisplayFor(model => model.Name)
         </dd>
-        <dt class = "col-sm-2">
+        <dt class="col-sm-2">
             Виробник:
         </dt>
-        <dd class = "col-sm-10">
+        <dd class="col-sm-10">
             @Html.DisplayFor(model => model.Brand)
         </dd>
-        <dt class = "col-sm-2">
+        <dt class="col-sm-2">
             Колір:
         </dt>
-        <dd class = "col-sm-10">
+        <dd class="col-sm-10">
             @Html.DisplayFor(model => model.Color)
         </dd>
-        <dt class = "col-sm-2">
+        <dt class="col-sm-2">
             Форма оправи:
         </dt>
-        <dd class = "col-sm-10">
+        <dd class="col-sm-10">
             @Html.DisplayFor(model => model.Form)
         </dd>
-        <dt class = "col-sm-2">
+        <dt class="col-sm-2">
             Матеріал:
         </dt>
-        <dd class = "col-sm-10">
+        <dd class="col-sm-10">
             @Html.DisplayFor(model => model.Material)
         </dd>
-        <dt class = "col-sm-2">
+        <dt class="col-sm-2">
             Вартість:
         </dt>
-        <dd class = "col-sm-10">
+        <dd class="col-sm-10">
             @Html.DisplayFor(model => model.Price)
         </dd>
-        <dt class = "col-sm-2">
+        <dt class="col-sm-2">
             Кількість на складі:
         </dt>
-        <dd class = "col-sm-10">
+        <dd class="col-sm-10">
             @Html.DisplayFor(model => model.Amount)
         </dd>
     </dl>
 </div>
 <div>
-    <a asp-action="EditFrame" asp-route-id="@Model.ProductId">Редагувати</a> |
+    <a asp-action="EditFrame" asp-route-id="@Model.ProductId" class="btn btn-success">Редагувати</a>
     <a asp-action="Index" class="btn btn-primary">Повернутися до списку</a>
 </div>

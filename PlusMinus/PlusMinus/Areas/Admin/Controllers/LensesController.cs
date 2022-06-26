@@ -25,9 +25,77 @@ namespace PlusMinus.Areas.Admin.Controllers
             _webHostEnvironment = webHostEnvironment;
         }
 
-        public IActionResult Index()
+        public IActionResult Index(string sortOrder)
         {
-            List<Lenses> lenses = _lensesService.GetProducts(l => l.ProductId > 0);
+            IEnumerable<Lenses> lenses = _lensesService.GetProducts(l => l.ProductId > 0);
+
+            ViewData["NameSortParam"] = string.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
+            ViewData["BrandSortParam"] = sortOrder == "Brand" ? "brand_desc" : "Brand";
+            ViewData["DioptreSortParam"] = sortOrder == "Dioptre" ? "dioptre_desc" : "Dioptre";
+            ViewData["ExpDateSortParam"] = sortOrder == "ExpDate" ? "expDate_desc" : "ExpDate";
+            ViewData["BaseCurveSortParam"] = sortOrder == "BaseCurve" ? "baseCurve_desc" : "BaseCurve";
+            ViewData["DiameterSortParam"] = sortOrder == "Diameter" ? "diameter_desc" : "Diameter";
+            ViewData["NumberOfUnitsSortParam"] = sortOrder == "NumberOfUnits" ? "numberOfUnits_desc" : "NumberOfUnits";
+            ViewData["PriceSortParam"] = sortOrder == "Price" ? "price_desc" : "Price";
+            ViewData["AmountSortParam"] = sortOrder == "Amount" ? "amount_desc" : "Amount";
+
+            switch (sortOrder)
+            {
+                case "name_desc":
+                    lenses = lenses.OrderByDescending(a => a.Name);
+                    break;
+                case "brand_desc":
+                    lenses = lenses.OrderByDescending(a => a.Brand);
+                    break;
+                case "Brand":
+                    lenses = lenses.OrderBy(a => a.Brand);
+                    break;
+                case "dioptre_desc":
+                    lenses = lenses.OrderByDescending(a => a.Dioptre);
+                    break;
+                case "Dioptre":
+                    lenses = lenses.OrderBy(a => a.Dioptre);
+                    break;
+                case "expDate_desc":
+                    lenses = lenses.OrderByDescending(a => a.ExpirationDate);
+                    break;
+                case "ExpDate":
+                    lenses = lenses.OrderBy(a => a.ExpirationDate);
+                    break;
+                case "baseCurve_desc":
+                    lenses = lenses.OrderByDescending(a => a.BaseCurve);
+                    break;
+                case "BaseCurve":
+                    lenses = lenses.OrderBy(a => a.BaseCurve);
+                    break;
+                case "diameter_desc":
+                    lenses = lenses.OrderByDescending(a => a.Diameter);
+                    break;
+                case "Diameter":
+                    lenses = lenses.OrderBy(a => a.Diameter);
+                    break;
+                case "numberOfUnits_desc":
+                    lenses = lenses.OrderByDescending(a => a.NumberOfUnits);
+                    break;
+                case "NumberOfUnits":
+                    lenses = lenses.OrderBy(a => a.NumberOfUnits);
+                    break;
+                case "price_desc":
+                    lenses = lenses.OrderByDescending(a => a.Price);
+                    break;
+                case "Price":
+                    lenses = lenses.OrderBy(a => a.Price);
+                    break;
+                case "amount_desc":
+                    lenses = lenses.OrderByDescending(a => a.Amount);
+                    break;
+                case "Amount":
+                    lenses = lenses.OrderBy(a => a.Amount);
+                    break;
+                default:
+                    lenses = lenses.OrderBy(a => a.Name);
+                    break;
+            }
 
             return View(lenses);
         }

@@ -11,55 +11,61 @@
     <hr />
     <dl class="row">
         <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Name)
+            Зображення:
+        </dt>
+        <dd class="col-sm-10">
+            <img src="@Model.Image" style="border-radius:5px; border: 1px solid #bbb9b9; width: 128px; height:128px" />
+        </dd>
+        <dt class="col-sm-2">
+            Назва:
         </dt>
         <dd class="col-sm-10">
             @Html.DisplayFor(model => model.Name)
         </dd>
         <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Brand)
+            Виробник:
         </dt>
         <dd class="col-sm-10">
             @Html.DisplayFor(model => model.Brand)
         </dd>
         <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Dioptre)
+            Діоптрії:
         </dt>
         <dd class="col-sm-10">
             @Html.DisplayFor(model => model.Dioptre)
         </dd>
         <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.BaseCurve)
+            Базова кривизна:
         </dt>
         <dd class="col-sm-10">
             @Html.DisplayFor(model => model.BaseCurve)
         </dd>
         <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.NumberOfUnits)
+            Кількість в упаковці:
         </dt>
         <dd class="col-sm-10">
             @Html.DisplayFor(model => model.NumberOfUnits)
         </dd>
         <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Diameter)
+            Діаметр:
         </dt>
         <dd class="col-sm-10">
             @Html.DisplayFor(model => model.Diameter)
         </dd>
         <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.ExpirationDate)
+            Термін придатності:
         </dt>
         <dd class="col-sm-10">
             @Html.DisplayFor(model => model.ExpirationDate)
         </dd>
         <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Price)
+            Вартість:
         </dt>
         <dd class="col-sm-10">
             @Html.DisplayFor(model => model.Price)
         </dd>
         <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Amount)
+            Кількість на складі:
         </dt>
         <dd class="col-sm-10">
             @Html.DisplayFor(model => model.Amount)
@@ -67,6 +73,6 @@
     </dl>
 </div>
 <div>
-    <a asp-action="EditLenses" asp-route-id="@Model.ProductId">Редагувати</a> |
+    <a asp-action="EditLenses" asp-route-id="@Model.ProductId" class="btn btn-success">Редагувати</a>
     <a asp-action="Index" class="btn btn-primary">Повернення до списку</a>
 </div>

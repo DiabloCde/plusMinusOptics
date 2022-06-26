@@ -10,7 +10,7 @@ namespace PlusMinus.BLL.Interfaces
 {
     public interface IProductService<T> where T: Product
     {
-        List<T> GetProducts(Expression<Func<T, bool>> filter);
+        IEnumerable<T> GetProducts(Expression<Func<T, bool>> filter);
 
         T? FirstOrDefault(Expression<Func<T, bool>> filter);
 

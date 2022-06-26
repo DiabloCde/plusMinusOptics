@@ -10,7 +10,7 @@ namespace PlusMinus.DAL.Interfaces
 {
     public interface IOrderRepository
     {
-        List<Order> GetOrders(Expression<Func<Order, bool>> filter);
+        IEnumerable<Order> GetOrders(Expression<Func<Order, bool>> filter);
 
         Order? FirstOrDefault(Expression<Func<Order, bool>> filter);
 

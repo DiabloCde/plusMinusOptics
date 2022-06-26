@@ -24,9 +24,63 @@ namespace PlusMinus.Areas.Admin.Controllers
             _webHostEnvironment = webHostEnvironment;
         }
 
-        public IActionResult Index()
+        public IActionResult Index(string sortOrder)
         {
-            List<Accessory> accessories = _accessoryService.GetProducts(p => p.ProductId > 0);
+            IEnumerable<Accessory> accessories = _accessoryService.GetProducts(p => p.ProductId > 0);
+
+            ViewData["NameSortParam"] = string.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
+            ViewData["BrandSortParam"] = sortOrder == "Brand" ? "brand_desc" : "Brand";
+            ViewData["ColorSortParam"] = sortOrder == "Color" ? "color_desc" : "Color";
+            ViewData["MaterialSortParam"] = sortOrder == "Material" ? "material_desc" : "Material";
+            ViewData["AccessoryTypeSortParam"] = sortOrder == "Type" ? "type_desc" : "Type";
+            ViewData["PriceSortParam"] = sortOrder == "Price" ? "price_desc" : "Price";
+            ViewData["AmountSortParam"] = sortOrder == "Amount" ? "amount_desc" : "Amount";
+
+            switch (sortOrder)
+            {
+                case "name_desc":
+                    accessories = accessories.OrderByDescending(a => a.Name);
+                    break;
+                case "brand_desc":
+                    accessories = accessories.OrderByDescending(a => a.Brand);
+                    break;
+                case "Brand":
+                    accessories = accessories.OrderBy(a => a.Brand);
+                    break;
+                case "color_desc":
+                    accessories = accessories.OrderByDescending(a => a.Color);
+                    break;
+                case "Color":
+                    accessories = accessories.OrderBy(a => a.Color);
+                    break;
+                case "material_desc":
+                    accessories = accessories.OrderByDescending(a => a.Material);
+                    break;
+                case "Material":
+                    accessories = accessories.OrderBy(a => a.Color);
+                    break;
+                case "type_desc":
+                    accessories = accessories.OrderByDescending(a => a.AccessoryType);
+                    break;
+                case "Type":
+                    accessories = accessories.OrderBy(a => a.AccessoryType);
+                    break;
+                case "price_desc":
+                    accessories = accessories.OrderByDescending(a => a.Price);
+                    break;
+                case "Price":
+                    accessories = accessories.OrderBy(a => a.Price);
+                    break;
+                case "amount_desc":
+                    accessories = accessories.OrderByDescending(a => a.Amount);
+                    break;
+                case "Amount":
+                    accessories = accessories.OrderBy(a => a.Amount);
+                    break;
+                default:
+                    accessories = accessories.OrderBy(a => a.Name);
+                    break;
+            }
 
             return View(accessories);
         }
@@ -56,7 +110,7 @@ namespace PlusMinus.Areas.Admin.Controllers
                     Brand = accessoryViewModel.Brand,
                     Price = accessoryViewModel.Price,
                     Amount = accessoryViewModel.Amount,
-                    Color = accessoryViewModel.Color,
+                    Color = Enum.GetName(typeof(ColorViewModel), accessoryViewModel.Color),
                     Material = Enum.GetName(typeof(MaterialViewModel), accessoryViewModel.Material),
                     Image = ImageUploader.CreatePath(accessoryViewModel.Image, _webHostEnvironment),
                     AccessoryType = accessoryViewModel.AccessoryType,
@@ -86,7 +140,7 @@ namespace PlusMinus.Areas.Admin.Controllers
                 Brand = accessory.Brand,
                 Price = accessory.Price,
                 Amount = accessory.Amount,
-                Color = accessory.Color,
+                Color = (ColorViewModel)Enum.Parse(typeof(ColorViewModel), accessory.Color),
                 Material = (MaterialViewModel)Enum.Parse(typeof(MaterialViewModel), accessory.Material),
                 ImageUrl = accessory.Image,
                 AccessoryType = accessory.AccessoryType,
@@ -110,7 +164,7 @@ namespace PlusMinus.Areas.Admin.Controllers
                         Price = accessoryViewModel.Price,
                         Amount = accessoryViewModel.Amount,
                         Image = ImageUploader.CreatePath(accessoryViewModel.Image, _webHostEnvironment),
-                        Color = accessoryViewModel.Color,
+                        Color = Enum.GetName(typeof(ColorViewModel), accessoryViewModel.Color),
                         Material = Enum.GetName(typeof(MaterialViewModel), accessoryViewModel.Material),
                         AccessoryType = accessoryViewModel.AccessoryType,
                     };

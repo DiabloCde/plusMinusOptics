@@ -10,7 +10,7 @@ namespace PlusMinus.DAL.Interfaces
 {
     public interface IProductRepository<T> where T: Product
     {
-        List<T> GetProducts(Expression<Func<T, bool>> filter);
+        IEnumerable<T> GetProducts(Expression<Func<T, bool>> filter);
 
         T? FirstOrDefault(Expression<Func<T, bool>> filter);
 

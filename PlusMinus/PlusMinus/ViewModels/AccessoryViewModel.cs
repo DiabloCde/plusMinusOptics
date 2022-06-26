@@ -17,9 +17,8 @@ namespace PlusMinus.ViewModels
         public double Price { get; set; }
 
         public int Amount { get; set; }
-
-        [Required]
-        public string Color { get; set; }
+        
+        public ColorViewModel Color { get; set; }
         
         public MaterialViewModel Material { get; set; }
 

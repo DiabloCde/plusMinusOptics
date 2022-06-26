@@ -11,13 +11,20 @@
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.User)
+                <a asp-action="Index" asp-route-sortOrder="@ViewData["IdSortParam"]">Номер</a>
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Date)
+
+                <a asp-action="Index" asp-route-sortOrder="@ViewData["NameSortParam"]">Ім'я покупця</a>
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Status)
+                <a asp-action="Index" asp-route-sortOrder="@ViewData["SurnameSortParam"]">Прізвище покупця</a>
+            </th>
+            <th>
+                <a asp-action="Index" asp-route-sortOrder="@ViewData["DateSortParam"]">Дата замовлення</a>
+            </th>
+            <th>
+                <a asp-action="Index" asp-route-sortOrder="@ViewData["StatusSortParam"]">Статус</a>
             </th>
             <th></th>
         </tr>
@@ -26,7 +33,13 @@
 @foreach (var item in Model) {
         <tr>
             <td>
+                @Html.DisplayFor(modelItem => item.OrderId)
+            </td>
+            <td>
                 @Html.DisplayFor(modelItem => item.User.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.User.Surname)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Date)

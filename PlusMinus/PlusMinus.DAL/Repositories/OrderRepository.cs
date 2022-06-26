@@ -43,7 +43,10 @@ namespace PlusMinus.DAL.Repositories
 
         public Order? FirstOrDefault(Expression<Func<Order, bool>> filter)
         {
-            Order? order = this._context.Orders.FirstOrDefault(filter);
+            Order? order = this._context.Orders
+                .Include(op => op.OrderProducts)
+                .Include(u => u.User)
+                .FirstOrDefault(filter);
 
             return order;
         }
@@ -53,12 +56,12 @@ namespace PlusMinus.DAL.Repositories
             return this._context.Orders.Find(orderId);
         }
 
-        public List<Order> GetOrders(Expression<Func<Order, bool>> filter)
+        public IEnumerable<Order> GetOrders(Expression<Func<Order, bool>> filter)
         {
             return this._context.Orders
                 .Include(t => t.OrderProducts)
-                .Where(filter)
-                .ToList();
+                .Include(u => u.User)
+                .Where(filter);
         }
 
         public void InsertOrder(Order order)

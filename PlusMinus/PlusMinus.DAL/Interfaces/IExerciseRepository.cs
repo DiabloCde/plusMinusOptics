@@ -10,7 +10,7 @@ namespace PlusMinus.DAL.Interfaces
 {
     public interface IExerciseRepository
     {
-        List<Exercise> GetExercises(Expression<Func<Exercise, bool>> filter);
+        IEnumerable<Exercise> GetExercises(Expression<Func<Exercise, bool>> filter);
 
         Exercise? FirstOrDefault(Expression<Func<Exercise, bool>> filter);
 
