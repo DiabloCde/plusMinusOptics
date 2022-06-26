@@ -5,6 +5,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using PlusMinus.BLL.Interfaces;
 using PlusMinus.Core.Models;
+using PlusMinus.ViewModels;
 
 namespace PlusMinus.Areas.Admin.Controllers
 {
@@ -18,10 +19,11 @@ namespace PlusMinus.Areas.Admin.Controllers
             _orderService = orderService;
         }
 
-        public IActionResult Index(string sortOrder)
+        public IActionResult Index(string sortOrder, int? pageNumber)
         {
             IEnumerable<Order> orders = _orderService.GetOrders(o => o.OrderId > 0);
 
+            ViewData["CurrentSort"] = sortOrder;
             ViewData["IdSortParam"] = string.IsNullOrEmpty(sortOrder) ? "id_desc" : "";
             ViewData["NameSortParam"] = sortOrder == "Name" ? "name_desc" : "Name";
             ViewData["SurnameSortParam"] = sortOrder == "Surname" ? "surname_desc" : "Surname";
@@ -62,7 +64,8 @@ namespace PlusMinus.Areas.Admin.Controllers
                     break;
             }
 
-            return View(orders);
+            int pageSize = 5;
+            return View(PaginatedList<Order>.CreateAsync(orders.AsQueryable(), pageNumber ?? 1, pageSize));
         }
 
         [HttpGet]

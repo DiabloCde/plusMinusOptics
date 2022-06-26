@@ -24,10 +24,11 @@ namespace PlusMinus.Areas.Admin.Controllers
             _webHostEnvironment = webHostEnvironment;
         }
 
-        public IActionResult Index(string sortOrder)
+        public IActionResult Index(string sortOrder, int? pageNumber)
         {
             IEnumerable<Accessory> accessories = _accessoryService.GetProducts(p => p.ProductId > 0);
 
+            ViewData["CurrentSort"] = sortOrder;
             ViewData["NameSortParam"] = string.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
             ViewData["BrandSortParam"] = sortOrder == "Brand" ? "brand_desc" : "Brand";
             ViewData["ColorSortParam"] = sortOrder == "Color" ? "color_desc" : "Color";
@@ -82,7 +83,8 @@ namespace PlusMinus.Areas.Admin.Controllers
                     break;
             }
 
-            return View(accessories);
+            int pageSize = 5;
+            return View(PaginatedList<Accessory>.CreateAsync(accessories.AsQueryable(), pageNumber ?? 1, pageSize));
         }
 
         [HttpGet]

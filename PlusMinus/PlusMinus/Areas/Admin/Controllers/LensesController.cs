@@ -25,10 +25,11 @@ namespace PlusMinus.Areas.Admin.Controllers
             _webHostEnvironment = webHostEnvironment;
         }
 
-        public IActionResult Index(string sortOrder)
+        public IActionResult Index(string sortOrder, int? pageNumber)
         {
             IEnumerable<Lenses> lenses = _lensesService.GetProducts(l => l.ProductId > 0);
 
+            ViewData["CurrentSort"] = sortOrder;
             ViewData["NameSortParam"] = string.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
             ViewData["BrandSortParam"] = sortOrder == "Brand" ? "brand_desc" : "Brand";
             ViewData["DioptreSortParam"] = sortOrder == "Dioptre" ? "dioptre_desc" : "Dioptre";
@@ -97,7 +98,8 @@ namespace PlusMinus.Areas.Admin.Controllers
                     break;
             }
 
-            return View(lenses);
+            int pageSize = 5;
+            return View(PaginatedList<Lenses>.CreateAsync(lenses.AsQueryable(), pageNumber ?? 1, pageSize));
         }
 
         [HttpGet]

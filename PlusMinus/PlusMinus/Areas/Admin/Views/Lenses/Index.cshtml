@@ -1,4 +1,4 @@
-﻿@model IEnumerable<PlusMinus.Core.Models.Lenses>
+﻿@model PlusMinus.ViewModels.PaginatedList<PlusMinus.Core.Models.Lenses>
 
 @{
     ViewData["Title"] = "Список лінз";
@@ -44,41 +44,60 @@
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Name)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Brand)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Dioptre)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ExpirationDate)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.BaseCurve)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Diameter)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.NumberOfUnits)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Price)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Amount)
-            </td>
-            <td>
-                <a asp-action="EditLenses" asp-route-id="@item.ProductId" class="btn btn-success">Edit</a>
-                <a asp-action="LensesDetails" asp-route-id="@item.ProductId" class="btn btn-info">Details</a>
-                <a asp-action="DeleteLenses" asp-route-id="@item.ProductId" class="btn btn-danger">Delete</a>
-            </td>
-        </tr>
-}
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Brand)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Dioptre)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ExpirationDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.BaseCurve)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Diameter)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.NumberOfUnits)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Price)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Amount)
+                </td>
+                <td>
+                    <a asp-action="EditLenses" asp-route-id="@item.ProductId" class="btn btn-success">Edit</a>
+                    <a asp-action="LensesDetails" asp-route-id="@item.ProductId" class="btn btn-info">Details</a>
+                    <a asp-action="DeleteLenses" asp-route-id="@item.ProductId" class="btn btn-danger">Delete</a>
+                </td>
+            </tr>
+        }
     </tbody>
 </table>
+
+@{
+    var prevDisabled = !Model.HasPreviousPage ? "disabled" : "";
+    var nextDisabled = !Model.HasNextPage ? "disabled" : "";
+}
+
+<a asp-action="Index"
+   asp-route-sortOrder="@ViewData["CurrentSort"]"
+   asp-route-pageNumber="@(Model.PageIndex - 1)"
+   class="btn btn-default @prevDisabled">
+    Previous
+</a>
+<a asp-action="Index"
+   asp-route-sortOrder="@ViewData["CurrentSort"]"
+   asp-route-pageNumber="@(Model.PageIndex + 1)"
+   class="btn btn-default @nextDisabled">
+    Next
+</a>
