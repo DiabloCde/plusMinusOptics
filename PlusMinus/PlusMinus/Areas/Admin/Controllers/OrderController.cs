@@ -116,5 +116,33 @@ namespace PlusMinus.Areas.Admin.Controllers
 
             return RedirectToAction("Index");
         }
+
+        [HttpGet]
+        public IActionResult OrderDetails(int id)
+        {
+            Order? order = _orderService.FirstOrDefault(x => x.OrderId == id);
+
+            if (order is null)
+            {
+                return NotFound();
+            }
+
+            double sumPrice = order.OrderProducts.Sum(o => o.Product.Price * o.Amount);
+
+            OrderViewModel orderViewModel = new OrderViewModel
+            {
+                OrderId = order.OrderId,
+                UserName = order.User.Name,
+                UserSurname = order.User.Surname,
+                UserLastname = order.User.Lastname,
+                UserAddress = order.User.Address,
+                Date = order.Date,
+                Status = order.Status,
+                OrderProducts = order.OrderProducts,
+                SumPrice = sumPrice,
+            };
+
+            return View(orderViewModel);
+        }
     }
 }

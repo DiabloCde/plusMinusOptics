@@ -50,6 +50,7 @@
                 </td>
                 <td>
                     <a asp-action="ChangeOrderStatus" asp-route-id="@item.OrderId" class="btn btn-success">Change status</a>
+                    <a asp-action="OrderDetails" asp-route-id="@item.OrderId" class="btn btn-info">Details</a>
                     <a asp-action="DeleteOrder" asp-route-id="@item.OrderId" class="btn btn-danger">Delete</a>
                 </td>
             </tr>
