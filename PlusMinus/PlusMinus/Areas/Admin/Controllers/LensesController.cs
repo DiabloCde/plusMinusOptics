@@ -3,10 +3,13 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
+using PlusMinus.Utility;
 
 namespace PlusMinus.Areas.Admin.Controllers
 {
     [Area("Admin")]
+    [Authorize(Roles = Roles.RoleAdmin)]
     public class LensesController : Controller
     {
         public IActionResult Index()
