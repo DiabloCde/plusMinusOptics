@@ -6,12 +6,15 @@ using System.Text.Encodings.Web;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Logging;
+using PlusMinus.BLL.Interfaces;
 using PlusMinus.Core.Models;
+using PlusMinus.Utility;
 
 namespace PlusMinus.Areas.Identity.Pages.Account
 {
@@ -21,12 +24,15 @@ namespace PlusMinus.Areas.Identity.Pages.Account
         private readonly UserManager<User> _userManager;
         private readonly SignInManager<User> _signInManager;
         private readonly ILogger<LoginModel> _logger;
+        private readonly IOrderService _orderService;
 
         public LoginModel(SignInManager<User> signInManager, 
             ILogger<LoginModel> logger,
-            UserManager<User> userManager)
+            UserManager<User> userManager,
+            IOrderService orderService)
         {
             _userManager = userManager;
+            _orderService = orderService;
             _signInManager = signInManager;
             _logger = logger;
         }
@@ -86,7 +92,25 @@ namespace PlusMinus.Areas.Identity.Pages.Account
                 if (result.Succeeded)
                 {
                     _logger.LogInformation("User logged in.");
-                    return LocalRedirect(returnUrl);
+                    var user = await _userManager.FindByEmailAsync(Input.Email);
+                    int count = _orderService
+                        .GetOrders(o => o.UserId == user.Id)
+                        .SelectMany(o => o.OrderProducts)
+                        .Count();
+
+                    HttpContext.Session.SetInt32("Cart", count);
+
+                    if (await _userManager.IsInRoleAsync(user, Roles.RoleCustomer))
+                    {
+                        return RedirectToAction("Index", "Home", new {Area = "Customer"});
+                    }
+
+                    if (await _userManager.IsInRoleAsync(user, Roles.RoleAdmin))
+                    {
+                        return RedirectToAction("Index", "Lenses", new { Area = "Admin" });
+                    }
+
+                    return Page();
                 }
                 if (result.RequiresTwoFactor)
                 {

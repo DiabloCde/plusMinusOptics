@@ -1,5 +1,6 @@
 ﻿@page
 @model RegisterModel
+@using PlusMinus.Utility
 @{
     ViewData["Title"] = "Register";
 }
@@ -18,6 +19,21 @@
                 <span asp-validation-for="Input.Email" class="text-danger"></span>
             </div>
             <div class="form-group">
+                <label asp-for="Input.Name"></label>
+                <input asp-for="Input.Name" class="form-control" />
+                <span asp-validation-for="Input.Name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Input.Surname"></label>
+                <input asp-for="Input.Surname" class="form-control" />
+                <span asp-validation-for="Input.Surname" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Input.Lastname"></label>
+                <input asp-for="Input.Lastname" class="form-control" />
+                <span asp-validation-for="Input.Lastname" class="text-danger"></span>
+            </div>
+            <div class="form-group">
                 <label asp-for="Input.Password"></label>
                 <input asp-for="Input.Password" class="form-control" />
                 <span asp-validation-for="Input.Password" class="text-danger"></span>
@@ -27,7 +43,7 @@
                 <input asp-for="Input.ConfirmPassword" class="form-control" />
                 <span asp-validation-for="Input.ConfirmPassword" class="text-danger"></span>
             </div>
-            <button type="submit" class="btn btn-primary">Register</button>
+            <button type="submit" class="btn btn-primary">Зареєструватися</button>
         </form>
     </div>
     <div class="col-md-6 col-md-offset-2">
