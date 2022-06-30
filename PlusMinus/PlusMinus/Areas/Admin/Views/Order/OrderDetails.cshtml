@@ -1,0 +1,99 @@
+﻿@model PlusMinus.ViewModels.OrderViewModel
+
+@{
+    ViewData["Title"] = "Деталі замовлення";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Деталі замовлення</h1>
+
+<div>
+    <h4>Замовлення № @Model.OrderId</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            Ім'я покупця:
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.UserName)
+        </dd>
+        <dt class="col-sm-2">
+            Прізвище покупця:
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.UserSurname)
+        </dd>
+        <dt class="col-sm-2">
+            По-батькові покупця:
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.UserLastname)
+        </dd>
+        <dt class="col-sm-2">
+            Адреса покупця:
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.UserAddress)
+        </dd>
+        <dt class="col-sm-2">
+            Дата замовлення:
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Date)
+        </dd>
+        <dt class="col-sm-2">
+            Статус замовлення:
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Status)
+        </dd>
+        <dt class="col-sm-2">
+            Загальна вартість замовлення:
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.SumPrice)
+        </dd>
+    </dl>
+    <div>Список товарів замовлення</div>
+    <table class="table">
+        <thead>
+        <tr>
+            <th>
+                Зображення
+            </th>
+            <th>
+                Назва
+            </th>
+            <th>
+                Вартість
+            </th>
+            <th>
+                Кількість
+            </th>
+            <th></th>
+        </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.OrderProducts)
+            {
+                <tr>
+                    <td>
+                        <img src="@item.Product.Image" style="border-radius:5px; border: 1px solid #bbb9b9; width: 64px; height:64px" />
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Product.Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Product.Price)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Amount)
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+<div>
+    <a asp-action="Index" class="btn btn-primary">Повернення до списку</a>
+</div>

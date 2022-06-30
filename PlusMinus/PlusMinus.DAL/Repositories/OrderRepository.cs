@@ -21,114 +21,68 @@ namespace PlusMinus.DAL.Repositories
 
         public void AddProductToOrder(OrderProduct orderProduct)
         {
-            try
-            {
-                this._context.OrderProducts.Add(orderProduct);
-                this._context.SaveChanges();
-            }
-            catch (Exception)
-            {
-                throw;
-            }
+            this._context.OrderProducts.Add(orderProduct);
+            this._context.SaveChanges();
         }
 
         public void DeleteOrder(int orderId)
         {
-            try
-            {
-                Order order = this._context.Orders.Find(orderId);
-                this._context.Orders.Remove(order);
-                this._context.SaveChanges();
-            }
-            catch (Exception)
-            {
-                throw;
-            }
+            Order order = this._context.Orders.Find(orderId);
+            this._context.Orders.Remove(order);
+            this._context.SaveChanges();
         }
 
         public void DeleteProductFromOrder(OrderProduct orderProduct)
         {
-            try
-            {
-                OrderProduct order = this._context.OrderProducts
-                    .Single(x => x.OrderId == orderProduct.OrderId
-                    && x.ProductId == orderProduct.ProductId);
-                this._context.OrderProducts.Remove(order);
-                this._context.SaveChanges();
-            }
-            catch (Exception)
-            {
-                throw;
-            }
+            OrderProduct order = this._context.OrderProducts
+                .Single(x => x.OrderId == orderProduct.OrderId
+                             && x.ProductId == orderProduct.ProductId);
+            this._context.OrderProducts.Remove(order);
+            this._context.SaveChanges();
+        }
+
+        public Order? FirstOrDefault(Expression<Func<Order, bool>> filter)
+        {
+            Order? order = this._context.Orders
+                .Include(op => op.OrderProducts)
+                .Include(u => u.User)
+                .FirstOrDefault(filter);
+
+            return order;
         }
 
         public Order GetOrderByID(int orderId)
         {
-            try
-            {
-                return this._context.Orders.Find(orderId);
-            }
-            catch (Exception)
-            {
-                throw;
-            }
+            return this._context.Orders.Find(orderId);
         }
 
-        public List<Order> GetOrders(Expression<Func<Order, bool>> filter)
+        public IEnumerable<Order> GetOrders(Expression<Func<Order, bool>> filter)
         {
-            try
-            {
-                return this._context.Orders
-                    .Include(t => t.OrderProducts)
-                    .Where(filter)
-                    .ToList();
-            }
-            catch (Exception)
-            {
-                throw;
-            }
+            return this._context.Orders
+                .Include(t => t.OrderProducts)
+                .Include(u => u.User)
+                .Where(filter);
         }
 
         public void InsertOrder(Order order)
         {
-            try
-            {
-                this._context.Orders.Add(order);
-                this._context.SaveChanges();
-            }
-            catch (Exception)
-            {
-                throw;
-            }
+            this._context.Orders.Add(order);
+            this._context.SaveChanges();
         }
 
         public void UpdateOrder(Order order)
         {
-            try
-            {
-                this._context.Entry(order).State = EntityState.Modified;
-                this._context.SaveChanges();
-            }
-            catch (Exception)
-            {
-                throw;
-            }
+            this._context.Entry(order).State = EntityState.Modified;
+            this._context.SaveChanges();
         }
 
         public void UpdateProductInOrder(OrderProduct orderProduct)
         {
-            try
-            {
-                OrderProduct order = this._context.OrderProducts
-                    .Single(x => x.OrderId == orderProduct.OrderId
-                    && x.ProductId == orderProduct.ProductId);
-                order.Amount = orderProduct.Amount;
-                this._context.SaveChanges();
-            }
-            catch (Exception)
-            {
-                throw;
-            }
+            OrderProduct order = this._context.OrderProducts
+                .Single(x => x.OrderId == orderProduct.OrderId
+                             && x.ProductId == orderProduct.ProductId);
+            order.Amount = orderProduct.Amount;
+            this._context.SaveChanges();
         }
     }
 }

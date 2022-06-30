@@ -59,6 +59,19 @@ namespace PlusMinus.BLL.Services
             }
         }
 
+        public T? FirstOrDefault(Expression<Func<T, bool>> filter)
+        {
+            try
+            {
+                return this._productRepository.FirstOrDefault(filter);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Product with such filter was not found.");
+                throw;
+            }
+        }
+
         public T GetProductByID(int productId)
         {
             if (productId <= 0)
@@ -77,7 +90,7 @@ namespace PlusMinus.BLL.Services
             }
         }
 
-        public List<T> GetProducts(Expression<Func<T, bool>> filter)
+        public IEnumerable<T> GetProducts(Expression<Func<T, bool>> filter)
         {
             try
             {

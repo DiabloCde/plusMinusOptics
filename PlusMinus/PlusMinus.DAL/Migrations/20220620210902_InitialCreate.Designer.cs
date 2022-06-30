@@ -10,8 +10,8 @@ using PlusMinus.DAL;
 namespace PlusMinus.DAL.Migrations
 {
     [DbContext(typeof(ApplicationContext))]
-    [Migration("20220616140408_AddIdentity")]
-    partial class AddIdentity
+    [Migration("20220620210902_InitialCreate")]
+    partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -397,6 +397,9 @@ namespace PlusMinus.DAL.Migrations
                     b.Property<int>("Purpose")
                         .HasColumnType("int");
 
+                    b.Property<int>("Volume")
+                        .HasColumnType("int");
+
                     b.HasDiscriminator().HasValue("Eyecare");
                 });
 
@@ -443,11 +446,20 @@ namespace PlusMinus.DAL.Migrations
                 {
                     b.HasBaseType("PlusMinus.Core.Models.Product");
 
+                    b.Property<double>("BaseCurve")
+                        .HasColumnType("float");
+
+                    b.Property<double>("Diameter")
+                        .HasColumnType("float");
+
                     b.Property<double>("Dioptre")
                         .HasColumnType("float");
 
-                    b.Property<TimeSpan>("ExpirationDate")
-                        .HasColumnType("time");
+                    b.Property<int>("ExpirationDate")
+                        .HasColumnType("int");
+
+                    b.Property<int>("NumberOfUnits")
+                        .HasColumnType("int");
 
                     b.HasDiscriminator().HasValue("Lenses");
                 });
