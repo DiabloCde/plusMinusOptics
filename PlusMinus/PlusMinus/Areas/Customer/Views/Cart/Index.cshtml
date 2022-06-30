@@ -1,34 +1,43 @@
 @model List<PlusMinus.Core.Models.Product>
-
-<div content="cart-container">
+@{double sum = 0;}
+@{ double discount = 0;}
+@{ double shipping = 0;}
+@{ double itemTotal = 0;}
+<div class="cart-container">
      <div class="cart">
           <div class="name">
                <h2>Кошик</h2>
           </div>
           <br/>
+
           @foreach (var item in Model)
           {
+               int num = 1;
                <div class="cart-item">
-                    <div class="item-img">
-                         <img src="@item.Image" alt="@item.Name"/>
+                    <div class="item-name">
+                         <h2>@item.Name</h2>
                     </div>
                     <div class="item-data">
-                         <div class="item-data-up">
-                              <div class="item-name">
-                                   <h2>@item.Name</h2>
-                              </div>s
+                         <div class="item-left">
+                              <div class="item-img">
+                                   <img src="@item.Image"  width="70%" alt="test"/>
+                              </div>
                          </div>
-                         <div class="item-data-mid">
+                         <div class="item-right">
+                              <button class="btn delete-count" onclick="@{ num -= 1;}">-</button>
+                              <div class="item-amount">
+                                   <p>Кількість: </p>
+                                   <h2>@num</h2>
+                              </div>
+                              <button class="btn add-count" onclick="@{ num += 1;}">+</button>
                               <div class="item-price">
+                                   <p>Ціна:</p>
                                    <h2>@item.Price</h2>
                               </div>
-                              <div class="item-amount">
-                                   <button class = "btn delete-count">-</button>
-                                   <h2>@item.Amount</h2> 
-                                   <button class = "btn add-count">+</button> 
-                              </div>
                               <div class="item-total">
-                                   <h2>@item.Amount * @item.Price</h2>
+                                   <p>Всього: </p>
+                                   @{ itemTotal = item.Price * num; }
+                                   <h2>@itemTotal</h2>
                               </div>
                          </div>
                          <div class="item-data-down">
@@ -39,78 +48,19 @@
           }
      </div>
      <div class="cart-info">
-         <div class="name">
-             <h2>Всього</h2>
-         </div>
-         <div class="data">
-             <p><b>Сумма товарів</b></p>
-             <p>@{{ }}</p>
-             <p><b>Сумма знижки</b></p>
-             <p>@{{ }}</p>
-             <p><b>Сумма доставки</b></p>
-             <p>@{{ }}</p>
-             <br>
-             <p><b>Всього до оплати</b></p>
-             <p><b>@{{}}</b></p>
-         </div>
+          @{ var total = sum - sum * discount;}
+          <div class="name">
+               <h2>Всього</h2>
+          </div>
+          <div class="data">
+               <p><b>Сумма товарів</b></p>
+               <p>@sum</p>
+               <p><b>Сумма знижки</b></p>
+               <p>@discount</p>
+               <p><b>Сумма доставки</b></p>
+               <p>@shipping</p>
+               <p><b>Всього до оплати</b></p>
+               <p><b>@total</b></p>
+          </div>
      </div>
 </div>
-
-     @* <div class="cart-container"> *@
-@*     <div class="cart"> *@
-@*         <div class="name"> *@
-@*             <h2>Кошик</h2> *@
-@*         </div> *@
-@*         <br> *@
-@*         @foreach (var item in Model) *@
-@*         { *@
-@*             <div class="cart-item"> *@
-@*                 <div class="item-img"> *@
-@*                     <img src="{{ item.img }}" alt=""> *@
-@*                 </div> *@
-@*                 <div class="item-data"> *@
-@*                     <div class="item-data-up"> *@
-@*                         <div class="item-name"> *@
-@*                             <h2>{{ item.name }}</h2> *@
-@*                         </div> *@
-@*                     </div> *@
-@*                     <div class="item-mid"> *@
-@*                         <div class="item-price"> *@
-@*                             <h2>{{ item.price }}</h2> *@
-@*                         </div> *@
-@*                         <div class="item-count"> *@
-@*                             <button class = "btn delete-count">-</button> *@
-@*                             <h2>{{ item.count }}</h2> *@
-@*                             <button class = "btn add-count">+</button> *@
-@*                         </div> *@
-@*                         <div class="item-total"> *@
-@*                             <h2>{{ item.total }}</h2> *@
-@*                         </div> *@
-@*                     </div> *@
-@*                     <div class="item-data-down"> *@
-@*                         <div class="item-delete"> *@
-@*                             <button class="btn btn-danger" onclick="deleteItem({{ item.id }})">Видалити</button> *@
-@*                         </div> *@
-@*                          *@
-@*                     <div> *@
-@*                 <div> *@
-@*             </div> *@
-@*         }  *@
-@*     </div> *@
-@*     <div class="cart-info"> *@
-@*         <div class="name"> *@
-@*             <h2>Всього</h2> *@
-@*         </div> *@
-@*         <div class="data"> *@
-@*             <p><b>Сумма товарів</b></p> *@
-@*             <p>@{{ }}</p> *@
-@*             <p><b>Сумма знижки</b></p> *@
-@*             <p>@{{ }}</p> *@
-@*             <p><b>Сумма доставки</b></p> *@
-@*             <p>@{{ }}</p> *@
-@*             <br> *@
-@*             <p><b>Всього до оплати</b></p> *@
-@*             <p><b>@{{}}</b></p> *@
-@*         </div> *@
-@*     </div> *@
-@* </div> *@
