@@ -46,12 +46,12 @@
         <div class="shop_catalog">
             <h4 class="catalog_title">Засоби для догляду</h4>
             <div class="shop_products">
-                 @foreach (var item in Model)
+                @foreach (var item in Model)
                 {
                     <div class="shop_product">
-                        <img src="@item.img" alt="" class="shop_catalog_item_img">
-                        <p class="shop_catalog_item_name">@item.name</p>
-                        <label for="" class="shop_catalog_item_cost">@item.price</label>
+                        <img src="@item.Image" alt="" class="shop_catalog_item_img">
+                        <p class="shop_catalog_item_name">@item.Name</p>
+                        <label for="" class="shop_catalog_item_cost">@item.Price</label>
                         <label for="">грн</label>
                         <a href=""><button class="shop_toProd">У кошик</button></a>
                     </div>
