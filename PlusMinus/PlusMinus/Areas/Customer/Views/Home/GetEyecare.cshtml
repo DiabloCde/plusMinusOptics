@@ -3,10 +3,10 @@
 }
 
 @using PlusMinus.Core.Models;
-@model List<Product>;
+@model List<Eyecare>;
 
 <div class="shop_panel">
-    <div class="shop_left">
+    <form class="shop_left">
         <div class="shop_left_item">
             <h4 class="shop_left_item_title">Фільтри</h4>
         </div>
@@ -37,23 +37,23 @@
         </div>
         <input type="submit" value="Застосувати фільтри" class="filter_submit">
         <input type="submit" value="Скасувати фільтри" class="filter_submit">
-    </div>
+    </form>
     <div class="shop_right">
         <div class="shop_search">
             <input type="text" placeholder="Знайти..." class="shop_search_input">
             <input type="submit" value="Пошук" class="shop_search_button">
         </div>
         <div class="shop_catalog">
-            <h4 class="catalog_title">Окуляри</h4>
+            <h4 class="catalog_title">Засоби для догляду</h4>
             <div class="shop_products">
-                @foreach (var item in Model)
+                 @foreach (var item in Model)
                 {
                     <div class="shop_product">
-                        <img src="{{ item.img }}" alt="" class="shop_catalog_item_img">
-                        <p class="shop_catalog_item_name">{{ item.name }}</p>
-                        <label for="" class="shop_catalog_item_cost">{{ item.price }}</label>
+                        <img src="@item.img" alt="" class="shop_catalog_item_img">
+                        <p class="shop_catalog_item_name">@item.name</p>
+                        <label for="" class="shop_catalog_item_cost">@item.price</label>
                         <label for="">грн</label>
-                        <a href=""><button class="shop_toProd">До продукту</button></a>
+                        <a href=""><button class="shop_toProd">У кошик</button></a>
                     </div>
                 }
             </div>

@@ -5,12 +5,6 @@
     color: #22231d;
 }
 
-.profile_panel a
-{
-    color: #22231d;
-    text-decoration: none;
-}
-
 .profile_panel h4{
     margin-top: 2vh;
     margin-bottom: 2vh;
@@ -24,6 +18,12 @@
     width: 12vw;
     display: flex;
     flex-direction: column;
+}
+
+.profile_left a
+{
+    color: #22231d;
+    text-decoration: none;
 }
 
 .profile_left_item{
@@ -46,20 +46,16 @@
     width: 41vw;
     display: flex;
     flex-direction: column;
+    margin-left: 10vw;
 }
 
 .profile_change{
-    width: 30%;
-    height: 4vh;
-    margin-top: 2vh;
-    margin-left: 70%;
-    background-color: #458eae;
-    border: 0px;
-    border-radius: 4px;
-    color: white;
-    padding: 0.8vh;
+    color: black;
+    text-decoration: underline;
     float: right;
     font-weight: bold;
+    margin-left: 100%;
+    margin-top: 3vh;
 }
 
 label {
@@ -68,7 +64,7 @@ label {
 
 .profile_right_item{
     display: grid;
-    grid-template-columns: 50% 50%;
+    grid-template-columns: 30% 50%;
 }
 
 .profile_info{
@@ -79,11 +75,25 @@ label {
     display: block;
     float: right;
     width: 21vw;
+    height: 3.2vh;
 }
 
 .profile_submit{
     width: 15vw;
     background-color: #458eae;
+    border: 0px;
+    border-radius: 4px;
+    color: white;
+    padding: 0.8vh;
+    margin-top: 2vh;
+    float: right;
+    font-weight: bold;
+}
+
+.profile_submit-disabled{
+    width: 15vw;
+    background-color: #458eae;
+    opacity: 70%;
     border: 0px;
     border-radius: 4px;
     color: white;

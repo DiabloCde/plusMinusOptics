@@ -1,15 +1,15 @@
 @{
-    ViewData["Title"] = "Profile";
+    ViewData["Title"] = "ProfileEdit";
 }
 
 @using PlusMinus.Core.Models;
-@model User;
+@model PlusMinus.ViewModels.UserViewModel;
 
 <div class="profile_panel">
     <div class="profile_left">
         <div class="profile_left_item">
             <img src="" alt="" class="profile_left_img">
-            <a href="/Customer/Home/ProfileEdit"><p class="profile_left_item-chosen">Мій кабінет</p></a>
+            <a href="/Customer/Home/Profile"><p class="profile_left_item-chosen">Мій кабінет</p></a>
         </div>
         <div class="profile_left_item">
             <img src="" alt="" class="profile_left_img">
@@ -17,54 +17,44 @@
         </div>
         <div class="profile_left_item">
             <img src="" alt="" class="profile_left_img">
-            <a asp-action="Logout"><p>Вихід</p></a>
+            <a href=""><p>Вихід</p></a>
         </div>
     </div>
     <div class="profile_right">
-        <form action="" class="profile_data">
-
+        <form asp-action="ProfileEdit" class="profile_data">
+            <input type="hidden" asp-for="Id">
             <div class="profile_right_item">
                 <h4>Персональні дані</h4>
-                <a href="/Customer/Home/ProfileEdit" class="profile_change">Змінити</a>
             </div>
 
             <div class="profile_right_item">
                 <label>Прізвище:</label>
-                @{
-                    <label class="profile_info">@Model.Lastname</label>
-                }
+                <input type="text" class="profile_input" asp-for="Lastname">
             </div>
             <div class="profile_right_item">
                 <label>Ім'я:</label>
-                @{
-                    <label class="profile_info">@Model.Name</label>
-                }
+                <input type="text" class="profile_input" asp-for="Name">
             </div>
             <div class="profile_right_item">
                 <label>По-батькові:</label>
-                @{
-                    <label class="profile_info">@Model.Surname</label>
-                }
+                <input type="text" class="profile_input" asp-for="Surname">
             </div>
 
             <h4>Контактні дані</h4>
 
             <div class="profile_right_item">
                 <label>E-mail:</label>
-                @{
-                    <label class="profile_info">@Model.Email</label>
-                }
+                <input type="email" class="profile_input" asp-for="Email">
             </div>
             <div class="profile_right_item">
                 <label>Адреса:</label>
-                @{
-                    <label class="profile_info">@Model.Address</label>
-                }
+                <input type="text" class="profile_input" asp-for="Address">
             </div>
-        </form>
-        <form action="" class="profile_recipe">
-            <h4>Рецепт від лікаря</h4>
-            <img src="" alt="" class="recipe_img">
+            <div action="" class="profile_recipe">
+                <h4>Рецепт від лікаря</h4>
+                <img src="" alt="" class="recipe_img">
+            </div>
+            <button class="profile_submit">Зберегти зміни</button>
         </form>
     </div>
 </div>
