@@ -15,7 +15,7 @@ using PlusMinus.Utility;
 namespace PlusMinus.Areas.Admin.Controllers
 {
     [Area("Admin")]
-    [Authorize(Roles = Roles.RoleAdmin)]
+    //[Authorize(Roles = Roles.RoleAdmin)]
     public class LensesController : Controller
     {
         private readonly IProductService<Lenses> _lensesService;

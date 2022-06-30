@@ -8,7 +8,7 @@
 <h1>Список окулярів</h1>
 
 <p>
-    <a asp-action="CreateGlasses">Створити нові окуляри</a>
+    <a asp-action="CreateGlasses" class="btn btn-success">Створити нові окуляри</a>
 </p>
 <table class="table">
     <thead>
@@ -69,9 +69,9 @@
                     @Html.DisplayFor(modelItem => item.Amount)
                 </td>
                 <td>
-                    <a asp-action="EditGlasses" asp-route-id="@item.ProductId">Edit</a> |
-                    <a asp-action="GlassesDetails" asp-route-id="@item.ProductId">Details</a> |
-                    <a asp-action="DeleteGlasses" asp-route-id="@item.ProductId">Delete</a>
+                    <a asp-action="EditGlasses" asp-route-id="@item.ProductId" class="btn btn-success">Edit</a> |
+                    <a asp-action="GlassesDetails" asp-route-id="@item.ProductId" class="btn btn-info">Details</a> |
+                    <a asp-action="DeleteGlasses" asp-route-id="@item.ProductId" class="btn btn-danger">Delete</a>
                 </td>
             </tr>
         }

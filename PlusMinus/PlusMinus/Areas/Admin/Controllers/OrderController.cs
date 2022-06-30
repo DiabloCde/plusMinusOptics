@@ -12,7 +12,7 @@ using PlusMinus.Utility;
 namespace PlusMinus.Areas.Admin.Controllers
 {
     [Area("Admin")]
-    [Authorize(Roles = Roles.RoleAdmin)]
+    //[Authorize(Roles = Roles.RoleAdmin)]
     public class OrderController : Controller
     {
         private readonly IOrderService _orderService;

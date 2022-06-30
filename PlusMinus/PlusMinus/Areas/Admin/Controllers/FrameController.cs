@@ -15,7 +15,7 @@ using PlusMinus.Utility;
 namespace PlusMinus.Areas.Admin.Controllers
 {
     [Area("Admin")]
-    [Authorize(Roles = Roles.RoleAdmin)]
+    //[Authorize(Roles = Roles.RoleAdmin)]
     public class FrameController : Controller
     {
         private readonly IProductService<Frame> _frameService;
