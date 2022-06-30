@@ -14,28 +14,28 @@
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.Name)
+                <a asp-action="Index" asp-route-sortOrder="@ViewData["NameSortParam"]">Назва</a>
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Brand)
+                <a asp-action="Index" asp-route-sortOrder="@ViewData["BrandSortParam"]">Виробник</a>
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Color)
+                <a asp-action="Index" asp-route-sortOrder="@ViewData["ColorSortParam"]">Колір</a>
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Form)
+                <a asp-action="Index" asp-route-sortOrder="@ViewData["FormSortParam"]">Форма оправи</a>
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Material)
+                <a asp-action="Index" asp-route-sortOrder="@ViewData["MaterialSortParam"]">Матеріал</a>
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Dioptre)
+                <a asp-action="Index" asp-route-sortOrder="@ViewData["DioptreSortParam"]">Потужність</a>
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Price)
+                <a asp-action="Index" asp-route-sortOrder="@ViewData["PriceSortParam"]">Вартість</a>
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Amount)
+                <a asp-action="Index" asp-route-sortOrder="@ViewData["AmountSortParam"]">Кількість</a>
             </th>
             <th></th>
         </tr>
@@ -77,3 +77,21 @@
         }
     </tbody>
 </table>
+
+@{
+    var prevDisabled = !Model.HasPreviousPage ? "disabled" : "";
+    var nextDisabled = !Model.HasNextPage ? "disabled" : "";
+}
+
+<a asp-action="Index"
+   asp-route-sortOrder="@ViewData["CurrentSort"]"
+   asp-route-pageNumber="@(Model.PageIndex - 1)"
+   class="btn btn-default @prevDisabled">
+    Previous
+</a>
+<a asp-action="Index"
+   asp-route-sortOrder="@ViewData["CurrentSort"]"
+   asp-route-pageNumber="@(Model.PageIndex + 1)"
+   class="btn btn-default @nextDisabled">
+    Next
+</a>
