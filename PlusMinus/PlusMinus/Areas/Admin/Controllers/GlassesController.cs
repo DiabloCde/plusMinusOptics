@@ -24,11 +24,74 @@ namespace PlusMinus.Areas.Admin.Controllers
             _webHostEnvironment = webHostEnvironment;
         }
 
-        public IActionResult Index()
+        public IActionResult Index(string sortOrder, int? pageNumber)
         {
             IEnumerable<Glasses> glasses = _glassesService.GetProducts(p => p.ProductId > 0);
 
-            return View(glasses);
+            ViewData["CurrentSort"] = sortOrder;
+            ViewData["NameSortParam"] = string.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
+            ViewData["BrandSortParam"] = sortOrder == "Brand" ? "brand_desc" : "Brand";
+            ViewData["ColorSortParam"] = sortOrder == "Color" ? "color_desc" : "Color";
+            ViewData["MaterialSortParam"] = sortOrder == "Material" ? "material_desc" : "Material";
+            ViewData["FormSortParam"] = sortOrder == "Form" ? "form_desc" : "Form";
+            ViewData["DioptreSortParam"] = sortOrder == "Dioptre" ? "dioptre_desc" : "Dioptre";
+            ViewData["PriceSortParam"] = sortOrder == "Price" ? "price_desc" : "Price";
+            ViewData["AmountSortParam"] = sortOrder == "Amount" ? "amount_desc" : "Amount";
+
+            switch (sortOrder)
+            {
+                case "name_desc":
+                    glasses = glasses.OrderByDescending(a => a.Name);
+                    break;
+                case "brand_desc":
+                    glasses = glasses.OrderByDescending(a => a.Brand);
+                    break;
+                case "Brand":
+                    glasses = glasses.OrderBy(a => a.Brand);
+                    break;
+                case "color_desc":
+                    glasses = glasses.OrderByDescending(a => a.Color);
+                    break;
+                case "Color":
+                    glasses = glasses.OrderBy(a => a.Color);
+                    break;
+                case "material_desc":
+                    glasses = glasses.OrderByDescending(a => a.Material);
+                    break;
+                case "Material":
+                    glasses = glasses.OrderBy(a => a.Color);
+                    break;
+                case "form_desc":
+                    glasses = glasses.OrderByDescending(a => a.Form);
+                    break;
+                case "Form":
+                    glasses = glasses.OrderBy(a => a.Form);
+                    break;
+                case "dioptre_desc":
+                    glasses = glasses.OrderByDescending(a => a.Dioptre);
+                    break;
+                case "Dioptre":
+                    glasses = glasses.OrderBy(a => a.Dioptre);
+                    break;
+                case "price_desc":
+                    glasses = glasses.OrderByDescending(a => a.Price);
+                    break;
+                case "Price":
+                    glasses = glasses.OrderBy(a => a.Price);
+                    break;
+                case "amount_desc":
+                    glasses = glasses.OrderByDescending(a => a.Amount);
+                    break;
+                case "Amount":
+                    glasses = glasses.OrderBy(a => a.Amount);
+                    break;
+                default:
+                    glasses = glasses.OrderBy(a => a.Name);
+                    break;
+            }
+
+            int pageSize = 5;
+            return View(PaginatedList<Glasses>.CreateAsync(glasses.AsQueryable(), pageNumber ?? 1, pageSize));
         }
 
         [HttpGet]
