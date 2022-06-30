@@ -1,0 +1,35 @@
+﻿@using PlusMinus.Core.Models.Enumerations
+@model PlusMinus.Core.Models.Order
+
+@{
+    ViewData["Title"] = "Змінити статус замовлення";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Змінити статус замовлення</h1>
+
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="ChangeOrderStatus">
+            <div asp-validation-summary="All" class="text-danger"></div>
+            <input type="hidden" asp-for="OrderId" />
+            <div class="form-group">
+                <label asp-for="Status" class="control-label">Статус замовлення</label>
+                @Html.DropDownListFor(m => m.Status, new SelectList(Enum.GetValues(typeof(OrderStatus))), "Виберіть статус замовлення: ")
+                <span asp-validation-for="Status" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Зберегти" class="btn btn-success" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index" class="btn btn-primary">Повернення до списку</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

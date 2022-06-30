@@ -1,0 +1,86 @@
+﻿@using PlusMinus.Core.Models.Enumerations
+@using PlusMinus.ViewModels
+@model PlusMinus.ViewModels.GlassesViewModel
+
+@{
+    ViewData["Title"] = "Редагування окулярів";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Редагувати окуляри</h1>
+
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="EditGlasses">
+            <div asp-validation-summary="All" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Name" class="control-label">Назва:</label>
+                <input asp-for="Name" class="form-control" />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Brand" class="control-label">Виробник:</label>
+                <input asp-for="Brand" class="form-control" />
+                <span asp-validation-for="Brand" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Color" class="control-label">Колір:</label>
+                <input asp-for="Color" class="form-control" />
+                <span asp-validation-for="Color" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Form" class="control-label">Форма оправи:</label>
+                @Html.DropDownListFor(m => m.Form, new SelectList(Enum.GetValues(typeof(FrameForm))), "Виберіть форму оправи: ")
+                <span asp-validation-for="Form" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Material" class="control-label">Матеріал оправи:</label>
+                @Html.DropDownListFor(m => m.Material, new SelectList(Enum.GetValues(typeof(MaterialViewModel))), "Виберіть матеріал: ")
+                <span asp-validation-for="Material" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Price" class="control-label">Вартість:</label>
+                <input asp-for="Price" class="form-control" />
+                <span asp-validation-for="Price" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Amount" class="control-label">Кількість на складі:</label>
+                <input asp-for="Amount" class="form-control" />
+                <span asp-validation-for="Amount" class="text-danger"></span>
+            </div>
+            <div class="form-group row">
+                <div class="col-4">
+                    Зображення:
+                </div>
+                <div class="col-3">
+                    <img src="@Model.ImageUrl" width="350%" style="border-radius:5px; border:1px solid #bbb9b9" />
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="custom-file">
+                    <input asp-for="Image" class="custom-file-input" id="customFile">
+                    <label class="custom-file-label" for="customFile">Виберіть файл:</label>
+                </div>
+                <span asp-validation-for="Image" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Зберегти" class="btn btn-success" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Повернення до списку</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    <script type="text/javascript">
+        $(".custom-file-input").on("change", function () {
+            var fileName = $(this).val().split("\\").pop();
+            $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
+        });
+    </script>
+}

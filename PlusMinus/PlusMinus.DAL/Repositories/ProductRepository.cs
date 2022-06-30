@@ -21,66 +21,38 @@ namespace PlusMinus.DAL.Repositories
 
         public void DeleteProduct(int productId)
         {
-            try
-            {
-                T product = this._context.Set<T>().Find(productId);
-                this._context.Set<T>().Remove(product);
-                this._context.SaveChanges();
-            }
-            catch (Exception)
-            {
-                throw;
-            }
+            T product = this._context.Set<T>().Find(productId);
+            this._context.Set<T>().Remove(product);
+            this._context.SaveChanges();
+        }
+
+        public T? FirstOrDefault(Expression<Func<T, bool>> filter)
+        {
+            T? product = this._context.Set<T>().FirstOrDefault(filter);
+
+            return product;
         }
 
         public T GetProductByID(int productId)
         {
-            try
-            {
-                return (T)this._context.Set<T>().Find(productId);
-            }
-            catch (Exception)
-            {
-                throw;
-            }
+            return (T)this._context.Set<T>().Find(productId);
         }
 
-        public List<T> GetProducts(Expression<Func<T, bool>> filter)
+        public IEnumerable<T> GetProducts(Expression<Func<T, bool>> filter)
         {
-            try
-            {
-                return this._context.Set<T>().Where(filter).ToList();
-            }
-            catch (Exception)
-            {
-                throw;
-            }
+            return this._context.Set<T>().Where(filter);
         }
 
         public void InsertProduct(T product)
         {
-            try
-            {
-                this._context.Set<T>().Add(product);
-                this._context.SaveChanges();
-            }
-            catch (Exception)
-            {
-                throw;
-            }
+            this._context.Set<T>().Add(product);
+            this._context.SaveChanges();
         }
 
         public void UpdateProduct(T product)
         {
-            try
-            {
-                this._context.Entry(product).State = EntityState.Modified;
-                this._context.SaveChanges();
-            }
-            catch (Exception)
-            {
-                throw;
-            }
+            this._context.Entry(product).State = EntityState.Modified;
+            this._context.SaveChanges();
         }
     }
 }

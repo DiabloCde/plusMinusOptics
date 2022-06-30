@@ -21,66 +21,38 @@ namespace PlusMinus.DAL.Repositories
 
         public void DeleteExercise(int exerciseId)
         {
-            try
-            {
-                Exercise exercise = this._context.Exercises.Find(exerciseId);
-                this._context.Exercises.Remove(exercise);
-                this._context.SaveChanges();
-            }
-            catch (Exception)
-            {
-                throw;
-            }
+            Exercise exercise = this._context.Exercises.Find(exerciseId);
+            this._context.Exercises.Remove(exercise);
+            this._context.SaveChanges();
+        }
+
+        public Exercise FirstOrDefault(Expression<Func<Exercise, bool>> filter)
+        {
+            Exercise? exercise = this._context.Exercises.FirstOrDefault(filter);
+
+            return exercise;
         }
 
         public Exercise GetExerciseByID(int exerciseId)
         {
-            try
-            {
-                return this._context.Exercises.Find(exerciseId);
-            }
-            catch (Exception)
-            {
-                throw;
-            }
+            return this._context.Exercises.Find(exerciseId);
         }
 
-        public List<Exercise> GetExercises(Expression<Func<Exercise, bool>> filter)
+        public IEnumerable<Exercise> GetExercises(Expression<Func<Exercise, bool>> filter)
         {
-            try
-            {
-                return this._context.Exercises.Where(filter).ToList();
-            }
-            catch (Exception)
-            {
-                throw;
-            }
+            return this._context.Exercises.Where(filter);
         }
 
         public void InsertExercise(Exercise exercise)
         {
-            try
-            {
-                this._context.Exercises.Add(exercise);
-                this._context.SaveChanges();
-            }
-            catch (Exception)
-            {
-                throw;
-            }
+            this._context.Exercises.Add(exercise);
+            this._context.SaveChanges();
         }
 
         public void UpdateExercise(Exercise exercise)
         {
-            try
-            {
-                this._context.Entry(exercise).State = EntityState.Modified;
-                this._context.SaveChanges();
-            }
-            catch (Exception)
-            {
-                throw;
-            }
+            this._context.Entry(exercise).State = EntityState.Modified;
+            this._context.SaveChanges();
         }
     }
 }

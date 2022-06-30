@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Linq.Expressions;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -27,7 +28,7 @@ namespace PlusMinus.Areas.Customer.Controllers
         public IActionResult Index()
         {
             Expression<Func<Order, bool>> expr = i => i.Status == OrderStatus.Cart;
-            var currentOrders = _orderService.GetOrders(expr);
+            var currentOrders = _orderService.GetOrders(expr).ToList();
             Order order = currentOrders.Count > 0 ? currentOrders[0] : null;
             List<Product> products = new List<Product>();
             if (order is not null)

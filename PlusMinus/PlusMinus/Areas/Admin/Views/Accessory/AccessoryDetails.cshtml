@@ -1,0 +1,66 @@
+﻿@model PlusMinus.Core.Models.Accessory
+
+@{
+    ViewData["Title"] = "Деталі аксесуару";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Деталі аксесуару</h1>
+
+<div>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            Зображення:
+        </dt>
+        <dd class="col-sm-10">
+            <img src="@Model.Image" style="border-radius:5px; border: 1px solid #bbb9b9; width: 128px; height:128px" />
+        </dd>
+        <dt class="col-sm-2">
+            Назва аксесуару:
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+        <dt class="col-sm-2">
+            Виробник:
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Brand)
+        </dd>
+        <dt class="col-sm-2">
+            Колір:
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Color)
+        </dd>
+        <dt class="col-sm-2">
+            Матеріал:
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Material)
+        </dd>
+        <dt class="col-sm-2">
+            Тип аксесуару:
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.AccessoryType)
+        </dd>
+        <dt class="col-sm-2">
+            Вартість:
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Price)
+        </dd>
+        <dt class="col-sm-2">
+            Кількість на складі:
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Amount)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="EditAccessory" asp-route-id="@Model.ProductId" class="btn btn-success">Редагувати</a>
+    <a asp-action="Index" class="btn btn-primary">Повернутися до списку</a>
+</div>
