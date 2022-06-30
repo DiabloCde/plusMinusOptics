@@ -6,27 +6,32 @@
     <title>@ViewData["Title"] - PlusMinus</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" />
+    <link rel="stylesheet" href="~/css/home.css" />
+    <link rel="stylesheet" href="~/css/shop.css" />
+    <link rel="stylesheet" href="~/css/cart.css" />
 </head>
 <body>
     <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
-            <div class="container">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">PlusMinus</a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                    <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
+        <nav class="menu">
+            <ul class="left-upper-menu">
+                <li><img src="/icons/logo.png"  height="80"></li>
+            </ul>
+            <ul class="right-upper-menu">
+                <li>
+                    <a href="~/">012 345 67 89</a>
+                    <a href="~/Customer/Cart"><img src="/icons/cart.png" height="35px"></a>
+                    <a href="~/Customer/Home/Profile"><img src="/icons/user.png" height="35px"></a>
+                </li>
+            </ul>
+        </nav>
+        <nav class="menu-down">
+            <ul>
+                <li>Контактні лінзи</li>
+                <li>Сонцезахисні окуляри</li>
+                <li>Оправи</li>
+                <li>Аксесуари</li>
+                <li>Засоби для догляду</li>
+            </ul>
         </nav>
     </header>
     <div class="container">
@@ -37,7 +42,37 @@
 
     <footer class="border-top footer text-muted">
         <div class="container">
-            &copy; 2022 - PlusMinus - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+            <div class="container-left">
+                <div class="container-left-up">
+                    <b>Гаряча лінія</b>
+                    <p>
+                        <a href="tel:0800-12-34-56">0800 12 34 56</a>
+                    </p>
+                </div>
+                <div class="container-left-down">
+                    <b>Слідкуйте за нами</b>
+                    <p>
+                        <img src="~/img/facebook.png" alt="">
+                        <img src="~/img/instagram.png" alt="">
+                        <img src="~/img/youtube.png" alt="">
+                    </p>
+                </div>
+            </div>
+            <div class="container-middle">
+                <b>Допомога</b>
+                <p>FAQ</p>
+                <p>Як зробити замовлення</p>
+                <p>Оптичний блог</p>
+            </div>
+            <div class="container-right">
+                <b>Особистий кабінет</b>
+                <p>
+                    <a href ="/Identity/Account/Login">Вхід</a>
+                </p>
+                <p>
+                    <a href ="/Identity/Account/Register">Реєстрація</a>
+                </p>
+            </div>
         </div>
     </footer>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>

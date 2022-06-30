@@ -1,0 +1,104 @@
+.profile_panel{
+    display: flex;
+    justify-content: space-between;
+    padding: 3vh;
+    color: #22231d;
+}
+
+.profile_panel h4{
+    margin-top: 2vh;
+    margin-bottom: 2vh;
+}
+
+/* Profile left side */
+
+.profile_left{
+    background-color: #D5D7D1;
+    height: fit-content;
+    width: 12vw;
+    display: flex;
+    flex-direction: column;
+}
+
+.profile_left a
+{
+    color: #22231d;
+    text-decoration: none;
+}
+
+.profile_left_item{
+    height: 7vh;
+}
+
+.profile_left_item:last-child{
+    border-top: #f1f4eb 2px solid;
+}
+
+.profile_left_item-chosen{
+    text-decoration: underline;
+    font-weight: bold;
+}
+
+/* Profile right side */
+
+.profile_right{
+    height: fit-content;
+    width: 41vw;
+    display: flex;
+    flex-direction: column;
+    margin-left: 10vw;
+}
+
+.profile_change{
+    color: black;
+    text-decoration: underline;
+    float: right;
+    font-weight: bold;
+    margin-left: 100%;
+    margin-top: 3vh;
+}
+
+label {
+    margin-right:15px;
+}
+
+.profile_right_item{
+    display: grid;
+    grid-template-columns: 30% 50%;
+}
+
+.profile_info{
+    display: block;
+}
+
+.profile_input{
+    display: block;
+    float: right;
+    width: 21vw;
+    height: 3.2vh;
+}
+
+.profile_submit{
+    width: 15vw;
+    background-color: #458eae;
+    border: 0px;
+    border-radius: 4px;
+    color: white;
+    padding: 0.8vh;
+    margin-top: 2vh;
+    float: right;
+    font-weight: bold;
+}
+
+.profile_submit-disabled{
+    width: 15vw;
+    background-color: #458eae;
+    opacity: 70%;
+    border: 0px;
+    border-radius: 4px;
+    color: white;
+    padding: 0.8vh;
+    margin-top: 2vh;
+    float: right;
+    font-weight: bold;
+}

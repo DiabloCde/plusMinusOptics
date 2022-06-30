@@ -8,10 +8,13 @@ using PlusMinus.BLL.Interfaces;
 using PlusMinus.Core.Models;
 using PlusMinus.Utils;
 using PlusMinus.ViewModels;
+using Microsoft.AspNetCore.Authorization;
+using PlusMinus.Utility;
 
 namespace PlusMinus.Areas.Admin.Controllers
 {
     [Area("Admin")]
+    [Authorize(Roles = Roles.RoleAdmin)]
     public class AccessoryController : Controller
     {
         private readonly IProductService<Accessory> _accessoryService;

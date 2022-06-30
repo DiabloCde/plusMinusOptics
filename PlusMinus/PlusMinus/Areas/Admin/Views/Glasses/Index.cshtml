@@ -1,4 +1,4 @@
-﻿@model IEnumerable<PlusMinus.Core.Models.Glasses>
+﻿@model PlusMinus.ViewModels.PaginatedList<PlusMinus.Core.Models.Glasses>
 
 @{
     ViewData["Title"] = "Index";
@@ -8,7 +8,7 @@
 <h1>Список окулярів</h1>
 
 <p>
-    <a asp-action="Create">Створити нові окуляри</a>
+    <a asp-action="CreateGlasses">Створити нові окуляри</a>
 </p>
 <table class="table">
     <thead>

@@ -1,0 +1,70 @@
+@{
+    ViewData["Title"] = "Profile";
+}
+
+@using PlusMinus.Core.Models;
+@model User;
+
+<div class="profile_panel">
+    <div class="profile_left">
+        <div class="profile_left_item">
+            <img src="" alt="" class="profile_left_img">
+            <a href="/Customer/Home/ProfileEdit"><p class="profile_left_item-chosen">Мій кабінет</p></a>
+        </div>
+        <div class="profile_left_item">
+            <img src="" alt="" class="profile_left_img">
+            <a href=""><p>Мої замовлення</p></a>
+        </div>
+        <div class="profile_left_item">
+            <img src="" alt="" class="profile_left_img">
+            <a asp-action="Logout"><p>Вихід</p></a>
+        </div>
+    </div>
+    <div class="profile_right">
+        <form action="" class="profile_data">
+
+            <div class="profile_right_item">
+                <h4>Персональні дані</h4>
+                <a href="/Customer/Home/ProfileEdit" class="profile_change">Змінити</a>
+            </div>
+
+            <div class="profile_right_item">
+                <label>Прізвище:</label>
+                @{
+                    <label class="profile_info">@Model.Lastname</label>
+                }
+            </div>
+            <div class="profile_right_item">
+                <label>Ім'я:</label>
+                @{
+                    <label class="profile_info">@Model.Name</label>
+                }
+            </div>
+            <div class="profile_right_item">
+                <label>По-батькові:</label>
+                @{
+                    <label class="profile_info">@Model.Surname</label>
+                }
+            </div>
+
+            <h4>Контактні дані</h4>
+
+            <div class="profile_right_item">
+                <label>E-mail:</label>
+                @{
+                    <label class="profile_info">@Model.Email</label>
+                }
+            </div>
+            <div class="profile_right_item">
+                <label>Адреса:</label>
+                @{
+                    <label class="profile_info">@Model.Address</label>
+                }
+            </div>
+        </form>
+        <form action="" class="profile_recipe">
+            <h4>Рецепт від лікаря</h4>
+            <img src="" alt="" class="recipe_img">
+        </form>
+    </div>
+</div>

@@ -6,10 +6,13 @@ using System.Threading.Tasks;
 using PlusMinus.BLL.Interfaces;
 using PlusMinus.Core.Models;
 using PlusMinus.ViewModels;
+using Microsoft.AspNetCore.Authorization;
+using PlusMinus.Utility;
 
 namespace PlusMinus.Areas.Admin.Controllers
 {
     [Area("Admin")]
+    [Authorize(Roles = Roles.RoleAdmin)]
     public class OrderController : Controller
     {
         private readonly IOrderService _orderService;

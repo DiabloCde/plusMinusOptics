@@ -1,0 +1,105 @@
+.shop_panel{
+    display: flex;
+    justify-content: space-between;
+    padding-top: 3vh;
+    color: #22231d;
+}
+
+/* Shop left side */
+
+.shop_left{
+    background-color: white;
+    width: 12vw;
+    display: flex;
+    flex-direction: column;
+}
+
+.shop_left_item{
+    height: fit-content;
+    border-bottom: #f1f4eb 2px solid;
+    text-align: left;
+    padding-top: 1vh;
+    padding-left: 0.8vw;
+}
+
+.shop_left_item_title{
+    text-align: center;
+    margin-left: -0.8vw;
+}
+
+.shop_price_input{
+    width: 3.5vw;
+    height: 2.5vh;
+    margin-left: -0.5vw;
+    margin-right: 0.3vw;
+}
+
+.filter_submit{
+    width: 100%;
+    background-color: #458eae;
+    border: 0px;
+    border-radius: 4px;
+    color: white;
+    padding: 0.8vh;
+    margin-bottom: 2vh;
+    float: right;
+    font-weight: bold;
+}
+
+/* Shop right side */
+
+.shop_right{
+    height: 100%;
+    width: 44vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+/* Shop search panel */
+
+.shop_search{
+    height: 5vh;
+    display: grid;
+    grid-template-columns: 85% 15%;
+}
+
+.shop_search_button{
+    background-color: #458eae;
+    border: 0px;
+    color: white;
+    padding: 0.8vh;
+    font-weight: bold;
+}
+
+/* Shop catalog panel */
+
+.catalog_title{
+    margin-top: 2vh;
+}
+
+.shop_products{
+    height: 54vh;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    overflow-y: scroll;
+}
+
+.shop_product{
+    height: 25vh;
+    width: 14vw;
+    margin-top: 2vh;
+    background-color: white;
+    text-align: center;
+}
+
+.shop_toProd{
+    width: 5vw;
+    background-color: #458eae;
+    border: 0px;
+    border-radius: 4px;
+    color: white;
+    padding: 0.3vh;
+    font-weight: bold;
+}

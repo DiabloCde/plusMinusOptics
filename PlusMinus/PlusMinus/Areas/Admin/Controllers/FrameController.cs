@@ -9,10 +9,13 @@ using PlusMinus.BLL.Interfaces;
 using PlusMinus.Core.Models;
 using PlusMinus.Utils;
 using PlusMinus.ViewModels;
+using Microsoft.AspNetCore.Authorization;
+using PlusMinus.Utility;
 
 namespace PlusMinus.Areas.Admin.Controllers
 {
     [Area("Admin")]
+    [Authorize(Roles = Roles.RoleAdmin)]
     public class FrameController : Controller
     {
         private readonly IProductService<Frame> _frameService;

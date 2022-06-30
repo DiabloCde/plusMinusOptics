@@ -1,0 +1,66 @@
+@model List<PlusMinus.Core.Models.Product>
+@{double sum = 0;}
+@{ double discount = 0;}
+@{ double shipping = 0;}
+@{ double itemTotal = 0;}
+<div class="cart-container">
+     <div class="cart">
+          <div class="name">
+               <h2>Кошик</h2>
+          </div>
+          <br/>
+
+          @foreach (var item in Model)
+          {
+               int num = 1;
+               <div class="cart-item">
+                    <div class="item-name">
+                         <h2>@item.Name</h2>
+                    </div>
+                    <div class="item-data">
+                         <div class="item-left">
+                              <div class="item-img">
+                                   <img src="@item.Image"  width="70%" alt="test"/>
+                              </div>
+                         </div>
+                         <div class="item-right">
+                              <button class="btn delete-count" onclick="@{ num -= 1;}">-</button>
+                              <div class="item-amount">
+                                   <p>Кількість: </p>
+                                   <h2>@num</h2>
+                              </div>
+                              <button class="btn add-count" onclick="@{ num += 1;}">+</button>
+                              <div class="item-price">
+                                   <p>Ціна:</p>
+                                   <h2>@item.Price</h2>
+                              </div>
+                              <div class="item-total">
+                                   <p>Всього: </p>
+                                   @{ itemTotal = item.Price * num; }
+                                   <h2>@itemTotal</h2>
+                              </div>
+                         </div>
+                         <div class="item-data-down">
+                              <button class="btn btn-danger" onclick="">Видалити</button>
+                         </div>
+                    </div>
+               </div>
+          }
+     </div>
+     <div class="cart-info">
+          @{ var total = sum - sum * discount;}
+          <div class="name">
+               <h2>Всього</h2>
+          </div>
+          <div class="data">
+               <p><b>Сумма товарів</b></p>
+               <p>@sum</p>
+               <p><b>Сумма знижки</b></p>
+               <p>@discount</p>
+               <p><b>Сумма доставки</b></p>
+               <p>@shipping</p>
+               <p><b>Всього до оплати</b></p>
+               <p><b>@total</b></p>
+          </div>
+     </div>
+</div>
