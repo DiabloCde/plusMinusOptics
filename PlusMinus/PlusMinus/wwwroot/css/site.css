@@ -94,13 +94,29 @@ header a:hover
 header .menu
 {
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
     align-items: center;
     width: 100vw;
     background-color: #30587b;
     color: #fff;
     padding: 20px;
     /* margin-bottom: 20px; */
+}
+
+header .left-upper-menu
+{
+    width:  30vw;
+}
+header .right-upper-menu
+{
+    width: 30vw;
+}
+
+header .right-upper-menu li
+{
+    display: flex;
+    justify-content: space-between;
+    align-content: center
 }
 
 header .menu-down
@@ -139,6 +155,12 @@ footer .container
 footer .container b
 {
     text-decoration: underline;
+}
+
+footer .container a
+{
+    text-decoration: none;
+    color: #22231d;
 }
 
 footer .container .container-left
