@@ -1,5 +1,5 @@
 @{
-    ViewData["Title"] = "Shop";
+    ViewData["Title"] = "Glasses";
 }
 
 @using PlusMinus.Core.Models;
@@ -12,28 +12,45 @@
         </div>
         <div class="shop_left_item">
             <p class="shop_left_item_title">Ціна</p>
+
             <label for="">від</label>
-            <input type="text" class="shop_price_input" value="0">
+            <input type="number" class="shop_price_input" value="0" step="100">
+
             <label for="">до</label>
-            <input type="text" class="shop_price_input" value="100000">
+            <input type="number" class="shop_price_input" value="100000" step="100">
+
         </div>
         <div class="shop_left_item">
             <p class="shop_left_item_title">Форма</p>
-            <input type="checkbox">
-            <label for="">Кругла</label><br>
+
             <input type="checkbox">
             <label for="">Квадратна</label><br>
+
             <input type="checkbox">
-            <label for="">Крапляподібна</label><br>
+            <label for="">Трикутна</label><br>
+
             <input type="checkbox">
-            <label for="">Кошаче око</label>
+            <label for="">Кошаче око</label><br>
+
+            <input type="checkbox">
+            <label for="">Авіатор</label><br>
+
+            <input type="checkbox">
+            <label for="">Кругла</label><br>
+
+            <input type="checkbox">
+            <label for="">Прямокутна</label><br>
+
         </div>
         <div class="shop_left_item">
             <p class="shop_left_item_title">Матеріал</p>
+
             <input type="checkbox">
             <label for="">Метал</label><br>
+
             <input type="checkbox">
             <label for="">Пластик</label>
+
         </div>
         <input type="submit" value="Застосувати фільтри" class="filter_submit">
         <input type="submit" value="Скасувати фільтри" class="filter_submit">
@@ -53,7 +70,7 @@
                         <p class="shop_catalog_item_name">@item.Name</p>
                         <label for="" class="shop_catalog_item_cost">@item.Price</label>
                         <label for="">грн</label>
-                        <a href=""><button class="shop_toProd">У кошик</button></a>
+                        <button class="shop_toProd">У кошик</button>
                     </div>
                 }
             </div>

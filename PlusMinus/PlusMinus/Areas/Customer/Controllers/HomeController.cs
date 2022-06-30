@@ -57,7 +57,7 @@ namespace PlusMinus.Areas.Customer.Controllers
             return View(prods);
         }
 
-        public IActionResult GetFrames()
+        public IActionResult GetFrames(int form, int material, int start=0, int end=100000)
         {
             var prods = _framesService.GetProducts(i => i.ProductId >= 0);
 

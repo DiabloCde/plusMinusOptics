@@ -82,7 +82,7 @@
     height: 54vh;
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-between;
+    gap: 0vh 0.5vw;
     overflow-y: scroll;
 }
 
