@@ -48,7 +48,20 @@ namespace PlusMinus.Areas.Customer.Controllers
             return View(prods);
         }
         public IActionResult MakeOrder()
-        { 
+        {
+            Expression<Func<Order, bool>> expr = i => i.Status == OrderStatus.Cart;
+            var currentOrders = _orderService.GetOrders(expr).ToList();
+            Order order = currentOrders.Count > 0 ? currentOrders[0] : null;
+            List<Product> products = new List<Product>();
+            if (order is not null)
+            {
+                foreach (var orderProduct in order.OrderProducts)
+                {
+                    var p = orderProduct.Product;
+                    p.Amount--;
+                    _productService.UpdateProduct(p);
+                }
+            } 
             return View(); 
         }
     }
