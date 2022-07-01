@@ -1,0 +1,41 @@
+@{
+    ViewData["Title"] = "Lenses";
+}
+
+@using PlusMinus.Core.Models;
+@model Lenses;
+
+<div class="product_panel">
+    <div class="product_up">
+        <h4 class="product_up_title">@Model.Name</h4>
+    </div>
+    <div class="product_down">
+        <div class="product_left">
+            <img src="@Model.Image" alt="" class="product_left_img">
+        </div>
+        <div class="product_right">
+            <h4 class="product_up_title">@Model.Price грн</h4>
+            <p>Про товар:</p>
+
+            <label>Диоптрії:</label>
+            <label>@Model.Dioptre</label><br>
+
+            <label>Базова кривізна:</label>
+            <label>@Model.BaseCurve</label><br>
+
+            <label>Кількість в упаковці:</label>
+            <label>@Model.NumberOfUnits</label><br>
+
+            <label>Діаметр:</label>
+            <label>@Model.Diameter</label><br>
+
+            <label>Термін придатності:</label>
+            <label>@Model.ExpirationDate днів</label><br>
+
+            <label>Бренд:</label>
+            <label>@Model.Brand</label><br>
+
+            <button class="product_submit">Додати до кошика</button>
+        </div>
+    </div>
+</div>

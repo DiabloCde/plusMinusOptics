@@ -41,7 +41,7 @@
                               </div>
                          </div>
                          <div class="item-data-down">
-                              <button class="btn btn-danger" onclick="">Видалити</button>
+                              <button id="del" class="btn btn-danger" onclick="">Видалити</button>
                          </div>
                     </div>
                </div>
@@ -64,3 +64,8 @@
           </div>
      </div>
 </div>
+
+<script>
+    var del = Document.getElementById("del");
+    del.addEventListener('click', function(){ x.parentNode.removeChild(x); })
+</script>

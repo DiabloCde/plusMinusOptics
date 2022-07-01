@@ -10,6 +10,7 @@ using PlusMinus.Utility;
 using System.Security.Claims;
 using Microsoft.AspNetCore.Identity;
 using PlusMinus.ViewModels;
+using PlusMinus.Core.Models.Enumerations;
 
 namespace PlusMinus.Areas.Customer.Controllers
 {
@@ -31,10 +32,12 @@ namespace PlusMinus.Areas.Customer.Controllers
 
         private readonly IProductService<Eyecare> _eyecareService;
 
+        private readonly IOrderService _orderService;
+
         public HomeController(UserManager<User> userManager, SignInManager<User> signInManager, 
             IProductService<Accessory> accessoryService, IProductService<Frame> framesService, 
             IProductService<Glasses> glassesService, IProductService<Lenses> lensesService, 
-            IProductService<Eyecare> eyecareService)
+            IProductService<Eyecare> eyecareService, IOrderService orderService)
         {
             _userManager = userManager;
             _signInManager = signInManager;
@@ -43,6 +46,7 @@ namespace PlusMinus.Areas.Customer.Controllers
             _glassesService = glassesService;
             _lensesService = lensesService;
             _eyecareService = eyecareService;
+            _orderService = orderService;
         }
 
         public IActionResult Index()
@@ -57,7 +61,7 @@ namespace PlusMinus.Areas.Customer.Controllers
             return View(prods);
         }
 
-        public IActionResult GetFrames(int form, int material, int start=0, int end=100000)
+        public IActionResult GetFrames()
         {
             var prods = _framesService.GetProducts(i => i.ProductId >= 0);
 
@@ -83,6 +87,98 @@ namespace PlusMinus.Areas.Customer.Controllers
             var prods = _eyecareService.GetProducts(i => i.ProductId >= 0);
 
             return View(prods);
+        }
+
+        [HttpGet]
+        public IActionResult FramesDetails(int id)
+        {
+            var frame = _framesService.GetProductByID(id);
+
+            return View(frame);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> FramesDetails(Frame frame)
+        {
+            var claimsIdentity = (ClaimsIdentity)User.Identity;
+            var claim = claimsIdentity.FindFirst(ClaimTypes.NameIdentifier);
+            var user = await _userManager.FindByIdAsync(claim.Value);
+            var order = _orderService.FirstOrDefault(o => o.UserId == user.Id && o.Status == OrderStatus.Cart);
+
+            if (order is null)
+            {
+                _orderService.AddOrder(new Order 
+                {
+                    UserId = user.Id,
+                    Date = DateTime.Now,
+                    Status = OrderStatus.Cart,
+                });
+
+                var orderFromDb = _orderService.FirstOrDefault(o => o.UserId == user.Id && o.Status == OrderStatus.Cart);
+
+                _orderService.AddProductToOrder(new OrderProduct
+                {
+                    ProductId = frame.ProductId,
+                    OrderId = orderFromDb.OrderId,
+                    Amount = 1,
+                });
+            }
+            else
+            {
+                var orderProduct = order.OrderProducts.FirstOrDefault(o => o.ProductId == frame.ProductId);
+
+                if (orderProduct is null)
+                {
+                    _orderService.AddProductToOrder(new OrderProduct
+                    {
+                        ProductId = frame.ProductId,
+                        OrderId = order.OrderId,
+                        Amount = 1,
+                    });
+                }
+                else
+                {
+                    orderProduct.Amount += 1;
+                }
+
+                _orderService.UpdateProductInOrder(orderProduct);
+            }
+
+
+
+            return View(frame);
+        }
+
+        [HttpGet]
+        public IActionResult AccessoriesDetails(int id)
+        {
+            var accessory = _accessoryService.GetProductByID(id);
+
+            return View(accessory);
+        }
+
+        [HttpGet]
+        public IActionResult EyecareDetails(int id)
+        {
+            var eyecare = _eyecareService.GetProductByID(id);
+
+            return View(eyecare);
+        }
+
+        [HttpGet]
+        public IActionResult GlassesDetails(int id)
+        {
+            var glasses = _glassesService.GetProductByID(id);
+
+            return View(glasses);
+        }
+
+        [HttpGet]
+        public IActionResult LensesDetails(int id)
+        {
+            var lenses = _lensesService.GetProductByID(id);
+
+            return View(lenses);
         }
 
         public async Task<IActionResult> Profile()

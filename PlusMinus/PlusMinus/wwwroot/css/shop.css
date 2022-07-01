@@ -94,6 +94,11 @@
     text-align: center;
 }
 
+.shop_product_img{
+    height: 12vh;
+    margin: 2vh;
+}
+
 .shop_toProd{
     width: 5vw;
     background-color: #458eae;
@@ -102,8 +107,4 @@
     color: white;
     padding: 0.3vh;
     font-weight: bold;
-}
-
-.shop_catalog_item_material {
-    visibility: hidden;
 }
