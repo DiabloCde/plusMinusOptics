@@ -42,12 +42,6 @@ namespace PlusMinus.Areas.Customer.Controllers
             return View(products);
         }
 
-        public IActionResult Shop()
-        {
-            Expression<Func<Product, bool>> expr = i => i.ProductId >= 0;
-            var prods = _productService.GetProducts(expr);
-            return View(prods);
-        }
         public IActionResult MakeOrder()
         {
             Expression<Func<Order, bool>> expr = i => i.Status == OrderStatus.Cart;
@@ -59,9 +53,16 @@ namespace PlusMinus.Areas.Customer.Controllers
                 foreach (var orderProduct in order.OrderProducts)
                 {
                     var p = orderProduct.Product;
-                    p.Amount--;
+                    if (p.Amount < orderProduct.Amount)
+                    {
+                        return View();
+                    }
+                    p.Amount -= orderProduct.Amount;
                     _productService.UpdateProduct(p);
                 }
+
+                order.Status = OrderStatus.Paid;
+                _orderService.UpdateOrder(order);
             } 
             return View(); 
         }

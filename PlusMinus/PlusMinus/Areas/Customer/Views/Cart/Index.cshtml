@@ -42,9 +42,12 @@
                               </div>
                               @{sum = sum + itemTotal;}
                          </div>
-                         <div class="item-data-down">
-                              <a asp-area="Customer" asp-controller="Cart" asp-action="DeleteProductFromOrder" asp-route-id=@item.ProductId>Delete</a>
-                         </div>
+                        <div class="item-data-down">
+                            <form asp-action="DeleteProductFromOrder">
+                                <input type="hidden" asp-for="@item.ProductId" />
+                                <input type="submit" value="Видалити" class="btn btn-danger" />
+                            </form>
+                        </div>
                     </div>
                </div>
           }
@@ -63,7 +66,7 @@
                <p>@shipping</p>
                <p><b>Всього до оплати</b></p>
                <p><b>@total</b></p>
-               <p><a href = "~/Customer/Cart/MakeOrder"><button class = "btn btn-primary">Зробити замовлення</button></a></p>
+               <p><a href = "~/Customer/Cart/MakeOrder"><button class = "btn btn-primary" disabled="@Model.Count <= 0">Зробити замовлення</button></a></p>
           </div>
      </div>
 </div>

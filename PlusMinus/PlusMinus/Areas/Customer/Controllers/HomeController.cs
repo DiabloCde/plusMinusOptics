@@ -8,14 +8,15 @@ using PlusMinus.BLL.Interfaces;
 using PlusMinus.Core.Models;
 using PlusMinus.Utility;
 using System.Security.Claims;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
 using PlusMinus.ViewModels;
 using PlusMinus.Core.Models.Enumerations;
+using PlusMinus.Utils;
 
 namespace PlusMinus.Areas.Customer.Controllers
 {
     [Area("Customer")]
-    [Authorize(Roles = Roles.RoleCustomer)]
     public class HomeController : Controller
     {
         private readonly UserManager<User> _userManager;
@@ -34,10 +35,13 @@ namespace PlusMinus.Areas.Customer.Controllers
 
         private readonly IOrderService _orderService;
 
+        private readonly IWebHostEnvironment _webHostEnvironment;
+
         public HomeController(UserManager<User> userManager, SignInManager<User> signInManager, 
             IProductService<Accessory> accessoryService, IProductService<Frame> framesService, 
             IProductService<Glasses> glassesService, IProductService<Lenses> lensesService, 
-            IProductService<Eyecare> eyecareService, IOrderService orderService)
+            IProductService<Eyecare> eyecareService, IOrderService orderService,
+            IWebHostEnvironment webHostEnvironment)
         {
             _userManager = userManager;
             _signInManager = signInManager;
@@ -47,6 +51,7 @@ namespace PlusMinus.Areas.Customer.Controllers
             _lensesService = lensesService;
             _eyecareService = eyecareService;
             _orderService = orderService;
+            _webHostEnvironment = webHostEnvironment;
         }
 
         public IActionResult Index()
@@ -98,6 +103,7 @@ namespace PlusMinus.Areas.Customer.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles = Roles.RoleCustomer)]
         public async Task<IActionResult> FramesDetails(Frame frame)
         {
             var claimsIdentity = (ClaimsIdentity)User.Identity;
@@ -146,7 +152,7 @@ namespace PlusMinus.Areas.Customer.Controllers
 
 
 
-            return View(frame);
+            return RedirectToAction("GetFrames");
         }
 
         [HttpGet]
@@ -158,6 +164,7 @@ namespace PlusMinus.Areas.Customer.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles = Roles.RoleCustomer)]
         public async Task<IActionResult> AccessoriesDetails(Accessory accessory)
         {
             var claimsIdentity = (ClaimsIdentity)User.Identity;
@@ -206,7 +213,7 @@ namespace PlusMinus.Areas.Customer.Controllers
 
 
 
-            return View(accessory);
+            return RedirectToAction("GetAccessories");
         }
 
         [HttpGet]
@@ -218,6 +225,7 @@ namespace PlusMinus.Areas.Customer.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles = Roles.RoleCustomer)]
         public async Task<IActionResult> EyecareDetails(Eyecare eyecare)
         {
             var claimsIdentity = (ClaimsIdentity)User.Identity;
@@ -266,7 +274,7 @@ namespace PlusMinus.Areas.Customer.Controllers
 
 
 
-            return View(eyecare);
+            return RedirectToAction("GetEyecare");
         }
 
         [HttpGet]
@@ -278,6 +286,7 @@ namespace PlusMinus.Areas.Customer.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles = Roles.RoleCustomer)]
         public async Task<IActionResult> GlassesDetails(Glasses glasses)
         {
             var claimsIdentity = (ClaimsIdentity)User.Identity;
@@ -326,7 +335,7 @@ namespace PlusMinus.Areas.Customer.Controllers
 
 
 
-            return View(glasses);
+            return RedirectToAction("GetGlasses");
         }
 
         [HttpGet]
@@ -338,6 +347,7 @@ namespace PlusMinus.Areas.Customer.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles = Roles.RoleCustomer)]
         public async Task<IActionResult> LensesDetails(Lenses lenses)
         {
             var claimsIdentity = (ClaimsIdentity)User.Identity;
@@ -386,9 +396,10 @@ namespace PlusMinus.Areas.Customer.Controllers
 
 
 
-            return View(lenses);
+            return RedirectToAction("GetLenses");
         }
 
+        [Authorize(Roles = Roles.RoleCustomer + "," + Roles.RoleAdmin)]
         public async Task<IActionResult> Profile()
         {
             var claimsIdentity = (ClaimsIdentity)User.Identity;
@@ -398,6 +409,7 @@ namespace PlusMinus.Areas.Customer.Controllers
         }
 
         [HttpGet]
+        [Authorize]
         public async Task<IActionResult> ProfileEdit()
         {
             var claimsIdentity = (ClaimsIdentity)User.Identity;
@@ -417,6 +429,7 @@ namespace PlusMinus.Areas.Customer.Controllers
         }
 
         [HttpPost]
+        [Authorize]
         public async Task<IActionResult> ProfileEdit(UserViewModel userViewModel)
         {
             var userFromDb = await _userManager.FindByIdAsync(userViewModel.Id);
@@ -425,21 +438,23 @@ namespace PlusMinus.Areas.Customer.Controllers
             userFromDb.Lastname = userViewModel.Lastname;
             userFromDb.Address = userViewModel.Address;
             userFromDb.Email = userViewModel.Email;
-            userFromDb.Receipt = userViewModel.ImageUrl;
+            userFromDb.Receipt = ImageUploader.CreatePath(userViewModel.Receipt, _webHostEnvironment);
             await _userManager.UpdateAsync(userFromDb);
             return RedirectToAction("Profile");
         }
 
+        [Authorize(Roles = Roles.RoleCustomer)]
         public async Task<IActionResult> GetUserOrders()
         {
             var claimsIdentity = (ClaimsIdentity)User.Identity;
             var claim = claimsIdentity.FindFirst(ClaimTypes.NameIdentifier);
             var user = await _userManager.FindByIdAsync(claim.Value);
-            var orders = _orderService.GetOrders(o => o.UserId == user.Id);
+            var orders = _orderService.GetOrders(o => o.UserId == user.Id && o.Status != OrderStatus.Cart);
 
             return View(orders);
         }
 
+        [Authorize(Roles = Roles.RoleCustomer + "," + Roles.RoleAdmin)]
         public async Task<IActionResult> Logout()
         {
             await _signInManager.SignOutAsync();

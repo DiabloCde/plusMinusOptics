@@ -21,7 +21,7 @@
         </div>
     </div>
     <div class="profile_right">
-        <form asp-action="ProfileEdit" class="profile_data">
+        <form asp-action="ProfileEdit" class="profile_data" enctype="multipart/form-data">
             <input type="hidden" asp-for="Id">
             <div class="profile_right_item">
                 <h4>Персональні дані</h4>
@@ -54,7 +54,32 @@
                 <h4>Рецепт від лікаря</h4>
                 <img src="" alt="" class="recipe_img">
             </div>
+            <div class="form-group row">
+                <div class="col-4">
+                    Зображення:
+                </div>
+                <div class="col-3">
+                    <img src="@Model.ImageUrl" width="350%" style="border-radius:5px; border:1px solid #bbb9b9" />
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="custom-file">
+                    <input asp-for="Receipt" class="custom-file-input" id="customFile">
+                    <label class="custom-file-label" for="customFile">Виберіть файл:</label>
+                </div>
+                <span asp-validation-for="Receipt" class="text-danger"></span>
+            </div>
             <button class="profile_submit">Зберегти зміни</button>
         </form>
     </div>
 </div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    <script type="text/javascript">
+        $(".custom-file-input").on("change", function () {
+            var fileName = $(this).val().split("\\").pop();
+            $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
+        });
+    </script>
+}

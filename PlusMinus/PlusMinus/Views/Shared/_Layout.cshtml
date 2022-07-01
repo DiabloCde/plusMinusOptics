@@ -1,4 +1,5 @@
-﻿<!DOCTYPE html>
+﻿@using PlusMinus.Utility
+<!DOCTYPE html>
 <html lang="en">
 <head>
 	<meta charset="utf-8" />
@@ -15,7 +16,14 @@
     <header>
         <nav class="menu">
             <ul class="left-upper-menu">
-                <li><img src="/icons/logo.png"  height="80"></li>
+				@if (User.IsInRole(Roles.RoleAdmin))
+				{
+				    <li><a asp-area="Admin" asp-controller="Lenses" asp-action="Index"><img src="/icons/logo.png" height="80"></a></li>
+				}
+				else
+				{
+				    <li><a asp-area="Customer" asp-controller="Home" asp-action="Index"><img src="/icons/logo.png" height="80"></a></li>
+				}
             </ul>
             <ul class="right-upper-menu">
                 <li>
@@ -27,11 +35,23 @@
         </nav>
         <nav class="menu-down">
             <ul>
-                <li><a href="~/Customer/Home/GetLenses">Контактні лінзи</a></li>
-                <li><a href="~/Customer/Home/GetGlasses">Окуляри</a></li>
-                <li><a href="~/Customer/Home/GetFrames">Оправи</a></li>
-                <li><a href="~/Customer/Home/GetAccessories">Аксесуари</a></li>
-                <li><a href="~/Customer/Home/GetEyecare">Засоби для догляду</a></li>
+                @if (User.IsInRole(Roles.RoleAdmin))
+                {
+                    <li><a href="~/Admin/Lenses/Index">Контактні лінзи</a></li>
+                    <li><a href="~/Admin/Accessory/Index">Аксесуари</a></li>
+                    <li><a href="~/Admin/Eyecare/Index">Засоби для догляду</a></li>
+                    <li><a href="~/Admin/Frame/Index">Оправи</a></li>
+                    <li><a href="~/Admin/Glasses/Index">Окуляри</a></li>
+                    <li><a href="~/Admin/Order/Index">Замовлення</a></li>
+                }
+                else
+                {
+                    <li><a href="~/Customer/Home/GetLenses">Контактні лінзи</a></li>
+                    <li><a href="~/Customer/Home/GetGlasses">Окуляри</a></li>
+                    <li><a href="~/Customer/Home/GetFrames">Оправи</a></li>
+                    <li><a href="~/Customer/Home/GetAccessories">Аксесуари</a></li>
+                    <li><a href="~/Customer/Home/GetEyecare">Засоби для догляду</a></li>
+                }
             </ul>
         </nav>
     </header>

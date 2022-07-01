@@ -3,6 +3,7 @@
 }
 
 @using PlusMinus.Core.Models;
+@using PlusMinus.Utility
 @model User;
 
 <div class="profile_panel">
@@ -11,10 +12,13 @@
             <img src="" alt="" class="profile_left_img">
             <a href="/Customer/Home/ProfileEdit"><p class="profile_left_item-chosen">Мій кабінет</p></a>
         </div>
-        <div class="profile_left_item">
-            <img src="" alt="" class="profile_left_img">
-            <a href="/Customer/Home/GetUserOrders"><p>Мої замовлення</p></a>
-        </div>
+        @if (User.IsInRole(Roles.RoleCustomer))
+        {
+            <div class="profile_left_item">
+                <img src="" alt="" class="profile_left_img">
+                <a href="/Customer/Home/GetUserOrders"><p>Мої замовлення</p></a>
+            </div>
+        }
         <div class="profile_left_item">
             <img src="" alt="" class="profile_left_img">
             <a asp-action="Logout"><p>Вихід</p></a>
@@ -25,7 +29,11 @@
 
             <div class="profile_right_item">
                 <h4>Персональні дані</h4>
-                <a href="/Customer/Home/ProfileEdit" class="profile_change">Змінити</a>
+                
+                @if (User.IsInRole(Roles.RoleCustomer))
+                {
+                    <a href="/Customer/Home/ProfileEdit" class="profile_change">Змінити</a>
+                }
             </div>
 
             <div class="profile_right_item">
@@ -64,7 +72,7 @@
         </form>
         <form action="" class="profile_recipe">
             <h4>Рецепт від лікаря</h4>
-            <img src="" alt="" class="recipe_img">
+            <img src="@Model.Receipt" style="border-radius:5px; border: 1px solid #bbb9b9; width: 512px; height:512px" />
         </form>
     </div>
 </div>
