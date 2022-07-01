@@ -440,6 +440,34 @@ namespace PlusMinus.Areas.Customer.Controllers
             return View(orders);
         }
 
+        [HttpGet]
+        public IActionResult UserOrderDetails(int id)
+        {
+            Order? order = _orderService.FirstOrDefault(x => x.OrderId == id);
+
+            if (order is null)
+            {
+                return NotFound();
+            }
+
+            double sumPrice = order.OrderProducts.Sum(o => o.Product.Price * o.Amount);
+
+            OrderViewModel orderViewModel = new OrderViewModel
+            {
+                OrderId = order.OrderId,
+                UserName = order.User.Name,
+                UserSurname = order.User.Surname,
+                UserLastname = order.User.Lastname,
+                UserAddress = order.User.Address,
+                Date = order.Date,
+                Status = order.Status,
+                OrderProducts = order.OrderProducts,
+                SumPrice = sumPrice,
+            };
+
+            return View(orderViewModel);
+        }
+
         public async Task<IActionResult> Logout()
         {
             await _signInManager.SignOutAsync();
