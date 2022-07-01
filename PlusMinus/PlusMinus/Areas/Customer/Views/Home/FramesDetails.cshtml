@@ -10,28 +10,35 @@
         <div class="product_content">
             <div class="product_up">
                 <h4 class="product_up_title">@Model.Name</h4>
+                <input type="hidden" asp-for="Name" />
             </div>
             <div class="product_down">
                 <div class="product_left">
                     <img src="@Model.Image" alt="" class="product_left_img">
+                    <input type="hidden" asp-for="Image" />
                 </div>
                 <div class="product_right">
                     <h4 class="product_up_title">@Model.Price грн</h4>
+                    <input type="hidden" asp-for="Price" />
                     <p>Про товар:</p>
 
                     <input type="hidden" asp-for="ProductId" />
 
                     <label>Форма:</label>
                     <label>@Model.Form</label><br>
+                    <input type="hidden" asp-for="Form" />
 
                     <label>Матеріал:</label>
                     <label>@Model.Material</label><br>
+                    <input type="hidden" asp-for="Material" />
 
                     <label>Колір:</label>
                     <label>@Model.Color</label><br>
+                    <input type="hidden" asp-for="Color" />
 
                     <label>Бренд:</label>
                     <label>@Model.Brand</label><br>
+                    <input type="hidden" asp-for="Brand" />
 
                     <input class="product_submit" value="Додати до кошика" type="submit" />
                 </div>

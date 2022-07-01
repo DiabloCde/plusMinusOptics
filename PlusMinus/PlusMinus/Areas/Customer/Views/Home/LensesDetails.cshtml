@@ -6,36 +6,51 @@
 @model Lenses;
 
 <div class="product_panel">
-    <div class="product_up">
-        <h4 class="product_up_title">@Model.Name</h4>
-    </div>
-    <div class="product_down">
-        <div class="product_left">
-            <img src="@Model.Image" alt="" class="product_left_img">
+    <form asp-action="LensesDetails">
+        <div class="product_content">
+            <div class="product_up">
+                <h4 class="product_up_title">@Model.Name</h4>
+                <input type="hidden" asp-for="Name" />
+            </div>
+            <div class="product_down">
+                <div class="product_left">
+                    <img src="@Model.Image" alt="" class="product_left_img">
+                    <input type="hidden" asp-for="Image" />
+                </div>
+                <div class="product_right">
+                    <h4 class="product_up_title">@Model.Price грн</h4>
+                    <input type="hidden" asp-for="Price" />
+                    <p>Про товар:</p>
+
+                    <input type="hidden" asp-for="ProductId" />
+
+                    <label>Диоптрії:</label>
+                    <label>@Model.Dioptre</label><br>
+                    <input type="hidden" asp-for="Dioptre" />
+
+                    <label>Базова кривізна:</label>
+                    <label>@Model.BaseCurve</label><br>
+                    <input type="hidden" asp-for="BaseCurve" />
+
+                    <label>Кількість в упаковці:</label>
+                    <label>@Model.NumberOfUnits</label><br>
+                    <input type="hidden" asp-for="NumberOfUnits" />
+
+                    <label>Діаметр:</label>
+                    <label>@Model.Diameter</label><br>
+                    <input type="hidden" asp-for="Diameter" />
+
+                    <label>Термін придатності:</label>
+                    <label>@Model.ExpirationDate днів</label><br>
+                    <input type="hidden" asp-for="ExpirationDate" />
+
+                    <label>Бренд:</label>
+                    <label>@Model.Brand</label><br>
+                    <input type="hidden" asp-for="Brand" />
+
+                    <input class="product_submit" value="Додати до кошика" type="submit" />
+                </div>
+            </div>
         </div>
-        <div class="product_right">
-            <h4 class="product_up_title">@Model.Price грн</h4>
-            <p>Про товар:</p>
-
-            <label>Диоптрії:</label>
-            <label>@Model.Dioptre</label><br>
-
-            <label>Базова кривізна:</label>
-            <label>@Model.BaseCurve</label><br>
-
-            <label>Кількість в упаковці:</label>
-            <label>@Model.NumberOfUnits</label><br>
-
-            <label>Діаметр:</label>
-            <label>@Model.Diameter</label><br>
-
-            <label>Термін придатності:</label>
-            <label>@Model.ExpirationDate днів</label><br>
-
-            <label>Бренд:</label>
-            <label>@Model.Brand</label><br>
-
-            <button class="product_submit">Додати до кошика</button>
-        </div>
-    </div>
+    </form>
 </div>

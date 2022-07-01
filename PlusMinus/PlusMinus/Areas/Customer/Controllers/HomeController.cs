@@ -129,12 +129,13 @@ namespace PlusMinus.Areas.Customer.Controllers
 
                 if (orderProduct is null)
                 {
-                    _orderService.AddProductToOrder(new OrderProduct
+                    orderProduct = new OrderProduct
                     {
                         ProductId = frame.ProductId,
                         OrderId = order.OrderId,
                         Amount = 1,
-                    });
+                    };
+                    _orderService.AddProductToOrder(orderProduct);
                 }
                 else
                 {
@@ -143,8 +144,6 @@ namespace PlusMinus.Areas.Customer.Controllers
 
                 _orderService.UpdateProductInOrder(orderProduct);
             }
-
-
 
             return View(frame);
         }
@@ -189,12 +188,13 @@ namespace PlusMinus.Areas.Customer.Controllers
 
                 if (orderProduct is null)
                 {
-                    _orderService.AddProductToOrder(new OrderProduct
+                    orderProduct = new OrderProduct
                     {
                         ProductId = accessory.ProductId,
                         OrderId = order.OrderId,
                         Amount = 1,
-                    });
+                    };
+                    _orderService.AddProductToOrder(orderProduct);
                 }
                 else
                 {
@@ -203,8 +203,6 @@ namespace PlusMinus.Areas.Customer.Controllers
 
                 _orderService.UpdateProductInOrder(orderProduct);
             }
-
-
 
             return View(accessory);
         }
@@ -249,12 +247,13 @@ namespace PlusMinus.Areas.Customer.Controllers
 
                 if (orderProduct is null)
                 {
-                    _orderService.AddProductToOrder(new OrderProduct
+                    orderProduct = new OrderProduct
                     {
                         ProductId = eyecare.ProductId,
                         OrderId = order.OrderId,
                         Amount = 1,
-                    });
+                    };
+                    _orderService.AddProductToOrder(orderProduct);
                 }
                 else
                 {
@@ -263,8 +262,6 @@ namespace PlusMinus.Areas.Customer.Controllers
 
                 _orderService.UpdateProductInOrder(orderProduct);
             }
-
-
 
             return View(eyecare);
         }
@@ -309,12 +306,13 @@ namespace PlusMinus.Areas.Customer.Controllers
 
                 if (orderProduct is null)
                 {
-                    _orderService.AddProductToOrder(new OrderProduct
+                    orderProduct = new OrderProduct
                     {
                         ProductId = glasses.ProductId,
                         OrderId = order.OrderId,
                         Amount = 1,
-                    });
+                    };
+                    _orderService.AddProductToOrder(orderProduct);
                 }
                 else
                 {
@@ -323,8 +321,6 @@ namespace PlusMinus.Areas.Customer.Controllers
 
                 _orderService.UpdateProductInOrder(orderProduct);
             }
-
-
 
             return View(glasses);
         }
@@ -369,12 +365,13 @@ namespace PlusMinus.Areas.Customer.Controllers
 
                 if (orderProduct is null)
                 {
-                    _orderService.AddProductToOrder(new OrderProduct
+                    orderProduct = new OrderProduct
                     {
                         ProductId = lenses.ProductId,
                         OrderId = order.OrderId,
                         Amount = 1,
-                    });
+                    };
+                    _orderService.AddProductToOrder(orderProduct);
                 }
                 else
                 {
@@ -383,8 +380,6 @@ namespace PlusMinus.Areas.Customer.Controllers
 
                 _orderService.UpdateProductInOrder(orderProduct);
             }
-
-
 
             return View(lenses);
         }
