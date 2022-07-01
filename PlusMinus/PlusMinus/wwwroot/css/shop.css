@@ -103,3 +103,7 @@
     padding: 0.3vh;
     font-weight: bold;
 }
+
+.shop_catalog_item_material {
+    visibility: hidden;
+}

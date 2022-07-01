@@ -1,83 +1,85 @@
 ﻿<!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - PlusMinus</title>
-    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="~/css/site.css" />
-    <link rel="stylesheet" href="~/css/home.css" />
-    <link rel="stylesheet" href="~/css/shop.css" />
-    <link rel="stylesheet" href="~/css/cart.css" />
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<title>@ViewData["Title"] - PlusMinus</title>
+	<link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+	<link rel="stylesheet" href="~/css/site.css" />
+	<link rel="stylesheet" href="~/css/home.css" />
+	<link rel="stylesheet" href="~/css/shop.css" />
+	<link rel="stylesheet" href="~/css/cart.css" />
+	
 </head>
 <body>
-    <header>
-        <nav class="menu">
-            <ul class="left-upper-menu">
-                <li><img src="/icons/logo.png"  height="80"></li>
-            </ul>
-            <ul class="right-upper-menu">
-                <li>
-                    <a href="~/">012 345 67 89</a>
-                    <a href="~/Customer/Cart"><img src="/icons/cart.png" height="35px"></a>
-                    <a href="~/Customer/Home/Profile"><img src="/icons/user.png" height="35px"></a>
-                </li>
-            </ul>
-        </nav>
-        <nav class="menu-down">
-            <ul>
-                <li>Контактні лінзи</li>
-                <li>Сонцезахисні окуляри</li>
-                <li>Оправи</li>
-                <li>Аксесуари</li>
-                <li>Засоби для догляду</li>
-            </ul>
-        </nav>
-    </header>
-    <div class="container">
-        <main role="main" class="pb-3">
-            @RenderBody()
-        </main>
-    </div>
+	<header>
+		<nav class="menu">
+			<ul class="left-upper-menu">
+				<li><img src="/icons/logo.png" height="80"></li>
+			</ul>
+			<ul class="right-upper-menu">
+				<li>
+					<a href="~/">012 345 67 89</a>
+					<a href="~/Customer/Cart"><img src="/icons/cart.png" height="35px"></a>
+					<a href="~/Customer/Home/Profile"><img src="/icons/user.png" height="35px"></a>
+				</li>
+			</ul>
+		</nav>
+		<nav class="menu-down">
+			<ul>
+				<li>Контактні лінзи</li>
+				<li>Сонцезахисні окуляри</li>
+				<li>Оправи</li>
+				<li>Аксесуари</li>
+				<li>Засоби для догляду</li>
+			</ul>
+		</nav>
+	</header>
+	<div class="container">
+		<main role="main" class="pb-3">
+			@RenderBody()
+		</main>
+	</div>
 
-    <footer class="border-top footer text-muted">
-        <div class="container">
-            <div class="container-left">
-                <div class="container-left-up">
-                    <b>Гаряча лінія</b>
-                    <p>
-                        <a href="tel:0800-12-34-56">0800 12 34 56</a>
-                    </p>
-                </div>
-                <div class="container-left-down">
-                    <b>Слідкуйте за нами</b>
-                    <p>
-                        <img src="~/img/facebook.png" alt="">
-                        <img src="~/img/instagram.png" alt="">
-                        <img src="~/img/youtube.png" alt="">
-                    </p>
-                </div>
-            </div>
-            <div class="container-middle">
-                <b>Допомога</b>
-                <p>FAQ</p>
-                <p>Як зробити замовлення</p>
-                <p>Оптичний блог</p>
-            </div>
-            <div class="container-right">
-                <b>Особистий кабінет</b>
-                <p>
-                    <a href ="/Identity/Account/Login">Вхід</a>
-                </p>
-                <p>
-                    <a href ="/Identity/Account/Register">Реєстрація</a>
-                </p>
-            </div>
-        </div>
-    </footer>
-    <script src="~/lib/jquery/dist/jquery.min.js"></script>
-    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="~/js/site.js" asp-append-version="true"></script>
-    @await RenderSectionAsync("Scripts", required: false)
+	<footer class="border-top footer text-muted">
+		<div class="container">
+			<div class="container-left">
+				<div class="container-left-up">
+					<b>Гаряча лінія</b>
+					<p>
+						<a href="tel:0800-12-34-56">0800 12 34 56</a>
+					</p>
+				</div>
+				<div class="container-left-down">
+					<b>Слідкуйте за нами</b>
+					<p>
+						<img src="~/img/facebook.png" alt="">
+						<img src="~/img/instagram.png" alt="">
+						<img src="~/img/youtube.png" alt="">
+					</p>
+				</div>
+			</div>
+			<div class="container-middle">
+				<b>Допомога</b>
+				<p>FAQ</p>
+				<p>Як зробити замовлення</p>
+				<p>Оптичний блог</p>
+			</div>
+			<div class="container-right">
+				<b>Особистий кабінет</b>
+				<p>
+					<a href="/Identity/Account/Login">Вхід</a>
+				</p>
+				<p>
+					<a href="/Identity/Account/Register">Реєстрація</a>
+				</p>
+			</div>
+		</div>
+	</footer>
+	<script src="~/js/Search.js"></script>
+	<script src="~/lib/jquery/dist/jquery.min.js"></script>
+	<script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+	<script src="~/js/site.js" asp-append-version="true"></script>
+	@await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>

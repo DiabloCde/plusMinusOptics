@@ -3,55 +3,55 @@
 }
 
 @using PlusMinus.Core.Models;
-@model List<Lenses>;
+@model IEnumerable<Lenses>;
 
 <div class="shop_panel">
-    <form class="shop_left">
-        <div class="shop_left_item">
-            <h4 class="shop_left_item_title">Фільтри</h4>
-        </div>
-        <div class="shop_left_item">
-            <p class="shop_left_item_title">Ціна</p>
+	<form class="shop_left">
+		<div class="shop_left_item">
+			<h4 class="shop_left_item_title">Фільтри</h4>
+		</div>
+		<div class="shop_left_item">
+			<p class="shop_left_item_title">Ціна</p>
 
-            <label for="">від</label>
-            <input type="number" class="shop_price_input" value="0" step="100">
+			<label for="">від</label>
+			<input type="number" class="shop_price_input" value="0" step="100">
 
-            <label for="">до</label>
-            <input type="number" class="shop_price_input" value="100000" step="100">
+			<label for="">до</label>
+			<input type="number" class="shop_price_input" value="100000" step="100">
 
-        </div>
-        <div class="shop_left_item">
-            <p class="shop_left_item_title">Діоптрії</p>
+		</div>
+		<div class="shop_left_item">
+			<p class="shop_left_item_title">Діоптрії</p>
 
-            <label for="">від</label>
-            <input type="number" class="shop_price_input" value="-20.00" min="-20" max="20" step="0.1">
+			<label for="">від</label>
+			<input type="number" class="shop_price_input" value="-20.00" min="-20" max="20" step="0.1">
 
-            <label for="">до</label>
-            <input type="number" class="shop_price_input" value="20.00" min="-20" max="20" step="0.1">
+			<label for="">до</label>
+			<input type="number" class="shop_price_input" value="20.00" min="-20" max="20" step="0.1">
 
-        </div>
-        <input type="submit" value="Застосувати фільтри" class="filter_submit">
-        <input type="submit" value="Скасувати фільтри" class="filter_submit">
-    </form>
+		</div>
+		<input type="text" placeholder="Знайти..." class="shop_search_input" id="search-item">
+		<input type="submit" value="Пошук" class="shop_search_button" onclick="search()">
+	</form>
     <div class="shop_right">
-        <div class="shop_search">
-            <input type="text" placeholder="Знайти..." class="shop_search_input">
-            <input type="submit" value="Пошук" class="shop_search_button">
-        </div>
-        <div class="shop_catalog">
-            <h4 class="catalog_title">Контактні лінзи</h4>
-            <div class="shop_products">
-                @foreach (var item in Model)
-                {
-                    <div class="shop_product">
-                        <img src="@item.Image" alt="" class="shop_catalog_item_img">
-                        <p class="shop_catalog_item_name">@item.Name</p>
-                        <label for="" class="shop_catalog_item_cost">@item.Price</label>
-                        <label for="">грн</label>
-                        <button class="shop_toProd">У кошик</button>
-                    </div>
-                }
-            </div>
-        </div>
+		<div class="shop_search">
+			<input type="text" placeholder="Знайти..." class="shop_search_input" id="search-item">
+			<input type="submit" value="Пошук" class="shop_search_button" onclick="search()">
+		</div>
+		<div class="shop_products" id="prods">
+			<h4 class="catalog_title">Контактні лінзи</h4>
+			<div class="shop_products">
+				@foreach (var item in Model)
+				{
+					<div class="shop_product">
+						<img src="@item.Image" alt="" class="shop_catalog_item_img">
+						<p class="shop_catalog_item_name">@item.Name</p>
+						<label for="" class="shop_catalog_item_cost">@item.Price</label>
+						<label for="">грн</label>
+						<button class="shop_toProd">У кошик</button>
+					</div>
+				}
+			</div>
+		</div>
     </div>
 </div>
