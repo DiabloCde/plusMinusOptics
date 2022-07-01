@@ -56,23 +56,25 @@
         <input type="submit" value="Скасувати фільтри" class="filter_submit">
     </form>
     <div class="shop_right">
-        <div class="shop_search">
-            <input type="text" placeholder="Знайти..." class="shop_search_input">
-            <input type="submit" value="Пошук" class="shop_search_button">
-        </div>
+		<div class="shop_search">
+			<input type="text" placeholder="Знайти..." class="shop_search_input" id="search-item">
+			<input type="submit" value="Пошук" class="shop_search_button" onclick="search()">
+		</div>
         <div class="shop_catalog">
             <h4 class="catalog_title">Сонцезахисні окуляри</h4>
-            <div class="shop_products">
-                @foreach (var item in Model)
-                {
-                    <div class="shop_product">
-                        <a asp-action="GlassesDetails" asp-route-id="@item.ProductId"><img src="@item.Image" alt="" class="shop_product_img"></a>
-                        <p class="shop_product_name">@item.Name</p>
-                        <label for="" class="shop_product_cost">@item.Price</label>
-                        <label for="">грн</label>
-                    </div>
-                }
-            </div>
+			<div class="shop_products" id="products">
+				@foreach (var item in Model)
+				{
+					<div class="shop_product">
+						<a asp-action="GlassesDetails" asp-route-id="@item.ProductId"><img src="@item.Image" alt="" class="shop_product_img"></a>
+						<p class="shop_product_name">@item.Name</p>
+						<label for="" class="shop_product_cost">@item.Price</label>
+						<label for="">грн</label>
+					</div>
+				}
+
+
+			</div>
         </div>
     </div>
 </div>

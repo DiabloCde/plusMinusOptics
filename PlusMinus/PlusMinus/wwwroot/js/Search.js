@@ -2,7 +2,7 @@
 
 function search() {
 	let resultValue = document.getElementById('search-item').value.toUpperCase();
-	let list = document.getElementById('prods');
+	let list = document.getElementById('products');
 	let products = list.querySelectorAll('.shop_product');
 
 	for (let i = 0; i < products.length; i++) {
