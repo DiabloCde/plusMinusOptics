@@ -108,3 +108,45 @@
     padding: 0.3vh;
     font-weight: bold;
 }
+
+/* Product panel */
+
+.product_content{
+    background-color: white;
+    display: grid;
+    grid-template-rows: 6vh 48vh;
+    height: 54vh;
+    margin: 3vh;
+}
+
+.product_up{
+    padding: 2vh;
+    text-align: center;
+    border-bottom: #f1f4eb 2px solid;
+}
+
+.product_down{
+    display: grid;
+    grid-template-columns: 60% 40%;
+}
+
+.product_left_img{
+    width: 70%;
+    padding: 3vh;
+}
+
+.product_right{
+    padding: 6vh;
+}
+
+.product_submit{
+    width: 10vw;
+    background-color: #458eae;
+    border: 0px;
+    border-radius: 4px;
+    color: white;
+    padding: 0.8vh;
+    margin-top: 2vh;
+    float: left;
+    font-weight: bold;
+}

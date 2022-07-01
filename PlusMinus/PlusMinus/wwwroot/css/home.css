@@ -102,3 +102,61 @@ label {
     float: right;
     font-weight: bold;
 }
+
+/* Profile orders side */
+
+.profile_orders{
+    height: fit-content;
+    width: 41vw;
+    margin-left: 10vw;
+}
+
+.profile_orders_container{
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    overflow-y: scroll;
+    gap: 1.5vh 0vw;
+}
+
+.profile_orders_item{
+    height: 30vh;
+    width: 100%;
+    background-color: white;
+    display: grid;
+    grid-template-rows: 5vh 25vh;
+}
+
+.orders_item_up{
+    padding: 0.2h;
+    text-align: left;
+    border-bottom: #f1f4eb 2px solid;
+    margin: 0.5vh;
+    font-size: 20px;
+}
+
+.orders_item_down{
+    display: grid;
+    grid-template-columns: 50% 50%;
+}
+
+.orders_item_img{
+    width: 70%;
+    padding: 1vh;
+}
+
+.orders_item_right{
+    padding: 1vh;
+}
+
+.orders_item_submit{
+    width: 10vw;
+    background-color: #458eae;
+    border: 0px;
+    border-radius: 4px;
+    color: white;
+    padding: 0.8vh;
+    margin-top: 2vh;
+    float: left;
+    font-weight: bold;
+}

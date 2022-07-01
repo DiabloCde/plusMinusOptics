@@ -12,34 +12,34 @@
 	
 </head>
 <body>
-	<header>
-		<nav class="menu">
-			<ul class="left-upper-menu">
-				<li><img src="/icons/logo.png" height="80"></li>
-			</ul>
-			<ul class="right-upper-menu">
-				<li>
-					<a href="~/">012 345 67 89</a>
-					<a href="~/Customer/Cart"><img src="/icons/cart.png" height="35px"></a>
-					<a href="~/Customer/Home/Profile"><img src="/icons/user.png" height="35px"></a>
-				</li>
-			</ul>
-		</nav>
-		<nav class="menu-down">
-			<ul>
-				<li>Контактні лінзи</li>
-				<li>Сонцезахисні окуляри</li>
-				<li>Оправи</li>
-				<li>Аксесуари</li>
-				<li>Засоби для догляду</li>
-			</ul>
-		</nav>
-	</header>
-	<div class="container">
-		<main role="main" class="pb-3">
-			@RenderBody()
-		</main>
-	</div>
+    <header>
+        <nav class="menu">
+            <ul class="left-upper-menu">
+                <li><img src="/icons/logo.png"  height="80"></li>
+            </ul>
+            <ul class="right-upper-menu">
+                <li>
+                    <a href="~/">012 345 67 89</a>
+                    <a href="~/Customer/Cart"><img src="/icons/cart.png" height="35px"></a>
+                    <a href="~/Customer/Home/Profile"><img src="/icons/user.png" height="35px"></a>
+                </li>
+            </ul>
+        </nav>
+        <nav class="menu-down">
+            <ul>
+                <li><a href="~/Customer/Home/GetLenses">Контактні лінзи</a></li>
+                <li><a href="~/Customer/Home/GetGlasses">Окуляри</a></li>
+                <li><a href="~/Customer/Home/GetFrames">Оправи</a></li>
+                <li><a href="~/Customer/Home/GetAccessories">Аксесуари</a></li>
+                <li><a href="~/Customer/Home/GetEyecare">Засоби для догляду</a></li>
+            </ul>
+        </nav>
+    </header>
+    <div class="container">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
 
 	<footer class="border-top footer text-muted">
 		<div class="container">
