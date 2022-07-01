@@ -6,27 +6,39 @@
 @model Eyecare;
 
 <div class="product_panel">
-    <div class="product_up">
-        <h4 class="product_up_title">@Model.Name</h4>
-    </div>
-    <div class="product_down">
-        <div class="product_left">
-            <img src="@Model.Image" alt="" class="product_left_img">
+    <form asp-action="EyecareDetails">
+        <div class="product_content">
+            <div class="product_up">
+                <h4 class="product_up_title">@Model.Name</h4>
+                <input type="hidden" asp-for="Name" />
+            </div>
+            <div class="product_down">
+                <div class="product_left">
+                    <img src="@Model.Image" alt="" class="product_left_img">
+                    <input type="hidden" asp-for="Image" />
+                </div>
+                <div class="product_right">
+                    <h4 class="product_up_title">@Model.Price грн</h4>
+                    <input type="hidden" asp-for="Price" />
+                    <p>Про товар:</p>
+
+                    <input type="hidden" asp-for="ProductId" />
+
+                    <label>Призначення:</label>
+                    <label>@Model.Purpose</label><br>
+                    <input type="hidden" asp-for="Purpose" />
+
+                    <label>Об'єм:</label>
+                    <label>@Model.Volume</label><br>
+                    <input type="hidden" asp-for="Volume" />
+
+                    <label>Бренд:</label>
+                    <label>@Model.Brand</label><br>
+                    <input type="hidden" asp-for="Brand" />
+
+                    <input class="product_submit" value="Додати до кошика" type="submit" />
+                </div>
+            </div>
         </div>
-        <div class="product_right">
-            <h4 class="product_up_title">@Model.Price грн</h4>
-            <p>Про товар:</p>
-
-            <label>Призначення:</label>
-            <label>@Model.Purpose</label><br>
-
-            <label>Об'єм:</label>
-            <label>@Model.Volume</label><br>
-
-            <label>Бренд:</label>
-            <label>@Model.Brand</label><br>
-
-            <button class="product_submit">Додати до кошика</button>
-        </div>
-    </div>
+    </form>
 </div>

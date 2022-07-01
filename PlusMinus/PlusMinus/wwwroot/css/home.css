@@ -140,9 +140,13 @@ label {
     grid-template-columns: 50% 50%;
 }
 
-.orders_item_img{
-    width: 70%;
+.orders_item_left{
     padding: 1vh;
+}
+
+.orders_item_left_img{
+    width: 70%;
+
 }
 
 .orders_item_right{
@@ -154,9 +158,14 @@ label {
     background-color: #458eae;
     border: 0px;
     border-radius: 4px;
-    color: white;
     padding: 0.8vh;
     margin-top: 2vh;
+    color: white;
     float: left;
     font-weight: bold;
+    text-align: center;
+}
+
+.order_details_panel{
+    margin: 3vh;
 }

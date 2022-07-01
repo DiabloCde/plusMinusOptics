@@ -130,9 +130,12 @@
     grid-template-columns: 60% 40%;
 }
 
+.product_left{
+    padding: 3vh;
+}
+
 .product_left_img{
     width: 70%;
-    padding: 3vh;
 }
 
 .product_right{

@@ -23,7 +23,6 @@
     <div class="profile_orders">
         <h4>Мої замовлення</h4>
         <div class="profile_orders_container">
-
             @foreach (var item in Model)
             {
                 <div class="profile_orders_item">
@@ -32,21 +31,24 @@
                     </div>
                     <div class="orders_item_down">
                         <div class="orders_item_left">
-                            <img src="@item." alt="" class="orders_item_left_img">
+                            <img src="@item.OrderProducts.First().Product.Image" alt="" class="orders_item_left_img">
                         </div>
-                        <label>Всього:</label>
-                        <label>@item.OrderProducts.Sum(o => o.Product.Price * o.Amount)</label><br>
-
-                        <label>Прийнято:</label>
-                        <label>@item.Date</label><br>
-
-                        <label>Статус:</label>
-                        <label>@item.Status</label><br>
-
-                        <label>Кількість товарів:</label>
-                        <label>@item.OrderProducts.Count</label><br>
+                        
                         <div class="orders_item_right">
-                            <button class="orders_item_submit">Деталі замовлення</button>
+
+                            <label>Всього:</label>
+                            <label>@item.OrderProducts.Sum(o => o.Product.Price * o.Amount)</label><br>
+
+                            <label>Прийнято:</label>
+                            <label>@item.Date</label><br>
+
+                            <label>Статус:</label>
+                            <label>@item.Status</label><br>
+
+                            <label>Кількість товарів:</label>
+                            <label>@item.OrderProducts.Count</label><br>
+
+                            <a asp-action="UserOrderDetails" asp-route-id="@item.OrderId" class="orders_item_submit" style="color:white;text-decoration:none">Деталі замовлення</a>
                         </div>
                     </div>
                 </div>
