@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
+using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using PlusMinus.BLL.Interfaces;
@@ -63,6 +64,22 @@ namespace PlusMinus.Areas.Customer.Controllers
                 }
             } 
             return View(); 
+        }
+
+        public  IActionResult DeleteProductFromOrder(int productId)
+        {
+            productId++;
+            Expression<Func<Order, bool>> expr = i => i.Status == OrderStatus.Cart;
+            var currentOrders = _orderService.GetOrders(expr).ToList();
+            if (currentOrders.Count > 0)
+            {
+                currentOrders[0].OrderProducts.RemoveAll(x => x.ProductId == productId);
+                _orderService.UpdateOrder(currentOrders[0]);
+            }
+            // Order order = currentOrders.Count > 0 ? currentOrders[0] : null;
+            // order.OrderProducts.RemoveAll(x => x.ProductId == productId);
+            // return Redirect(Request.Headers["Referer"].ToString());
+            return Redirect("~/Customer/Cart");
         }
     }
 }
