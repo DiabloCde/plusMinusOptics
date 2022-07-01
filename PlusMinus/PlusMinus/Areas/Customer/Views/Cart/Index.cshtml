@@ -43,7 +43,7 @@
                               @{sum = sum + itemTotal;}
                          </div>
                          <div class="item-data-down">
-                              <button id="del" class="btn btn-danger" onclick="">Видалити</button>
+                              <a asp-area="Customer" asp-controller="Cart" asp-action="DeleteProductFromOrder" asp-route-id=@item.ProductId>Delete</a>
                          </div>
                     </div>
                </div>
@@ -67,8 +67,3 @@
           </div>
      </div>
 </div>
-
-<script>
-    var del = Document.getElementById("del");
-    del.addEventListener('click', function(){ x.parentNode.removeChild(x); })
-</script>
