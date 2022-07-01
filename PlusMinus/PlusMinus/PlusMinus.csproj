@@ -41,4 +41,8 @@
     <Folder Include="ViewModels\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Include="wwwroot\js\Search.js" />
+  </ItemGroup>
+
 </Project>

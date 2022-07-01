@@ -1,17 +1,17 @@
 @{
-    ViewData["Title"] = "Glasses";
+	ViewData["Title"] = "Glasses";
 }
 
 @using PlusMinus.Core.Models;
 @model IEnumerable<Glasses>;
 
 <div class="shop_panel">
-    <form class="shop_left">
-        <div class="shop_left_item">
-            <h4 class="shop_left_item_title">Фільтри</h4>
-        </div>
-        <div class="shop_left_item">
-            <p class="shop_left_item_title">Ціна</p>
+	<form class="shop_left">
+		<div class="shop_left_item">
+			<h4 class="shop_left_item_title">Фільтри</h4>
+		</div>
+		<div class="shop_left_item">
+			<p class="shop_left_item_title">Ціна</p>
 
             <label for="">від</label>
             <input type="number" class="shop_price_input" value="0" step="100" min="0" max="100000">
@@ -19,60 +19,60 @@
             <label for="">до</label>
             <input type="number" class="shop_price_input" value="100000" step="100" min="0" max="100000">
 
-        </div>
-        <div class="shop_left_item">
-            <p class="shop_left_item_title">Форма</p>
+		</div>
+		<div class="shop_left_item">
+			<p class="shop_left_item_title">Форма</p>
 
-            <input type="checkbox">
-            <label for="">Квадратна</label><br>
+			<input type="checkbox">
+			<label for="">Квадратна</label><br>
 
-            <input type="checkbox">
-            <label for="">Трикутна</label><br>
+			<input type="checkbox">
+			<label for="">Трикутна</label><br>
 
-            <input type="checkbox">
-            <label for="">Кошаче око</label><br>
+			<input type="checkbox">
+			<label for="">Кошаче око</label><br>
 
-            <input type="checkbox">
-            <label for="">Авіатор</label><br>
+			<input type="checkbox">
+			<label for="">Авіатор</label><br>
 
-            <input type="checkbox">
-            <label for="">Кругла</label><br>
+			<input type="checkbox">
+			<label for="">Кругла</label><br>
 
-            <input type="checkbox">
-            <label for="">Прямокутна</label><br>
+			<input type="checkbox">
+			<label for="">Прямокутна</label><br>
 
-        </div>
-        <div class="shop_left_item">
-            <p class="shop_left_item_title">Матеріал</p>
+		</div>
+		<div class="shop_left_item">
+			<p class="shop_left_item_title">Матеріал</p>
 
-            <input type="checkbox">
-            <label for="">Метал</label><br>
+			<input type="checkbox">
+			<label for="">Метал</label><br>
 
-            <input type="checkbox">
-            <label for="">Пластик</label>
+			<input type="checkbox">
+			<label for="">Пластик</label>
 
         </div>
         <input type="submit" value="Застосувати фільтри" class="filter_submit">
         <input type="submit" value="Скасувати фільтри" class="filter_submit">
     </form>
     <div class="shop_right">
-        <div class="shop_search">
-            <input type="text" placeholder="Знайти..." class="shop_search_input">
-            <input type="submit" value="Пошук" class="shop_search_button">
-        </div>
+		<div class="shop_search">
+			<input type="text" placeholder="Знайти..." class="shop_search_input" id="search-item">
+			<input type="submit" value="Пошук" class="shop_search_button" onclick="search()">
+		</div>
         <div class="shop_catalog">
             <h4 class="catalog_title">Окуляри</h4>
-            <div class="shop_products">
-                @foreach (var item in Model)
-                {
-                    <div class="shop_product">
-                        <a asp-action="GlassesDetails" asp-route-id="@item.ProductId"><img src="@item.Image" alt="" class="shop_product_img"></a>
-                        <p class="shop_product_name">@item.Name</p>
-                        <label for="" class="shop_product_cost">@item.Price</label>
-                        <label for="">грн</label>
-                    </div>
-                }
-            </div>
+			<div class="shop_products" id="products">
+				@foreach (var item in Model)
+				{
+					<div class="shop_product">
+						<a asp-action="GlassesDetails" asp-route-id="@item.ProductId"><img src="@item.Image" alt="" class="shop_product_img"></a>
+						<p class="shop_product_name">@item.Name</p>
+						<label for="" class="shop_product_cost">@item.Price</label>
+						<label for="">грн</label>
+					</div>
+				}
+			</div>
         </div>
     </div>
 </div>

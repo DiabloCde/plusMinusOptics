@@ -34,13 +34,13 @@
         <input type="submit" value="Скасувати фільтри" class="filter_submit">
     </form>
     <div class="shop_right">
-        <div class="shop_search">
-            <input type="text" placeholder="Знайти..." class="shop_search_input">
-            <input type="submit" value="Пошук" class="shop_search_button">
-        </div>
+		<div class="shop_search">
+			<input type="text" placeholder="Знайти..." class="shop_search_input" id="search-item">
+			<input type="submit" value="Пошук" class="shop_search_button" onclick="search()">
+		</div>
         <div class="shop_catalog">
             <h4 class="catalog_title">Засоби для догляду</h4>
-            <div class="shop_products">
+            <div class="shop_products" id="products">
                 @foreach (var item in Model)
                 {
                     <div class="shop_product">
