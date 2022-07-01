@@ -157,10 +157,114 @@ namespace PlusMinus.Areas.Customer.Controllers
             return View(accessory);
         }
 
+        [HttpPost]
+        public async Task<IActionResult> AccessoriesDetails(Accessory accessory)
+        {
+            var claimsIdentity = (ClaimsIdentity)User.Identity;
+            var claim = claimsIdentity.FindFirst(ClaimTypes.NameIdentifier);
+            var user = await _userManager.FindByIdAsync(claim.Value);
+            var order = _orderService.FirstOrDefault(o => o.UserId == user.Id && o.Status == OrderStatus.Cart);
+
+            if (order is null)
+            {
+                _orderService.AddOrder(new Order
+                {
+                    UserId = user.Id,
+                    Date = DateTime.Now,
+                    Status = OrderStatus.Cart,
+                });
+
+                var orderFromDb = _orderService.FirstOrDefault(o => o.UserId == user.Id && o.Status == OrderStatus.Cart);
+
+                _orderService.AddProductToOrder(new OrderProduct
+                {
+                    ProductId = accessory.ProductId,
+                    OrderId = orderFromDb.OrderId,
+                    Amount = 1,
+                });
+            }
+            else
+            {
+                var orderProduct = order.OrderProducts.FirstOrDefault(o => o.ProductId == accessory.ProductId);
+
+                if (orderProduct is null)
+                {
+                    _orderService.AddProductToOrder(new OrderProduct
+                    {
+                        ProductId = accessory.ProductId,
+                        OrderId = order.OrderId,
+                        Amount = 1,
+                    });
+                }
+                else
+                {
+                    orderProduct.Amount += 1;
+                }
+
+                _orderService.UpdateProductInOrder(orderProduct);
+            }
+
+
+
+            return View(accessory);
+        }
+
         [HttpGet]
         public IActionResult EyecareDetails(int id)
         {
             var eyecare = _eyecareService.GetProductByID(id);
+
+            return View(eyecare);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> EyecareDetails(Eyecare eyecare)
+        {
+            var claimsIdentity = (ClaimsIdentity)User.Identity;
+            var claim = claimsIdentity.FindFirst(ClaimTypes.NameIdentifier);
+            var user = await _userManager.FindByIdAsync(claim.Value);
+            var order = _orderService.FirstOrDefault(o => o.UserId == user.Id && o.Status == OrderStatus.Cart);
+
+            if (order is null)
+            {
+                _orderService.AddOrder(new Order
+                {
+                    UserId = user.Id,
+                    Date = DateTime.Now,
+                    Status = OrderStatus.Cart,
+                });
+
+                var orderFromDb = _orderService.FirstOrDefault(o => o.UserId == user.Id && o.Status == OrderStatus.Cart);
+
+                _orderService.AddProductToOrder(new OrderProduct
+                {
+                    ProductId = eyecare.ProductId,
+                    OrderId = orderFromDb.OrderId,
+                    Amount = 1,
+                });
+            }
+            else
+            {
+                var orderProduct = order.OrderProducts.FirstOrDefault(o => o.ProductId == eyecare.ProductId);
+
+                if (orderProduct is null)
+                {
+                    _orderService.AddProductToOrder(new OrderProduct
+                    {
+                        ProductId = eyecare.ProductId,
+                        OrderId = order.OrderId,
+                        Amount = 1,
+                    });
+                }
+                else
+                {
+                    orderProduct.Amount += 1;
+                }
+
+                _orderService.UpdateProductInOrder(orderProduct);
+            }
+
+
 
             return View(eyecare);
         }
@@ -173,10 +277,114 @@ namespace PlusMinus.Areas.Customer.Controllers
             return View(glasses);
         }
 
+        [HttpPost]
+        public async Task<IActionResult> GlassesDetails(Glasses glasses)
+        {
+            var claimsIdentity = (ClaimsIdentity)User.Identity;
+            var claim = claimsIdentity.FindFirst(ClaimTypes.NameIdentifier);
+            var user = await _userManager.FindByIdAsync(claim.Value);
+            var order = _orderService.FirstOrDefault(o => o.UserId == user.Id && o.Status == OrderStatus.Cart);
+
+            if (order is null)
+            {
+                _orderService.AddOrder(new Order
+                {
+                    UserId = user.Id,
+                    Date = DateTime.Now,
+                    Status = OrderStatus.Cart,
+                });
+
+                var orderFromDb = _orderService.FirstOrDefault(o => o.UserId == user.Id && o.Status == OrderStatus.Cart);
+
+                _orderService.AddProductToOrder(new OrderProduct
+                {
+                    ProductId = glasses.ProductId,
+                    OrderId = orderFromDb.OrderId,
+                    Amount = 1,
+                });
+            }
+            else
+            {
+                var orderProduct = order.OrderProducts.FirstOrDefault(o => o.ProductId == glasses.ProductId);
+
+                if (orderProduct is null)
+                {
+                    _orderService.AddProductToOrder(new OrderProduct
+                    {
+                        ProductId = glasses.ProductId,
+                        OrderId = order.OrderId,
+                        Amount = 1,
+                    });
+                }
+                else
+                {
+                    orderProduct.Amount += 1;
+                }
+
+                _orderService.UpdateProductInOrder(orderProduct);
+            }
+
+
+
+            return View(glasses);
+        }
+
         [HttpGet]
         public IActionResult LensesDetails(int id)
         {
             var lenses = _lensesService.GetProductByID(id);
+
+            return View(lenses);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> LensesDetails(Lenses lenses)
+        {
+            var claimsIdentity = (ClaimsIdentity)User.Identity;
+            var claim = claimsIdentity.FindFirst(ClaimTypes.NameIdentifier);
+            var user = await _userManager.FindByIdAsync(claim.Value);
+            var order = _orderService.FirstOrDefault(o => o.UserId == user.Id && o.Status == OrderStatus.Cart);
+
+            if (order is null)
+            {
+                _orderService.AddOrder(new Order
+                {
+                    UserId = user.Id,
+                    Date = DateTime.Now,
+                    Status = OrderStatus.Cart,
+                });
+
+                var orderFromDb = _orderService.FirstOrDefault(o => o.UserId == user.Id && o.Status == OrderStatus.Cart);
+
+                _orderService.AddProductToOrder(new OrderProduct
+                {
+                    ProductId = lenses.ProductId,
+                    OrderId = orderFromDb.OrderId,
+                    Amount = 1,
+                });
+            }
+            else
+            {
+                var orderProduct = order.OrderProducts.FirstOrDefault(o => o.ProductId == lenses.ProductId);
+
+                if (orderProduct is null)
+                {
+                    _orderService.AddProductToOrder(new OrderProduct
+                    {
+                        ProductId = lenses.ProductId,
+                        OrderId = order.OrderId,
+                        Amount = 1,
+                    });
+                }
+                else
+                {
+                    orderProduct.Amount += 1;
+                }
+
+                _orderService.UpdateProductInOrder(orderProduct);
+            }
+
+
 
             return View(lenses);
         }
@@ -220,6 +428,16 @@ namespace PlusMinus.Areas.Customer.Controllers
             userFromDb.Receipt = userViewModel.ImageUrl;
             await _userManager.UpdateAsync(userFromDb);
             return RedirectToAction("Profile");
+        }
+
+        public async Task<IActionResult> GetUserOrders()
+        {
+            var claimsIdentity = (ClaimsIdentity)User.Identity;
+            var claim = claimsIdentity.FindFirst(ClaimTypes.NameIdentifier);
+            var user = await _userManager.FindByIdAsync(claim.Value);
+            var orders = _orderService.GetOrders(o => o.UserId == user.Id);
+
+            return View(orders);
         }
 
         public async Task<IActionResult> Logout()

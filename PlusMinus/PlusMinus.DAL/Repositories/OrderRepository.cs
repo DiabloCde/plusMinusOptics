@@ -44,7 +44,10 @@ namespace PlusMinus.DAL.Repositories
         public Order? FirstOrDefault(Expression<Func<Order, bool>> filter)
         {
             Order? order = this._context.Orders
-                .Include(op => op.OrderProducts)
+                .Include(t => t.OrderProducts)
+                .ThenInclude(t => t.Product)
+                .Include(t => t.OrderProducts)
+                .ThenInclude(t => t.Order)
                 .Include(u => u.User)
                 .FirstOrDefault(filter);
 

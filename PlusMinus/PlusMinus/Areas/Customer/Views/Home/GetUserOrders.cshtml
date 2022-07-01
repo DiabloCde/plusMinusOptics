@@ -1,0 +1,56 @@
+@{
+    ViewData["Title"] = "My orders";
+}
+
+@using PlusMinus.Core.Models;
+@model IEnumerable<Order>;
+
+<div class="profile_panel">
+    <div class="profile_left">
+        <div class="profile_left_item">
+            <img src="" alt="" class="profile_left_img">
+            <a href="/Customer/Home/ProfileEdit"><p>Мій кабінет</p></a>
+        </div>
+        <div class="profile_left_item-chosen">
+            <img src="" alt="" class="profile_left_img">
+            <a href="/Customer/Home/GetUserOrders"><p>Мої замовлення</p></a>
+        </div>
+        <div class="profile_left_item">
+            <img src="" alt="" class="profile_left_img">
+            <a asp-action="Logout"><p>Вихід</p></a>
+        </div>
+    </div>
+    <div class="profile_orders">
+        <h4>Мої замовлення</h4>
+        <div class="profile_orders_container">
+
+            @foreach (var item in Model)
+            {
+                <div class="profile_orders_item">
+                    <div class="orders_item_up">
+                        <p class="orders_item_up_title">Замовлення №@item.OrderId</p>
+                    </div>
+                    <div class="orders_item_down">
+                        <div class="orders_item_left">
+                            <img src="@item." alt="" class="orders_item_left_img">
+                        </div>
+                        <label>Всього:</label>
+                        <label>@item.OrderProducts.Sum(o => o.Product.Price * o.Amount)</label><br>
+
+                        <label>Прийнято:</label>
+                        <label>@item.Date</label><br>
+
+                        <label>Статус:</label>
+                        <label>@item.Status</label><br>
+
+                        <label>Кількість товарів:</label>
+                        <label>@item.OrderProducts.Count</label><br>
+                        <div class="orders_item_right">
+                            <button class="orders_item_submit">Деталі замовлення</button>
+                        </div>
+                    </div>
+                </div>
+             }
+        </div>
+    </div>
+</div>
