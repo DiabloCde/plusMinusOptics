@@ -62,17 +62,17 @@
 		</div>
         <div class="shop_catalog">
             <h4 class="catalog_title">Окуляри</h4>
-            <div class="shop_products">
-                @foreach (var item in Model)
-                {
-                    <div class="shop_product">
-                        <a asp-action="GlassesDetails" asp-route-id="@item.ProductId"><img src="@item.Image" alt="" class="shop_product_img"></a>
-                        <p class="shop_product_name">@item.Name</p>
-                        <label for="" class="shop_product_cost">@item.Price</label>
-                        <label for="">грн</label>
-                    </div>
-                }
-            </div>
+			<div class="shop_products" id="products">
+				@foreach (var item in Model)
+				{
+					<div class="shop_product">
+						<a asp-action="GlassesDetails" asp-route-id="@item.ProductId"><img src="@item.Image" alt="" class="shop_product_img"></a>
+						<p class="shop_product_name">@item.Name</p>
+						<label for="" class="shop_product_cost">@item.Price</label>
+						<label for="">грн</label>
+					</div>
+				}
+			</div>
         </div>
     </div>
 </div>
