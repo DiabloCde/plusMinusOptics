@@ -3,6 +3,7 @@
 @{ double discount = 0;}
 @{ double shipping = 0;}
 @{ double itemTotal = 0;}
+@{double total = 0;}
 <div class="cart-container">
      <div class="cart">
           <div class="name">
@@ -39,6 +40,7 @@
                                    @{ itemTotal = item.Price * num; }
                                    <h2>@itemTotal</h2>
                               </div>
+                              @{sum = sum + itemTotal;}
                          </div>
                          <div class="item-data-down">
                               <button id="del" class="btn btn-danger" onclick="">Видалити</button>
@@ -48,7 +50,7 @@
           }
      </div>
      <div class="cart-info">
-          @{ var total = sum - sum * discount;}
+          @{ total = sum - sum * discount;}
           <div class="name">
                <h2>Всього</h2>
           </div>
