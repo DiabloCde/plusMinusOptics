@@ -1,15 +1,15 @@
-<form class="makeOrderForm" method="post" action="~">
+<form class="makeOrderForm" method="POST" action="https://www.paypal.com/cgi-bin/webscr">
 <div class="order-container">
         <div class="order-container-left">
             <p><b>Персональні дані</b></p>
                 <label for="fname">Ім'я*</label><br>
-                <input type="text"name="fname" placeholder="Ваше ім'я"><br>
+                <input type="text"name="fname" placeholder="Ваше ім'я" required><br>
                 <label for="sname">Прізвище*</label><br>
-                <input type="text"name="sname" placeholder="Ваше прізвище"><br>
+                <input type="text"name="sname" placeholder="Ваше прізвище" required><br>
                 <label for="phone">Телефон*</label><br>
-                <input type="text"name="phone" placeholder="Ваш телефон"><br>
+                <input type="text"name="phone" placeholder="Ваш телефон" required><br>
                 <label for="email">e-mail*</label><br>
-                <input type="text"name="email" placeholder="Ваш e-mail"><br>
+                <input type="text"name="email" placeholder="Ваш e-mail" required><br>
         </div>
         <div class="order-container-middle">
             <p><b>Адресні дані</b></p>
@@ -37,7 +37,7 @@
                 <label for="Card">Банківською карткою</label><br>
                 <input type="radio" name="Card" value="Nal">
                 <label for="Nal">Готівкою</label><br>
-            <input type="submit" class="btn button-mo" value="Всього">
+            <input type="submit" class="btn button-mo" value="Всього" PostBackUrl='https://www.paypal.com/cgi-bin/webscr' runat="server">
         </div>
 </div>
 </form>
