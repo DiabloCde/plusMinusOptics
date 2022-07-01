@@ -60,6 +60,9 @@ namespace PlusMinus.DAL.Repositories
         {
             return this._context.Orders
                 .Include(t => t.OrderProducts)
+                .ThenInclude(t => t.Product)
+                .Include(t => t.OrderProducts)
+                .ThenInclude(t => t.Order)
                 .Include(u => u.User)
                 .Where(filter);
         }

@@ -3,7 +3,7 @@
 }
 
 @using PlusMinus.Core.Models;
-@model List<Accessory>;
+@model IEnumerable<Accessory>;
 
 <div class="shop_panel">
     <form class="shop_left">
@@ -14,10 +14,10 @@
             <p class="shop_left_item_title">Ціна</p>
 
             <label for="">від</label>
-            <input type="number" class="shop_price_input" value="0" step="100">
+            <input type="number" class="shop_price_input" value="0" step="100" min="0" max="100000">
 
             <label for="">до</label>
-            <input type="number" class="shop_price_input" value="100000" step="100">
+            <input type="number" class="shop_price_input" value="100000" step="100" min="0" max="100000">
 
         </div>
         <div class="shop_left_item">
@@ -30,7 +30,7 @@
             <label for="">Футляр для лінз</label><br>
 
             <input type="checkbox">
-            <label for="">?</label><br>
+            <label for="">Ланцюжок</label><br>
 
             <input type="checkbox">
             <label for="">Серветка</label>
@@ -60,9 +60,9 @@
                 @foreach (var item in Model)
                 {
                     <div class="shop_product">
-                        <img src="@item.Image" alt="" class="shop_catalog_item_img">
-                        <p class="shop_catalog_item_name">@item.Name</p>
-                        <label for="" class="shop_catalog_item_cost">@item.Price</label>
+                        <a asp-action="AccessoriesDetails" asp-route-id="@item.ProductId"><img src="@item.Image" alt="" class="shop_product_img"></a>
+                        <p class="shop_product_name">@item.Name</p>
+                        <label for="" class="shop_product_cost">@item.Price</label>
                         <label for="">грн</label>
                         <button class="shop_toProd">У кошик</button>
                     </div>

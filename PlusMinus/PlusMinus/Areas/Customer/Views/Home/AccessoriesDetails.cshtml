@@ -1,0 +1,35 @@
+@{
+    ViewData["Title"] = "Accessory";
+}
+
+@using PlusMinus.Core.Models;
+@model Accessory;
+
+<div class="product_panel">
+    <div class="product_up">
+        <h4 class="product_up_title">@Model.Name</h4>
+    </div>
+    <div class="product_down">
+        <div class="product_left">
+            <img src="@Model.Image" alt="" class="product_left_img">
+        </div>
+        <div class="product_right">
+            <h4 class="product_up_title">@Model.Price грн</h4>
+            <p>Про товар:</p>
+
+            <label>Тип:</label>
+            <label>@Model.AccessoryType</label><br>
+
+            <label>Матеріал:</label>
+            <label>@Model.Material</label><br>
+
+            <label>Колір:</label>
+            <label>@Model.Color</label><br>
+
+            <label>Бренд:</label>
+            <label>@Model.Brand</label><br>
+
+            <button class="product_submit">Додати до кошика</button>
+        </div>
+    </div>
+</div>
