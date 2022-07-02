@@ -2,8 +2,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
+using System.Security.Claims;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using PlusMinus.BLL.Interfaces;
 using PlusMinus.Core.Models;
@@ -19,16 +21,23 @@ namespace PlusMinus.Areas.Customer.Controllers
         private readonly IProductService<Product> _productService;
 
         private readonly IOrderService _orderService;
-        
-        public CartController(IProductService<Product> productService, IOrderService orderService)
+
+        private readonly UserManager<User> _userManager;
+
+        public CartController(IProductService<Product> productService, IOrderService orderService, UserManager<User> userManager)
         {
             _productService = productService;
             _orderService = orderService;
+            _userManager = userManager;
         }
         
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            Expression<Func<Order, bool>> expr = i => i.Status == OrderStatus.Cart;
+            var claimsIdentity = (ClaimsIdentity)User.Identity;
+            var claim = claimsIdentity.FindFirst(ClaimTypes.NameIdentifier);
+            var user = await _userManager.FindByIdAsync(claim.Value);
+
+            Expression<Func<Order, bool>> expr = i => i.Status == OrderStatus.Cart && i.UserId == user.Id;
             var currentOrders = _orderService.GetOrders(expr).ToList();
             Order order = currentOrders.Count > 0 ? currentOrders[0] : null;
             List<Product> products = new List<Product>();
@@ -42,9 +51,13 @@ namespace PlusMinus.Areas.Customer.Controllers
             return View(products);
         }
 
-        public IActionResult MakeOrder()
+        public async Task<IActionResult> MakeOrder()
         {
-            Expression<Func<Order, bool>> expr = i => i.Status == OrderStatus.Cart;
+            var claimsIdentity = (ClaimsIdentity)User.Identity;
+            var claim = claimsIdentity.FindFirst(ClaimTypes.NameIdentifier);
+            var user = await _userManager.FindByIdAsync(claim.Value);
+
+            Expression<Func<Order, bool>> expr = i => i.Status == OrderStatus.Cart && i.UserId == user.Id;
             var currentOrders = _orderService.GetOrders(expr).ToList();
             Order order = currentOrders.Count > 0 ? currentOrders[0] : null;
             List<Product> products = new List<Product>();
@@ -67,10 +80,14 @@ namespace PlusMinus.Areas.Customer.Controllers
             return View(); 
         }
 
-        public  IActionResult DeleteProductFromOrder(int productId)
+        public async Task<IActionResult> DeleteProductFromOrder(int productId)
         {
             //productId++;
-            Expression<Func<Order, bool>> expr = i => i.Status == OrderStatus.Cart;
+            var claimsIdentity = (ClaimsIdentity)User.Identity;
+            var claim = claimsIdentity.FindFirst(ClaimTypes.NameIdentifier);
+            var user = await _userManager.FindByIdAsync(claim.Value);
+
+            Expression<Func<Order, bool>> expr = i => i.Status == OrderStatus.Cart && i.UserId == user.Id;
             var currentOrders = _orderService.GetOrders(expr).ToList();
             if (currentOrders.Count > 0)
             {
