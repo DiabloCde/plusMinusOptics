@@ -63,10 +63,17 @@ min-height: 100%;
 }
 
 body {
-  /* Margin bottom by footer height */
-  margin-bottom: 60px;
-  background-color: #f1f4eb;
+    /* Margin bottom by footer height */
+    margin-bottom: 60px;
+    background-color: #f1f4eb;
+    max-width: 100%;
+    overflow-x: hidden;
 }
+  
+main{
+    min-height: 54.5vh;
+}
+
 .footer {
     position: absolute;
     /*bottom: 0;*/
