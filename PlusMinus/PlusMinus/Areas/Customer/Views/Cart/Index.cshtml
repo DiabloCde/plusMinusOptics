@@ -43,8 +43,7 @@
                               @{sum = sum + itemTotal;}
                          </div>
                         <div class="item-data-down">
-                            <form asp-action="DeleteProductFromOrder">
-                                <input type="hidden" asp-for="@item.ProductId" />
+                            <form asp-action="DeleteProductFromOrder" asp-route-productId="@item.ProductId">
                                 <input type="submit" value="Видалити" class="btn btn-danger" />
                             </form>
                         </div>

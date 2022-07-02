@@ -69,7 +69,7 @@ namespace PlusMinus.Areas.Customer.Controllers
 
         public  IActionResult DeleteProductFromOrder(int productId)
         {
-            productId++;
+            //productId++;
             Expression<Func<Order, bool>> expr = i => i.Status == OrderStatus.Cart;
             var currentOrders = _orderService.GetOrders(expr).ToList();
             if (currentOrders.Count > 0)

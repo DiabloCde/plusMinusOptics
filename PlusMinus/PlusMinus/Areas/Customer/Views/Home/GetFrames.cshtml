@@ -65,12 +65,16 @@
             <div class="shop_products" id="products">
                 @foreach (var item in Model)
                 {
-                    <div class="shop_product">
-                        <a asp-action="FramesDetails" asp-route-id="@item.ProductId"><img src="@item.Image" alt="" class="shop_product_img"></a>
-                        <p class="shop_product_name">@item.Name</p>
-                        <label for="" class="shop_product_cost">@item.Price</label>
-                        <label for="">грн</label>
-                    </div>
+                <div class="shop_product">
+                    <a asp-action="FramesDetails" asp-route-id="@item.ProductId"><img src="@item.Image" alt="" class="shop_product_img"></a>
+                    <p class="shop_product_name">@item.Name</p>
+                    <b for="" class="shop_product_cost">@item.Price</b>
+                    <b for="">грн</b>
+                    @if (item.Amount <= 0)
+                    {
+                        <b>Нема в наявності</b>
+                    }
+                </div>
                 }
             </div>
         </div>

@@ -3,6 +3,7 @@
 }
 
 @using PlusMinus.Core.Models;
+@using PlusMinus.Utils
 @model Eyecare;
 
 <div class="product_panel">
@@ -10,6 +11,10 @@
         <div class="product_content">
             <div class="product_up">
                 <h4 class="product_up_title">@Model.Name</h4>
+                @if (Model.Amount <= 0)
+                {
+                    <h5>Нема в наявності</h5>
+                }
                 <input type="hidden" asp-for="Name" />
             </div>
             <div class="product_down">
@@ -36,7 +41,7 @@
                     <label>@Model.Brand</label><br>
                     <input type="hidden" asp-for="Brand" />
 
-                    <input class="product_submit" value="Додати до кошика" type="submit" />
+                    <input class="product_submit" value="Додати до кошика" type="submit" @Html.DisabledIf(Model.Amount <= 0)/>
                 </div>
             </div>
         </div>

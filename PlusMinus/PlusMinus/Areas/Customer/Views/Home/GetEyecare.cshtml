@@ -46,8 +46,12 @@
                     <div class="shop_product">
                         <a asp-action="EyecareDetails" asp-route-id="@item.ProductId"><img src="@item.Image" alt="" class="shop_product_img"></a>
                         <p class="shop_product_name">@item.Name</p>
-                        <label for="" class="shop_product_cost">@item.Price</label>
-                        <label for="">грн</label>
+                        <b class="shop_product_cost">@item.Price</b>
+                        <b>грн</b>
+                        @if (item.Amount <= 0)
+                        {
+                            <b>Нема в наявності</b>
+                        }
                     </div>
                 }
             </div>
